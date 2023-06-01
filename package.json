@@ -1,12 +1,12 @@
 {
-    "name": "logseq-plugin-template-typescript",
-    "description": "A template for Logseq plugin written in TypeScript",
-    "repository": "https://github.com/YU000jp/logseq-plugin-template-typescript.git",
+    "name": "logseq-plugin-confirmation-link-title",
+    "description": "",
+    "repository": "https://github.com/YU000jp/logseq-plugin-confirmation-link-title.git",
     "author": "YU000jp",
     "license": "MIT",
     "logseq": {
-        "id": "template-typescript",
-        "title": "Template TypeScript",
+        "id": "confirmation-link-title",
+        "title": "Confirmation Link Title (Pastes URL)",
         "icon": "./icon.svg",
         "main": "./dist/index.html"
     },
