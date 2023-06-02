@@ -1,12 +1,12 @@
 {
-    "name": "logseq-plugin-confirmation-link-title",
+    "name": "logseq-plugin-confirmation-done-task",
     "description": "",
-    "repository": "https://github.com/YU000jp/logseq-plugin-confirmation-link-title.git",
+    "repository": "https://github.com/YU000jp/logseq-plugin-confirmation-done-task.git",
     "author": "YU000jp",
     "license": "MIT",
     "logseq": {
-        "id": "confirmation-link-title",
-        "title": "Confirmation Link Title (Pastes URL)",
+        "id": "confirmation-done-task",
+        "title": "Confirmation DONE task",
         "icon": "./icon.svg",
         "main": "./dist/index.html"
     },
@@ -21,7 +21,9 @@
     },
     "dependencies": {
         "@logseq/libs": "^0.0.15",
-        "logseq-l10n": "^0.2.0"
+        "date-fns": "^2.30.0",
+        "logseq-l10n": "^0.2.0",
+        "sweetalert2": "^11.7.10"
     },
     "devDependencies": {
         "@semantic-release/changelog": "^6.0.3",
