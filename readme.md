@@ -5,7 +5,7 @@
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-confirmation-done-task)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-confirmation-done-task?color=blue)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-confirmation-done-task/total.svg)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/releases)
-Published 2023
+<!-- Published 2023 -->
 
 ---
 
@@ -37,15 +37,9 @@ Published 2023
 
 Go to the [discussion](./discussions) tab to ask and find this kind of things.
 
-## My plugins
+## Author
 
-- [Show Weekday and Week-number](https://github.com/YU000jp/logseq-plugin-show-weekday-and-week-number)
-- [Weekdays and Holidays (Templates)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends)
-- [Sticky Popup](https://github.com/YU000jp/logseq-plugin-sticky-popup)
-- [SomeMenuExtender](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
-- [Column Layout (UI)](https://github.com/YU000jp/Logseq-column-Layout)
-- [Panel Coloring (Color)](https://github.com/YU000jp/logseq-plugin-panel-coloring)
-- [Page-tags and Hierarchy (UI)](https://github.com/YU000jp/logseq-page-tags-and-hierarchy)
+- GitHub: [YU000jp](https://github.com/YU000jp)
 
 ## Prior art & Credit
 
@@ -54,6 +48,14 @@ Go to the [discussion](./discussions) tab to ask and find this kind of things.
 - [@logseq/libs](https://logseq.github.io/plugins/)
 - [logseq-l10n](https://github.com/sethyuan/logseq-l10n)
 
+### Logseq-plugin
+
+- [DimitryDushkin/ task completion tracker](https://github.com/DimitryDushkin/logseq-plugin-task-check-date)
+
 ### Icon
 
 - [icooon-mono.com](https://icooon-mono.com/)
+
+---
+
+<a href="https://www.buymeacoffee.com/yu000japan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="🍌Buy Me A Coffee" style="height: 42px;width: 152px" ></a>
