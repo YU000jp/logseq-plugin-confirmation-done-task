@@ -1,6 +1,4 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
-import { logseq as PL } from "../package.json";
-const pluginId = PL.id; //set plugin id from package.json
 import { AppGraphInfo, AppUserConfigs, SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
 import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
 import ja from "./translations/ja.json";
@@ -10,7 +8,6 @@ import Swal from 'sweetalert2';
 
 /* main */
 const main = () => {
-  console.info(`#${pluginId}: MAIN`); //console
   (async () => {
     try {
       await l10nSetup({ builtinTranslations: { ja } });
@@ -29,14 +26,14 @@ const main = () => {
 
   //get theme color (For SweetAlert2)
   //checkboxなどはCSSで上書きする必要あり
-  let sweetAlert2background;  //color: sweetAlert2color
-  let sweetAlert2color; //background: sweetAlert2background
+  let background;
+  let color;
   const rootThemeColor = () => {
     const root = parent.document.querySelector(":root");
     if (root) {
       const rootStyles = getComputedStyle(root);
-      sweetAlert2background = rootStyles.getPropertyValue("--ls-block-properties-background-color") || "#ffffff";
-      sweetAlert2color = rootStyles.getPropertyValue("--ls-primary-text-color") || "#000000";
+      background = rootStyles.getPropertyValue("--ls-block-properties-background-color") || "#ffffff";
+      color = rootStyles.getPropertyValue("--ls-primary-text-color") || "#000000";
     }
   };
   rootThemeColor();
@@ -54,7 +51,7 @@ const main = () => {
       return;
     }
     const TASK_MARKERS = new Set(["DONE", "NOW", "LATER", "DOING", "TODO", "WAITING"]);
-    const taskBlock = blocks.find((block) => TASK_MARKERS.has(block.marker));
+    const taskBlock = blocks.find(({ marker }) => TASK_MARKERS.has(marker));
     if (!taskBlock) {
       return;
     }
@@ -88,8 +85,8 @@ const main = () => {
           showCancelButton: true,
           html: `<input id="swal-input1" class="swal2-input" type="date" value="${todayFormatted}"/>${addTime}`,//type:dateが指定できないためhtmlとして作成
           focusConfirm: false,
-          color: sweetAlert2color,
-          background: sweetAlert2background,
+          color: color,
+          background: background,
           preConfirm: () => {
             const input1 = (document.getElementById('swal-input1') as HTMLInputElement)!.value;
             let input2;
@@ -125,7 +122,7 @@ const main = () => {
   });
   //end
 
-  console.info(`#${pluginId}: loaded`);//console
+
 };/* end_main */
 
 
