@@ -33,8 +33,6 @@
 - Select marketplace
 - Type `DONE` in the search field, select it from the search results and install
 
-
-
 ### Usage
 
 - 
