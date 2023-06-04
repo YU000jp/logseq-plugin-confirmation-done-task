@@ -62,7 +62,7 @@ Go to the [discussion](https://github.com/YU000jp/logseq-plugin-confirmation-don
 
 ### Icon
 
-- [icooon-mono.com](https://icooon-mono.com/)
+- [icooon-mono.com](https://icooon-mono.com/13942-%e3%83%9e%e3%83%83%e3%83%81%e3%83%a7%e3%81%ae%e3%82%a4%e3%83%a9%e3%82%b9%e3%83%884/)
 
 ---
 
