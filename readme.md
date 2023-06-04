@@ -1,6 +1,10 @@
 # Logseq Plugin: Confirmation DONE task
 
+- When paste a URL, a confirmation dialog will appear, and afterwards, the title of that page will be retrieved and turned into a Markdown Hyperlink.
+
 - Development stage 👷🚧
+
+> This plugin still has room for improvement. Please let me know if you encounter any issues or have any ideas for enhancement.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-confirmation-done-task)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-confirmation-done-task?color=blue)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/LICENSE)
@@ -9,11 +13,13 @@
 
 ---
 
-## Features
+## Feature
 
-### Feature A
+### Automatic link title feature
 
-### Feature B
+> Paste the URL on the editing block
+
+- Existing auto plugins often perform unnecessary conversions and may result in garbled characters. To address this issue, our solution is to confirm with the user through a dialog before making any changes. To use this feature, simply paste the URL and a dialog will appear, allowing you to edit the title if necessary.
 
 ## Demo
 
