@@ -1,6 +1,6 @@
 # Logseq Plugin: Confirmation DONE task
 
-- When paste a URL, a confirmation dialog will appear, and afterwards, the title of that page will be retrieved and turned into a Markdown Hyperlink.
+- Create a Markdown link by pasting a URL and retrieving the page title through a confirmation dialog.
 
 - Development stage 👷🚧
 
