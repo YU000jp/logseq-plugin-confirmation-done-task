@@ -79,7 +79,7 @@ const main = () => {
           input1: string;
           input2: string;
         }>({
-          title: "Add the property to the block?",
+          title: `Add ${(logseq.settings?.customPropertyName || "completed")} property to the block`,
           text: "",
           icon: "info",
           showCancelButton: true,
@@ -132,17 +132,17 @@ const main = () => {
 const settingsTemplate: SettingSchemaDesc[] = [
   {
     key: "addTime",
-    title: "Use the property for the date with time",
+    title: "Use the function to add a timestamp to the property",
     type: "boolean",
     default: true,
-    description: "",
+    description: "Toggle",
   },
   {
     key: "customPropertyName",
     title: "Custom property name",
     type: "string",
     default: "completed",
-    description: "`completed` is the default.",
+    description: "default: `completed`",
   },
 ];
 
