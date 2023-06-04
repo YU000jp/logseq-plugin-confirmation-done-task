@@ -1,6 +1,6 @@
 # Logseq Plugin: Confirmation DONE task
 
-- Create a Markdown link by pasting a URL and retrieving the page title through a confirmation dialog.
+- When a task is marked as DONE, a confirmation dialog is displayed, and a property with a date is added to the block.
 
 - Development stage 👷🚧
 
@@ -15,11 +15,11 @@
 
 ## Feature
 
-### Automatic link title feature
+### Add completed property to the DONE task
 
-> Paste the URL on the editing block
+> Mark the task as `DONE`
 
-- Existing auto plugins often perform unnecessary conversions and may result in garbled characters. To address this issue, our solution is to confirm with the user through a dialog before making any changes. To use this feature, simply paste the URL and a dialog will appear, allowing you to edit the title if necessary.
+- Logseq has a problem where it does not record the `DONE` date. To address this issue, a solution is to add a `completed` property to the block after the task is completed. To use this solution, simply click on the dialog box that appears after completing a task, which will prompt you to add a `completed` property. You can edit the date if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
 
 ## Demo
 
@@ -33,6 +33,8 @@
 - Select marketplace
 - Type `DONE` in the search field, select it from the search results and install
 
+
+
 ### Usage
 
 - 
@@ -41,7 +43,7 @@
 
 ## Showcase / Questions / Ideas / Help
 
-Go to the [discussion](./discussions) tab to ask and find this kind of things.
+Go to the [discussion](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/discussions) tab to ask and find this kind of things.
 
 ## Author
 
