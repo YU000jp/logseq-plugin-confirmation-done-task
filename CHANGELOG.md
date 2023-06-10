@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.0.1...v1.0.2) (2023-06-10)
+
+
+### Bug Fixes
+
+* **refactor:** remove logseq-l10n ([c3e2c7b](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/c3e2c7b8348489ae69663b1fbecb0fc0af69abc8))
+
 ## [1.0.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.0.0...v1.0.1) (2023-06-04)
 
 
