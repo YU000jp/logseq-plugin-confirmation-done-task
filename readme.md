@@ -19,9 +19,7 @@
 
 > Mark the task as `DONE`
 
-- Logseq has a problem where it does not record the `DONE` date. To address this issue, a solution is to add a `completed` property to the block after the task is completed. To use this solution, simply click on the dialog box that appears after completing a task, which will prompt you to add a `completed` property. You can edit the date if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
-
-## Demo
+- Logseq has a problem where it does not record the `DONE` date. To address this issue, a solution is to add a `completed` property to the block after the task is completed. 
 
 ![image](https://github.com/YU000jp/logseq-plugin-some-menu-extender/assets/111847207/7cf6ec68-8441-4398-b195-15c757e1d2de)
 
@@ -39,7 +37,7 @@
 
 ### Usage
 
-- 
+- To use this solution, After marking as `DONE`, which will prompt you to add a `completed` property. You can edit the date and time if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
 
 ---
 
