@@ -51,11 +51,6 @@ Go to the [discussion](https://github.com/YU000jp/logseq-plugin-confirmation-don
 
 ## Prior art & Credit
 
-### Library
-
-- [@logseq/libs](https://logseq.github.io/plugins/)
-- [logseq-l10n](https://github.com/sethyuan/logseq-l10n)
-
 ### Logseq-plugin
 
 - [DimitryDushkin/ task completion tracker](https://github.com/DimitryDushkin/logseq-plugin-task-check-date)
