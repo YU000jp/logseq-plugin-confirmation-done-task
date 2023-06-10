@@ -24,7 +24,7 @@ const main = () => {
   // })();
 
 
-  //get theme color (For SweetAlert2)
+  //get theme color
   //checkboxなどはCSSで上書きする必要あり
   let background;
   let color;
