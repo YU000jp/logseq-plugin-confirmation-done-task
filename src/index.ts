@@ -1,17 +1,17 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
 import { AppGraphInfo, AppUserConfigs, SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
-import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
-import ja from "./translations/ja.json";
+//import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+//import ja from "./translations/ja.json";
 import { format } from 'date-fns';
 import Swal from 'sweetalert2';
 
 
 /* main */
 const main = () => {
-  (async () => {
-    try {
-      await l10nSetup({ builtinTranslations: { ja } });
-    } finally {
+  // (async () => {
+  //   try {
+  //     await l10nSetup({ builtinTranslations: { ja } });
+  //   } finally {
       /* user settings */
       logseq.useSettingsSchema(settingsTemplate);
       if (!logseq.settings) {
@@ -20,8 +20,8 @@ const main = () => {
         }
           , 300);
       }
-    }
-  })();
+  //   }
+  // })();
 
 
   //get theme color (For SweetAlert2)
