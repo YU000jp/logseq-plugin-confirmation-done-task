@@ -21,7 +21,7 @@
 
 - Logseq has a problem where it does not record the `DONE` date. To address this issue, a solution is to add a `completed` property to the block after the task is completed. 
 
-![image](https://github.com/YU000jp/logseq-plugin-some-menu-extender/assets/111847207/7cf6ec68-8441-4398-b195-15c757e1d2de)
+   ![DONEpropety](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/assets/111847207/2e7a224f-6efe-4f30-91d9-0e020c2274ce)
 
 ---
 
