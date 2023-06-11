@@ -11,31 +11,14 @@ const main = () => {
   //   } finally {
   /* user settings */
   logseq.useSettingsSchema(settingsTemplate);
-  if (!logseq.settings) {
-    setTimeout(() => {
-      logseq.showSettingsUI();
-    }
-      , 300);
-  }
+  // if (!logseq.settings) {
+  //   setTimeout(() => {
+  //     logseq.showSettingsUI();
+  //   }
+  //     , 300);
+  // }
   //   }
   // })();
-
-
-  //get theme color
-  //checkboxなどはCSSで上書きする必要あり
-  let background;
-  let color;
-  const rootThemeColor = () => {
-    const root = parent.document.querySelector(":root");
-    if (root) {
-      const rootStyles = getComputedStyle(root);
-      background = rootStyles.getPropertyValue("--ls-block-properties-background-color") || "#ffffff";
-      color = rootStyles.getPropertyValue("--ls-primary-text-color") || "#000000";
-    }
-  };
-  rootThemeColor();
-  logseq.App.onThemeModeChanged(() => { rootThemeColor(); });
-  //end
 
 
   //add completed property to done task
@@ -159,23 +142,22 @@ const main = () => {
 };/* end_main */
 
 
-
 /* user setting */
 // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
 const settingsTemplate: SettingSchemaDesc[] = [
-  {
-    key: "addTime",
-    title: "Use the function to add a timestamp to the property",
-    type: "boolean",
-    default: true,
-    description: "default: `true`",
-  },
   {
     key: "customPropertyName",
     title: "Custom property name",
     type: "string",
     default: "completed",
     description: "default: `completed`",
+  },
+  {
+    key: "addTime",
+    title: "Use the function to add a timestamp to the property",
+    type: "boolean",
+    default: true,
+    description: "default: `true`",
   },
   {
     key: "timeEmphasis",
