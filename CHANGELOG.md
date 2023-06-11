@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.0.2...v1.1.0) (2023-06-11)
+
+
+### Features
+
+* **New confirm popup:** remove `sweetalert2` lib ([dcb93c7](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/dcb93c7545970581611aa122826ad9c58cc52eca))
+
 ## [1.0.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.0.1...v1.0.2) (2023-06-10)
 
 
