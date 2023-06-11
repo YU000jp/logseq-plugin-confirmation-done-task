@@ -54,7 +54,7 @@ const main = () => {
         //エレメントから位置を取得する
         const rect = blockElement[0].getBoundingClientRect();
         if (!rect) return;
-        const top: string = Number(rect.top + window.pageYOffset - 140) + "px";
+        const top: string = Number(rect.top + window.pageYOffset - 110) + "px";
         const left: string = Number(rect.left + window.pageXOffset + 100) + "px";
         const key = "confirmation-done-task";
         logseq.provideUI({
@@ -76,6 +76,10 @@ const main = () => {
                   border: 1px solid var(--ls-secondary-background-color);
                   boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
                 }
+                div#addProperty button:hover {
+                  background: var(--ls-secondary-background-color);
+                  color: var(--ls-secondary-text-color);
+              }
                 div.light-theme span#dot-${taskBlock.uuid}{
                   outline: 2px solid var(--ls-link-ref-text-color);
                 }
