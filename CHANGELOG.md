@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.1.0...v1.1.1) (2023-06-11)
+
+
+### Bug Fixes
+
+* **refactor:** new confirm popup ([b792425](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/b79242518332ad11821e1945007bfce049f67e5d))
+
 # [1.1.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.0.2...v1.1.0) (2023-06-11)
 
 
