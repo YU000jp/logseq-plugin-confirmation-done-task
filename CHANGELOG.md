@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.1.1...v1.1.2) (2023-06-11)
+
+
+### Bug Fixes
+
+* **b:** adjust popup position ([7d1fe1a](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/7d1fe1a3f10882fde6a6bc8de5f197a9443f943a))
+* **new confirm popup:** for block error ([a7b2777](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/a7b277783c322361061d28fd31c4c965140a000e))
+
 ## [1.1.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.1.0...v1.1.1) (2023-06-11)
 
 
