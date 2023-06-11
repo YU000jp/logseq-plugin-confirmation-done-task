@@ -1,9 +1,6 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
 import { AppGraphInfo, AppUserConfigs, SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
-//import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
-//import ja from "./translations/ja.json";
 import { format } from 'date-fns';
-import Swal from 'sweetalert2';
 
 
 /* main */
@@ -12,14 +9,14 @@ const main = () => {
   //   try {
   //     await l10nSetup({ builtinTranslations: { ja } });
   //   } finally {
-      /* user settings */
-      logseq.useSettingsSchema(settingsTemplate);
-      if (!logseq.settings) {
-        setTimeout(() => {
-          logseq.showSettingsUI();
-        }
-          , 300);
-      }
+  /* user settings */
+  logseq.useSettingsSchema(settingsTemplate);
+  if (!logseq.settings) {
+    setTimeout(() => {
+      logseq.showSettingsUI();
+    }
+      , 300);
+  }
   //   }
   // })();
 
@@ -47,20 +44,14 @@ const main = () => {
   logseq.DB.onChanged(async ({ blocks }) => {
     //check current graph
     const graph = await logseq.App.getCurrentGraph() as AppGraphInfo | null;
-    if (graph === null) {//デモグラフの場合は返り値がnull
-      return;
-    }
+    if (graph === null) return;//デモグラフの場合は返り値がnull
     const TASK_MARKERS = new Set(["DONE", "NOW", "LATER", "DOING", "TODO", "WAITING"]);
     const taskBlock = blocks.find(({ marker }) => TASK_MARKERS.has(marker));
-    if (!taskBlock) {
-      return;
-    }
+    if (!taskBlock) return;
     if (blockSet !== taskBlock.uuid) {
       blockSet = "";//ほかのブロックを触ったら解除する
       if (taskBlock.marker === "DONE") {
-        if (taskBlock.properties![logseq.settings?.customPropertyName || "completed"]) {
-          return;
-        }
+        if (taskBlock.properties![logseq.settings?.customPropertyName || "completed"]) return;
         const { preferredDateFormat } = await logseq.App.getUserConfigs() as AppUserConfigs;
         const today: Date = new Date();
         const year: number = today.getFullYear();
@@ -69,52 +60,94 @@ const main = () => {
         const todayFormatted = `${year}-${month}-${day}`;
         let addTime = "";
         if (logseq.settings?.addTime === true) {
-          addTime = `<input id="swal-input2" class="swal2-input" type="time" value="${("0" + (today.getHours() as number)).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`;
+          addTime = `<input id="DONEpropertyTime" type="time" value="${("0" + (today.getHours() as number)).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`;
         } else {
-          addTime = '<input id="swal-input2" class="swal2-input" type="hidden" value=""/>';
+          addTime = '<input id="DONEpropertyTime" type="hidden" value=""/>';
         }
-        //dialog
-        await logseq.showMainUI();
-        const { value: formValues } = await Swal.fire<{
-          input1: string;
-          input2: string;
-        }>({
-          title: `Add ${(logseq.settings?.customPropertyName || "completed")} property to the block`,
-          text: "",
-          icon: "info",
-          showCancelButton: true,
-          html: `<input id="swal-input1" class="swal2-input" type="date" value="${todayFormatted}"/>${addTime}`,//type:dateが指定できないためhtmlとして作成
-          focusConfirm: false,
-          color: color,
-          background: background,
-          preConfirm: () => {
-            const input1 = (document.getElementById('swal-input1') as HTMLInputElement)!.value;
-            let input2;
-            const valueInput2 = (document.getElementById('swal-input2') as HTMLInputElement)!.value || "";
-            if (valueInput2) {
-              input2 = ` **${valueInput2}**`;
-            } else {
-              input2 = "";
-            }
-            return {
-              input1,
-              input2,
-            };
-          }
-        });
-        if (formValues) {
-          if (formValues?.input1) {//OK
 
-            const FormattedDateUser = await format(new Date(formValues?.input1), preferredDateFormat);
-            logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName || "completed", FormattedDateUser + formValues?.input2);
-          } else {//Cancel
-            //user cancel in dialog
-            logseq.UI.showMsg("Cancel", "warning");
-            blockSet = taskBlock.uuid;//キャンセルだったらブロックをロックする
+
+        const blockElement = parent.document.getElementsByClassName(taskBlock.uuid) as HTMLCollectionOf<HTMLElement>;
+        if (!blockElement) return;
+        //エレメントから位置を取得する
+        const rect = blockElement[0].getBoundingClientRect();
+        if (!rect) return;
+        const top: string = Number(rect.top + window.pageYOffset - 140) + "px";
+        const left: string = Number(rect.left + window.pageXOffset + 100) + "px";
+        const key = "confirmation-done-task";
+        logseq.provideUI({
+          key,
+          reset: true,
+          template: `
+                <h3>Add ${(logseq.settings?.customPropertyName || "completed")} property to the block</h3>
+                <div id="addProperty">
+                <input id="DONEpropertyDate" type="date" value="${todayFormatted}"/>${addTime}
+                <button id="DONEpropertyButton" class="ls-button-primary">Add</button>
+                </div>
+                <style>
+                div#addProperty input {
+                  background: var(--ls-primary-background-color);
+                  color: var(--ls-primary-text-color);
+                  boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
+                }
+                div#addProperty button {
+                  border: 1px solid var(--ls-secondary-background-color);
+                  boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
+                }
+                div.light-theme span#dot-${taskBlock.uuid}{
+                  outline: 2px solid var(--ls-link-ref-text-color);
+                }
+                div.dark-theme span#dot-${taskBlock.uuid}{
+                  outline: 2px solid aliceblue;
+                }
+                </style>
+              `,
+          style: {
+            width: "420px",
+            height: "110px",
+            position: "fixed",
+            left,
+            top,
+            paddingLeft: "1.8em",
+            backgroundColor: 'var(--ls-primary-background-color)',
+            color: 'var(--ls-primary-text-color)',
+            boxShadow: '1px 2px 5px var(--ls-secondary-background-color)',
+          },
+        });
+        //selectで選択
+        setTimeout(() => {
+
+          let processing: Boolean = false;
+          const button = parent.document.getElementById("DONEpropertyButton") as HTMLButtonElement;
+          if (button) {
+            button.addEventListener("click", async () => {
+              if (processing) return;
+              processing = true;
+              const inputDate: string = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
+              if (!inputDate) return;
+              const FormattedDateUser = format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat);
+              let addTime;
+              if (logseq.settings?.addTime === true) {
+                const inputTime: string = (parent.document.getElementById("DONEpropertyTime") as HTMLInputElement).value;
+                if (inputTime !== "") {
+                  if (logseq.settings.timeEmphasis === true) {
+                    addTime = " 🕒**" + inputTime + "**";
+                  } else {
+                    addTime = " 🕒" + inputTime;
+                  }
+                }
+              } else {
+                addTime = "";
+              }
+              logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName || "completed", FormattedDateUser + addTime);
+              //実行されたらポップアップを削除
+              const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
+              if (element) element.remove();
+
+              processing = false;
+            });
           }
-        }
-        await logseq.hideMainUI();
-        //dialog end
+        }, 100);
+
       }
     } else {
       blockSet = taskBlock.uuid;
@@ -135,7 +168,7 @@ const settingsTemplate: SettingSchemaDesc[] = [
     title: "Use the function to add a timestamp to the property",
     type: "boolean",
     default: true,
-    description: "Toggle",
+    description: "default: `true`",
   },
   {
     key: "customPropertyName",
@@ -144,6 +177,13 @@ const settingsTemplate: SettingSchemaDesc[] = [
     default: "completed",
     description: "default: `completed`",
   },
+  {
+    key: "timeEmphasis",
+    title: "Emphasis on time in property (like below **10:00**)",
+    type: "boolean",
+    default: true,
+    description: "default: `true`",
+  }
 ];
 
 
