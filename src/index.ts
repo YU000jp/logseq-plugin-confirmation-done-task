@@ -1,5 +1,5 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
-import { AppGraphInfo, AppUserConfigs, SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
+import { AppGraphInfo, AppUserConfigs, BlockEntity, SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
 import { format } from 'date-fns';
 
 
@@ -105,23 +105,28 @@ const main = () => {
             button.addEventListener("click", async () => {
               if (processing) return;
               processing = true;
-              const inputDate: string = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
-              if (!inputDate) return;
-              const FormattedDateUser = format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat);
-              let addTime;
-              if (logseq.settings?.addTime === true) {
-                const inputTime: string = (parent.document.getElementById("DONEpropertyTime") as HTMLInputElement).value;
-                if (inputTime !== "") {
-                  if (logseq.settings.timeEmphasis === true) {
-                    addTime = " 🕒**" + inputTime + "**";
-                  } else {
-                    addTime = " 🕒" + inputTime;
+              const block = await logseq.Editor.getBlock(taskBlock.uuid) as BlockEntity | null;
+              if (block) {
+                const inputDate: string = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
+                if (!inputDate) return;
+                const FormattedDateUser = format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat);
+                let addTime;
+                if (logseq.settings?.addTime === true) {
+                  const inputTime: string = (parent.document.getElementById("DONEpropertyTime") as HTMLInputElement).value;
+                  if (inputTime !== "") {
+                    if (logseq.settings.timeEmphasis === true) {
+                      addTime = " 🕒**" + inputTime + "**";
+                    } else {
+                      addTime = " 🕒" + inputTime;
+                    }
                   }
+                } else {
+                  addTime = "";
                 }
-              } else {
-                addTime = "";
+                logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName || "completed", FormattedDateUser + addTime);
+              }else{
+                logseq.UI.showMsg("Error: Block not found","warning");
               }
-              logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName || "completed", FormattedDateUser + addTime);
               //実行されたらポップアップを削除
               const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
               if (element) element.remove();
