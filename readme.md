@@ -37,7 +37,7 @@
 
 ### Usage
 
-- To use this solution, After marking as `DONE`, which will prompt you to add a `completed` property. You can edit the date and time if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
+- To use this solution, After marking as `DONE`, which will prompt to add a `completed` property. It is possible to edit the date and time if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
 
 #### Plugin Settings
 
