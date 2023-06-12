@@ -30,7 +30,7 @@
 ### Install from Logseq Marketplace (Coming👷🚧)
 
 - Press [`---`] on the top right toolbar to open [`Plugins`]
-- Select marketplace
+- Select `Marketplace`
 - Type `DONE` in the search field, select it from the search results and install
 
    ![image](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/assets/111847207/eabd096c-d464-40ec-8376-bf6b86a1f484)
@@ -39,11 +39,22 @@
 
 - To use this solution, After marking as `DONE`, which will prompt you to add a `completed` property. You can edit the date and time if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
 
+#### Plugin Settings
+
+- Custom property name: string
+   - `completed` default
+- Use the function to add a timestamp to the property: boolean
+   - `true` default
+   - `false`
+- Emphasis on time in property (like below **10:00**): boolean
+   - `true` default
+   - `false`
+
 ---
 
 ## Showcase / Questions / Ideas / Help
 
-Go to the [discussion](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/discussions) tab to ask and find this kind of things.
+> Go to the [discussion](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/discussions) tab to ask and find this kind of things.
 
 ## Author
 
