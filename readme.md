@@ -31,7 +31,7 @@
 - Select `Marketplace`
 - Type `DONE` in the search field, select it from the search results and install
 
-   ![image](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/assets/111847207/eabd096c-d464-40ec-8376-bf6b86a1f484)
+   ![image](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/assets/111847207/4b1e6c54-16a9-40d7-98dc-61478b2023cc)
 
 ### Usage
 
