@@ -2,8 +2,6 @@
 
 - When a task is marked as DONE, a confirmation dialog is displayed, and a property with a date is added to the block.
 
-- Development stage 👷🚧
-
 > This plugin still has room for improvement. Please let me know if you encounter any issues or have any ideas for enhancement.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-confirmation-done-task)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/releases)
