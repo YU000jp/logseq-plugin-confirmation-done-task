@@ -1,4 +1,4 @@
-# Logseq Plugin: Confirmation DONE task
+# Logseq Plugin: Confirmation DONE task 💪
 
 - When a task is marked as DONE, a confirmation dialog is displayed, and a property with a date is added to the block.
 
