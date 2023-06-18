@@ -19,7 +19,21 @@ const main = () => {
   // }
   //   }
   // })();
-
+  logseq.provideStyle(`
+div#addProperty input {
+  background: var(--ls-primary-background-color);
+  color: var(--ls-primary-text-color);
+  boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
+}
+div#addProperty button {
+  border: 1px solid var(--ls-secondary-background-color);
+  boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
+}
+div#addProperty button:hover {
+  background: var(--ls-secondary-background-color);
+  color: var(--ls-secondary-text-color);
+}
+`);
 
   //add completed property to done task
   //https://github.com/DimitryDushkin/logseq-plugin-task-check-date
@@ -40,7 +54,7 @@ const main = () => {
         const year: number = today.getFullYear();
         const month: string = ("0" + ((today.getMonth() as number) + 1)).slice(-2);
         const day: string = ("0" + (today.getDate() as number)).slice(-2);
-        const todayFormatted = `${year}-${month}-${day}`;
+        const todayFormatted: string = `${year}-${month}-${day}`;
         let addTime = "";
         if (logseq.settings?.addTime === true) {
           addTime = `<input id="DONEpropertyTime" type="time" value="${("0" + (today.getHours() as number)).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`;
@@ -52,10 +66,10 @@ const main = () => {
         const blockElement = parent.document.getElementsByClassName(taskBlock.uuid) as HTMLCollectionOf<HTMLElement>;
         if (!blockElement) return;
         //エレメントから位置を取得する
-        const rect = blockElement[0].getBoundingClientRect();
+        const rect = blockElement[0].getBoundingClientRect() as DOMRect;
         if (!rect) return;
-        const top: string = Number(rect.top + window.pageYOffset - 110) + "px";
-        const left: string = Number(rect.left + window.pageXOffset + 100) + "px";
+        const top: string = Number(rect.top - 120) + "px";
+        const left: string = Number(rect.left + 10) + "px";
         const key = "confirmation-done-task";
         logseq.provideUI({
           key,
@@ -67,19 +81,6 @@ const main = () => {
                 <button id="DONEpropertyButton" class="ls-button-primary">Add</button>
                 </div>
                 <style>
-                div#addProperty input {
-                  background: var(--ls-primary-background-color);
-                  color: var(--ls-primary-text-color);
-                  boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
-                }
-                div#addProperty button {
-                  border: 1px solid var(--ls-secondary-background-color);
-                  boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
-                }
-                div#addProperty button:hover {
-                  background: var(--ls-secondary-background-color);
-                  color: var(--ls-secondary-text-color);
-              }
                 div.light-theme span#dot-${taskBlock.uuid}{
                   outline: 2px solid var(--ls-link-ref-text-color);
                 }
@@ -89,12 +90,13 @@ const main = () => {
                 </style>
               `,
           style: {
-            width: "420px",
+            width: "340px",
             height: "110px",
-            position: "fixed",
+            right: "unset",
+            bottom: "unset",
             left,
             top,
-            paddingLeft: "1.8em",
+            paddingLeft: "1.2em",
             backgroundColor: 'var(--ls-primary-background-color)',
             color: 'var(--ls-primary-text-color)',
             boxShadow: '1px 2px 5px var(--ls-secondary-background-color)',
@@ -109,6 +111,7 @@ const main = () => {
             button.addEventListener("click", async () => {
               if (processing) return;
               processing = true;
+              
               const block = await logseq.Editor.getBlock(taskBlock.uuid) as BlockEntity | null;
               if (block) {
                 const inputDate: string = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
@@ -128,8 +131,8 @@ const main = () => {
                   addTime = "";
                 }
                 logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName || "completed", FormattedDateUser + addTime);
-              }else{
-                logseq.UI.showMsg("Error: Block not found","warning");
+              } else {
+                logseq.UI.showMsg("Error: Block not found", "warning");
               }
               //実行されたらポップアップを削除
               const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
