@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.1.3...v1.1.4) (2023-06-18)
+
+
+### Bug Fixes
+
+* **bug:** Prompt extends beyond the window, hindering operation. ([54af3b0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/54af3b09859e3d04bf5c243934a0323d0884a310))
+
 ## [1.1.3](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.1.2...v1.1.3) (2023-06-18)
 
 
