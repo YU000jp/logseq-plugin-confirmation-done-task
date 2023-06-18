@@ -68,8 +68,16 @@ div#addProperty button:hover {
         //エレメントから位置を取得する
         const rect = blockElement[0].getBoundingClientRect() as DOMRect;
         if (!rect) return;
-        const top: string = Number(rect.top - 120) + "px";
-        const left: string = Number(rect.left + 10) + "px";
+        const offsetTop = Number(rect.top - 120);
+        let top = "";
+        if (offsetTop > 0) {
+          top = String(offsetTop) + "px";
+        } else {
+          top = Number(rect.top + 40) + "px";
+        }
+        //TODO: なぜかrect.rightが正しく取得できないため、右側はオーバーランする
+        const left = String(Number(rect.left - 10)) + "px";
+
         const key = "confirmation-done-task";
         logseq.provideUI({
           key,
@@ -111,7 +119,7 @@ div#addProperty button:hover {
             button.addEventListener("click", async () => {
               if (processing) return;
               processing = true;
-              
+
               const block = await logseq.Editor.getBlock(taskBlock.uuid) as BlockEntity | null;
               if (block) {
                 const inputDate: string = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
