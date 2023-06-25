@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.1.4...v1.2.0) (2023-06-25)
+
+
+### Features
+
+* **Add:** `Create the date link` to plugin settings ([c63da0d](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/c63da0d33bfd39fe2983aa90cd11a2a9b2020574))
+
 ## [1.1.4](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.1.3...v1.1.4) (2023-06-18)
 
 
