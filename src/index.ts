@@ -55,26 +55,22 @@ div#addProperty button:hover {
         const month: string = ("0" + ((today.getMonth() as number) + 1)).slice(-2);
         const day: string = ("0" + (today.getDate() as number)).slice(-2);
         const todayFormatted: string = `${year}-${month}-${day}`;
-        let addTime = "";
-        if (logseq.settings?.addTime === true) {
-          addTime = `<input id="DONEpropertyTime" type="time" value="${("0" + (today.getHours() as number)).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`;
-        } else {
-          addTime = '<input id="DONEpropertyTime" type="hidden" value=""/>';
-        }
-
-
+        const printAddTime = (logseq.settings?.addTime === true) ?
+          `<input id="DONEpropertyTime" type="time" value="${("0" + (today.getHours() as number)).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`
+          : '<input id="DONEpropertyTime" type="hidden" value=""/>';
+        const printAddDate = (logseq.settings?.addDate === true) ?
+          `<input id="DONEpropertyDate" type="date" value="${todayFormatted}"/>`
+          : '<input id="DONEpropertyDate" type="hidden" value=""/>';
         const blockElement = parent.document.getElementsByClassName(taskBlock.uuid) as HTMLCollectionOf<HTMLElement>;
         if (!blockElement) return;
         //エレメントから位置を取得する
         const rect = blockElement[0].getBoundingClientRect() as DOMRect;
         if (!rect) return;
         const offsetTop = Number(rect.top - 120);
-        let top = "";
-        if (offsetTop > 0) {
-          top = String(offsetTop) + "px";
-        } else {
-          top = Number(rect.top + 40) + "px";
-        }
+        const top = (offsetTop > 0) ?
+          String(offsetTop) + "px"
+          : Number(rect.top + 40) + "px";
+
         //TODO: なぜかrect.rightが正しく取得できないため、右側はオーバーランする
         const left = String(Number(rect.left - 10)) + "px";
 
@@ -85,7 +81,7 @@ div#addProperty button:hover {
           template: `
                 <h3>Add ${(logseq.settings?.customPropertyName || "completed")} property to the block</h3>
                 <div id="addProperty">
-                <input id="DONEpropertyDate" type="date" value="${todayFormatted}"/>${addTime}
+                ${printAddDate}${printAddTime}
                 <button id="DONEpropertyButton" class="ls-button-primary">Add</button>
                 </div>
                 <style>
@@ -122,11 +118,15 @@ div#addProperty button:hover {
 
               const block = await logseq.Editor.getBlock(taskBlock.uuid) as BlockEntity | null;
               if (block) {
-                const inputDate: string = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
-                if (!inputDate) return;
-                const FormattedDateUser = (logseq.settings!.createDateLink === true) ?
-                  "[[" + format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat) + "]]"
-                  : format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat);
+                let inputDate:string = "";
+                let FormattedDateUser:string = "";
+                if (logseq.settings?.addDate === true) {
+                  inputDate = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
+                  if (!inputDate) return;
+                  FormattedDateUser = (logseq.settings!.createDateLink === true) ?
+                    "[[" + format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat) + "]]"
+                    : format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat);
+                }
                 let addTime;
                 if (logseq.settings?.addTime === true) {
                   const inputTime: string = (parent.document.getElementById("DONEpropertyTime") as HTMLInputElement).value;
@@ -169,6 +169,13 @@ const settingsTemplate: SettingSchemaDesc[] = [
     type: "string",
     default: "completed",
     description: "default: `completed`",
+  },
+  {
+    key: "addDate",
+    title: "Use the function to add the date to the property",
+    type: "boolean",
+    default: true,
+    description: "default: `true`",
   },
   {
     key: "createDateLink",
