@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.2.0...v1.3.0) (2023-06-25)
+
+
+### Features
+
+* **Add:** `Add date` to plugin settings ([c8d3ba1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/c8d3ba1c964e180192024dd1528b94b51ac868a4))
+
 # [1.2.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.1.4...v1.2.0) (2023-06-25)
 
 
