@@ -124,17 +124,15 @@ div#addProperty button:hover {
               if (block) {
                 const inputDate: string = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
                 if (!inputDate) return;
-                const FormattedDateUser = format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat);
+                const FormattedDateUser = (logseq.settings!.createDateLink === true) ?
+                  "[[" + format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat) + "]]"
+                  : format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat);
                 let addTime;
                 if (logseq.settings?.addTime === true) {
                   const inputTime: string = (parent.document.getElementById("DONEpropertyTime") as HTMLInputElement).value;
-                  if (inputTime !== "") {
-                    if (logseq.settings.timeEmphasis === true) {
-                      addTime = " 🕒**" + inputTime + "**";
-                    } else {
-                      addTime = " 🕒" + inputTime;
-                    }
-                  }
+                  if (inputTime !== "")
+                    addTime = (logseq.settings.timeEmphasis === true) ?
+                      " 🕒**" + inputTime + "**" : " 🕒" + inputTime;
                 } else {
                   addTime = "";
                 }
@@ -173,6 +171,13 @@ const settingsTemplate: SettingSchemaDesc[] = [
     description: "default: `completed`",
   },
   {
+    key: "createDateLink",
+    title: "Create the date link",
+    type: "boolean",
+    default: true,
+    description: "default: `true`",
+  },
+  {
     key: "addTime",
     title: "Use the function to add a timestamp to the property",
     type: "boolean",
@@ -185,7 +190,7 @@ const settingsTemplate: SettingSchemaDesc[] = [
     type: "boolean",
     default: true,
     description: "default: `true`",
-  }
+  },
 ];
 
 
