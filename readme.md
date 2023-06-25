@@ -41,6 +41,12 @@
 
 - Custom property name: string
    - `completed` default
+- Use the function to add the date to the property
+    - `true` default
+   - `false`
+- Create the date link
+    - `true` default
+   - `false`
 - Use the function to add a timestamp to the property: boolean
    - `true` default
    - `false`
