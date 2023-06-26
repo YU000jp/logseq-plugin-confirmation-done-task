@@ -118,8 +118,8 @@ div#addProperty button:hover {
 
               const block = await logseq.Editor.getBlock(taskBlock.uuid) as BlockEntity | null;
               if (block) {
-                let inputDate:string = "";
-                let FormattedDateUser:string = "";
+                let inputDate: string = "";
+                let FormattedDateUser: string = "";
                 if (logseq.settings?.addDate === true) {
                   inputDate = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
                   if (!inputDate) return;
@@ -130,9 +130,17 @@ div#addProperty button:hover {
                 let addTime;
                 if (logseq.settings?.addTime === true) {
                   const inputTime: string = (parent.document.getElementById("DONEpropertyTime") as HTMLInputElement).value;
-                  if (inputTime !== "")
-                    addTime = (logseq.settings.timeEmphasis === true) ?
-                      " 🕒**" + inputTime + "**" : " 🕒" + inputTime;
+                  if (inputTime !== "") {
+                    let emphasis: string;
+                    if (logseq.settings.emphasisTime === "*") {
+                      emphasis = "*";
+                    } else if (logseq.settings.emphasisTime === "**") {
+                      emphasis = "**";
+                    } else {
+                      emphasis = "";
+                    }
+                    addTime = ` 🕒${emphasis}${inputTime}${emphasis}`;
+                  }
                 } else {
                   addTime = "";
                 }
@@ -192,11 +200,12 @@ const settingsTemplate: SettingSchemaDesc[] = [
     description: "default: `true`",
   },
   {
-    key: "timeEmphasis",
-    title: "Emphasis on time in property (like below **10:00**)",
-    type: "boolean",
-    default: true,
-    description: "default: `true`",
+    key: "emphasisTime",
+    title: "Emphasis on time in property (like below *10:00* or **10:00**)",
+    type: "enum",
+    default: "*",
+    enumChoices: ["*", "**", "none"],
+    description: "default: `*`",
   },
 ];
 
