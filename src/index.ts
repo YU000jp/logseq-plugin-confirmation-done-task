@@ -110,7 +110,6 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
         Number(offsetTop) + "px"
         : Number(rect.top + 40) + "px";
 
-      //TODO: なぜかrect.rightが正しく取得できないため、右側はオーバーランする
       left = String(Number(rect.left - 10)) + "px";
       const offsetRight = Number(rect.right - 350);
       right = (offsetRight > 0) ?
