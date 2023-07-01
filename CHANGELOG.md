@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.4.0...v1.5.0) (2023-07-01)
+
+
+### Features
+
+* **Add:** Timeout mode ([e521a0a](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/e521a0a340be3089393fa4f9623cdd8d6b85eb67))
+
 # [1.4.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.3.0...v1.4.0) (2023-07-01)
 
 
