@@ -2,8 +2,6 @@
 
 - When a task is marked as DONE, a confirmation dialog is displayed, and a property with a date is added to the block.
 
-> This plugin still has room for improvement. Please let me know if you encounter any issues or have any ideas for enhancement.
-
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-confirmation-done-task)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-confirmation-done-task?color=blue)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-confirmation-done-task/total.svg)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/releases)
@@ -50,7 +48,7 @@
 - Use the function to add a timestamp to the property: boolean
   - `true` default
   - `false`
-- Emphasis on time in property (like below **10:00**): select
+- Emphasis on time in property (like below **10:00**): select [#11](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/13)
   - `*` default
   - `**`
   - `none`
