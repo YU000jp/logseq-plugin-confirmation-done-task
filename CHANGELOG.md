@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.5.0...v1.6.0) (2023-07-01)
+
+
+### Features
+
+* **New Workflow:** Keep date and time on the property (multiple value) ([a67070d](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/a67070d0f0fb701621bebea8aa178a0f30715108))
+
 # [1.5.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.4.0...v1.5.0) (2023-07-01)
 
 
