@@ -1,7 +1,7 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
-import { AppGraphInfo, AppUserConfigs, BlockEntity, SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
+import { AppGraphInfo, AppUserConfigs, BlockEntity, LSPluginBaseInfo, SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
 import { format } from 'date-fns';
-
+const keySmallDONEproperty = "not-smallDONEproperty";
 
 /* main */
 const main = () => {
@@ -32,6 +32,22 @@ div#addProperty button {
 div#addProperty button:hover {
   background: var(--ls-secondary-background-color);
   color: var(--ls-secondary-text-color);
+}
+body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]){
+  display: flex;
+  justify-content: flex-end;
+  background: unset;
+}
+body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"])>div {
+  font-size: 0.8em;
+  display: inline-block;
+  border-radius: 2em;
+  background: var(--ls-secondary-background-color);
+  padding: 0.1em 0.5em;
+}
+body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"])>div:hover {
+  font-size: unset;
+  background: var(--ls-secondary-background-color);
 }
 `);
 
@@ -165,6 +181,16 @@ div#addProperty button:hover {
   //end
 
 
+  if (logseq.settings?.smallDONEproperty === false) parent.document.body.classList.add(keySmallDONEproperty);
+
+  logseq.onSettingsChanged((newSet: LSPluginBaseInfo['settings'], oldSet: LSPluginBaseInfo['settings']) => {
+    if (oldSet.smallDONEproperty === false && newSet.smallDONEproperty === true) {
+      parent.document.body.classList!.remove(keySmallDONEproperty);
+    } else
+      if (oldSet.smallDONEproperty === true && newSet.smallDONEproperty === false) {
+        parent.document.body.classList!.add(keySmallDONEproperty);
+      }
+  });
 };/* end_main */
 
 
@@ -207,6 +233,14 @@ const settingsTemplate: SettingSchemaDesc[] = [
     enumChoices: ["*", "**", "none"],
     description: "default: `*`",
   },
+  {
+    //DONEプロパティの表示サイズを小さくして右側に配置する Logseq v0.9.11以降
+    key: "smallDONEproperty",
+    title: "Small DONE property and right align",
+    type: "boolean",
+    default: true,
+    description: "default: `true` (⚠️Logseq v0.9.11 or later)",
+  }
 ];
 
 
