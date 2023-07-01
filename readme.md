@@ -70,7 +70,7 @@
 ##### Keep date and time on the property (multiple value) [#22](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/22#issuecomment-1615900974)
 
 - Trigger `💪Add to DONE property`
-  - From the Block context menu (to open the options, right-click the bullet that has the desired property)
+  - From the block context menu (to open the options, right-click the bullet that has the desired property)
 
 ---
 
