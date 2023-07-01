@@ -18,6 +18,11 @@ const main = () => {
   //   }
   // })();
   logseq.provideStyle(`
+  div#addProperty p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 div#addProperty button#DONEpropertyButton {
   font-size: 1.7em;
 }
@@ -105,7 +110,7 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
     const rect = (blockElement[0]) ? blockElement[0]!.getBoundingClientRect() as DOMRect | undefined : null;
 
     if (blockElement && rect) {
-      const offsetTop = Number(rect.top - 120);
+      const offsetTop = Number(rect.top - 130);
       top = (offsetTop > 0) ?
         Number(offsetTop) + "px"
         : Number(rect.top + 40) + "px";
@@ -128,8 +133,8 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
       key,
       reset: true,
       template: `
-          <h3>${(addTitle) ? addTitle : `Add "${(logseq.settings?.customPropertyName || "completed")}" property to the block`}</h3>
           <div id="addProperty">
+          <p>${(addTitle) ? addTitle : `Add "${(logseq.settings?.customPropertyName || "completed")}" property`}</p>
           ${printAddDate}${printAddTime}
           <button id="DONEpropertyButton" class="ls-button-primary"${(addTitle) ? ` title="${addTitle}"` : ""}>☑️</button>
           </div>
@@ -144,7 +149,7 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
         `,
       style: {
         width: "340px",
-        height: "110px",
+        height: "120px",
         right: (right !== "") ? right : "unset",
         bottom: "unset",
         left: (left !== "") ? left : "unset",
