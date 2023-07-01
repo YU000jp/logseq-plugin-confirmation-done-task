@@ -56,6 +56,14 @@
   - `true` default
   - `false`
   > ⚠️Logseq v0.9.11 or later
+- Timeout mode
+  - `true`
+  - `false` default
+- Timeout (ms) when timeout mode is enabled: select
+  - `3000`
+  - `5000` default
+  - `7000`
+  - `9000`
 
 ---
 
