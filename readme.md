@@ -57,6 +57,7 @@
 - Small DONE property and right align
   - `true` default
   - `false`
+  > ⚠️Logseq v0.9.11 or later
 
 ---
 
