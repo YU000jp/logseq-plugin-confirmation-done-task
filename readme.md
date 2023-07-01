@@ -54,7 +54,7 @@
   - `*` default
   - `**`
   - `none`
-- Small DONE property and right align
+- Small DONE property and right align [#17](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/17)
   - `true` default
   - `false`
   > ⚠️Logseq v0.9.11 or later
