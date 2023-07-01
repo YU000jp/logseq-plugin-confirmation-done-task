@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.3.0...v1.4.0) (2023-07-01)
+
+
+### Features
+
+* **Add:** `Small DONE property and right align` to plugin settings ([9ac2983](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/9ac29832e029d5c63741c951b5db4959e9447d9a))
+* **Change:** Emphasis on time ([f255fd1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/f255fd1b8c45d6efc811bfdb161ffd082b606be7))
+
 # [1.3.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.2.0...v1.3.0) (2023-06-25)
 
 
