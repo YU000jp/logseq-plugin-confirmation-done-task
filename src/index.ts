@@ -11,12 +11,7 @@ const main = () => {
   //   } finally {
   /* user settings */
   logseq.useSettingsSchema(settingsTemplate);
-  // if (!logseq.settings) {
-  //   setTimeout(() => {
-  //     logseq.showSettingsUI();
-  //   }
-  //     , 300);
-  // }
+  if (!logseq.settings) setTimeout(() => logseq.showSettingsUI(), 300);
   //   }
   // })();
   logseq.provideStyle(`
@@ -65,6 +60,12 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
       blockSet = "";//ほかのブロックを触ったら解除する
       if (taskBlock.marker === "DONE") {
         if (taskBlock.properties![logseq.settings?.customPropertyName || "completed"]) return;
+        logseq.DB.onBlockChanged(taskBlock.uuid, async (block: BlockEntity) => {
+          if (block.marker !== "DONE"){
+            const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
+          if(element) element.remove();
+          }
+        });
         const { preferredDateFormat } = await logseq.App.getUserConfigs() as AppUserConfigs;
         const today: Date = new Date();
         const year: number = today.getFullYear();
@@ -92,6 +93,9 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
 
         const key = "confirmation-done-task";
         logseq.provideUI({
+          attrs: {
+            title: (logseq.settings!.timeoutMode === true) ? `Timeout ${logseq.settings!.timeout}ms` : "",
+          },
           key,
           reset: true,
           template: `
@@ -126,18 +130,35 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
         setTimeout(() => {
 
           let processing: Boolean = false;
+          let focus: Boolean = false;
+          const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement;
+          if (element) element.onclick = () => {
+            focus = true;
+            const dialogElement = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
+            if (!dialogElement) return;
+            const element = dialogElement.querySelector("div.th h3") as HTMLHeadElement | null;
+            if (element) element.innerText = "";
+          }
+
           const button = parent.document.getElementById("DONEpropertyButton") as HTMLButtonElement;
           if (button) {
-            button.addEventListener("click", async () => {
+            //クリックしたら、タイムアウトモードを解除する
+            if (logseq.settings!.timeoutMode === true) setTimeout(() => {
+              if (focus === false) button?.click();
+            }, logseq.settings!.timeout as number);
+
+            button.onclick = async () => {
               if (processing) return;
               processing = true;
+              const dialogElement = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
+              if (!dialogElement) return;
 
               const block = await logseq.Editor.getBlock(taskBlock.uuid) as BlockEntity | null;
               if (block) {
                 let inputDate: string = "";
                 let FormattedDateUser: string = "";
                 if (logseq.settings?.addDate === true) {
-                  inputDate = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement).value;
+                  inputDate = (parent.document.getElementById("DONEpropertyDate") as HTMLInputElement)!.value;
                   if (!inputDate) return;
                   FormattedDateUser = (logseq.settings!.createDateLink === true) ?
                     "[[" + format(new Date(inputDate).setHours(0, 0, 0, 0), preferredDateFormat) + "]]"
@@ -169,7 +190,7 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
               if (element) element.remove();
 
               processing = false;
-            });
+            };
           }
         }, 100);
 
@@ -179,7 +200,6 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
     }
   });
   //end
-
 
   if (logseq.settings?.smallDONEproperty === false) parent.document.body.classList.add(keySmallDONEproperty);
 
@@ -240,7 +260,24 @@ const settingsTemplate: SettingSchemaDesc[] = [
     type: "boolean",
     default: true,
     description: "default: `true` (⚠️Logseq v0.9.11 or later)",
-  }
+  },
+  {
+    //timeoutモード
+    key: "timeoutMode",
+    title: "Timeout mode",
+    type: "boolean",
+    default: false,
+    description: "default: `false`",
+  },
+  {
+    //timeoutモードの時間
+    key: "timeout",
+    title: "Timeout (ms) when timeout mode is enabled",
+    type: "enum",
+    enumChoices: ["3000", "5000", "7000", "9000"],
+    default: "5000",
+    description: "default: `5000`",
+  },
 ];
 
 
