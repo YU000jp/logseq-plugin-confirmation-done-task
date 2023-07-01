@@ -107,11 +107,15 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
     if (blockElement && rect) {
       const offsetTop = Number(rect.top - 120);
       top = (offsetTop > 0) ?
-        String(offsetTop) + "px"
+        Number(offsetTop) + "px"
         : Number(rect.top + 40) + "px";
 
       //TODO: なぜかrect.rightが正しく取得できないため、右側はオーバーランする
       left = String(Number(rect.left - 10)) + "px";
+      const offsetRight = Number(rect.right - 350);
+      right = (offsetRight > 0) ?
+        String(rect.right) + "px"
+        : "1em";
       right = "";
     } else {
       top = "2em";
