@@ -59,7 +59,7 @@
 - Timeout mode
   - `true`
   - `false` default
-- Timeout (ms) when timeout mode is enabled: select [#18]https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/18)
+- Timeout (ms) when timeout mode is enabled: select [#18](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/18)
   - `3000`
   - `5000` default
   - `7000`
