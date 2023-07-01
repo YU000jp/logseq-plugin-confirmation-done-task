@@ -65,6 +65,13 @@
   - `7000`
   - `9000`
 
+#### Option
+
+##### Keep date and time on the property (multiple value) [#22](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/22#issuecomment-1615900974)
+
+- Trigger `💪Add to DONE property`
+  - From the Block context menu (to open the options on right-click the bullet has the property)
+
 ---
 
 ## Showcase / Questions / Ideas / Help
