@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.6.0...v1.6.1) (2023-07-01)
+
+
+### Bug Fixes
+
+* **bug:** When the property name is too long, it causes overflow in the display. ([00dc59f](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/00dc59fafa3dc20fe7328770a8b348244044eeb2))
+
 # [1.6.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.5.0...v1.6.0) (2023-07-01)
 
 
