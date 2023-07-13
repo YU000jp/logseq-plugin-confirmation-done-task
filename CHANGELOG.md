@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.6.1...v1.7.0) (2023-07-13)
+
+
+### Features
+
+* **Add:** mode select to DONE dialog ([1d3b4f6](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/1d3b4f64a1db23d5f93a6bda58e1de2c1c6b416c))
+
 ## [1.6.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.6.0...v1.6.1) (2023-07-01)
 
 
