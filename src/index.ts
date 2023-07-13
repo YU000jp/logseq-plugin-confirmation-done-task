@@ -5,7 +5,7 @@ const keySmallDONEproperty = "not-smallDONEproperty";
 const key = "DONEdialog";
 const TASK_MARKERS = new Set(["DONE"]);
 const contextmenuItemName = "💪Add to DONE property";
-
+let blockSet = "";
 /* main */
 const main = () => {
   // (async () => {
@@ -18,24 +18,24 @@ const main = () => {
   //   }
   // })();
   logseq.provideStyle(`
-  div#addProperty p {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+div#${logseq.baseInfo.id}--${key} div.th h3 {
+  max-width: 80%;
+  text-overflow: ellipsis;
 }
-div#addProperty button#DONEpropertyButton {
-  font-size: 1.7em;
-}
-div#addProperty input {
+div#addProperty :is(input,select) {
   background: var(--ls-primary-background-color);
   color: var(--ls-primary-text-color);
   boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
+  border-radius: 0.5em;
 }
-div#addProperty button {
-  border: 1px solid var(--ls-secondary-background-color);
-  boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
+div#addProperty select {
+  font-size: 0.95em;
 }
-div#addProperty button:hover {
+div#addProperty button#DONEpropertyButton {
+  font-size: 1.85em;
+  padding: 0.1em 0.25em;
+}
+div#addProperty button#DONEpropertyButton:hover {
   background: var(--ls-secondary-background-color);
   color: var(--ls-secondary-text-color);
 }
@@ -59,7 +59,6 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
 
   //add completed property to done task
   //https://github.com/DimitryDushkin/logseq-plugin-task-check-date
-  let blockSet = "";
   logseq.DB.onChanged(async ({ blocks }) => {
     //check current graph
     const graph = await logseq.App.getCurrentGraph() as AppGraphInfo | null;
@@ -128,15 +127,21 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
 
     logseq.provideUI({
       attrs: {
-        title: (additional === false && logseq.settings!.timeoutMode === true) ? `Timeout ${logseq.settings!.timeout}ms` : "",
+        title: addTitle ? addTitle : `Add "${(logseq.settings?.customPropertyName || "completed")}" property`,
+        //(additional === false && logseq.settings!.timeoutMode === true) ? `Timeout ${logseq.settings!.timeout}ms` : "",
       },
       key,
       reset: true,
       template: `
-          <div id="addProperty">
-          <p>${(addTitle) ? addTitle : `Add "${(logseq.settings?.customPropertyName || "completed")}" property`}</p>
+          <div id="addProperty" title="">
           ${printAddDate}${printAddTime}
-          <button id="DONEpropertyButton" class="ls-button-primary"${(addTitle) ? ` title="${addTitle}"` : ""}>☑️</button>
+          <button id="DONEpropertyButton" class="ls-button-primary"${(addTitle) ? ` title="${addTitle}"` : ""}>☑️</button></br>
+          Mode: <select id="DONEpropertyModeSelect">
+          <option value="blockProperty"${logseq.settings!.modeSelect === "As block property" ? " selected" : ""}>As block property</option>
+          <option value="insertBlock"${logseq.settings?.modeSelect === "Insert block" ? " selected" : ""}>Insert new block</option>
+          <option value="insertBlockProperty"${logseq.settings?.modeSelect === "Insert block property" ? " selected" : ""}>Insert new block property</option>
+          <option value="UpdateBlock"${logseq.settings?.modeSelect === "Update block" ? " selected" : ""}>Update block</option>
+          </select>
           </div>
           <style>
           div.light-theme span#dot-${taskBlock.uuid}{
@@ -149,7 +154,7 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
         `,
       style: {
         width: "340px",
-        height: "120px",
+        height: "125px",
         right: (right !== "") ? right : "unset",
         bottom: "unset",
         left: (left !== "") ? left : "unset",
@@ -172,8 +177,9 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
           focusElement = true;
           const dialogElement = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
           if (!dialogElement) return;
-          const element = dialogElement.querySelector("div.th h3") as HTMLHeadElement | null;
-          if (element) element.innerText = "";
+          //const element = dialogElement.querySelector("div.th h3") as HTMLHeadElement | null;
+          //if (element) element.innerText = "";
+          if (additional === false && logseq.settings!.timeoutMode === true) dialogElement.style.borderColor = "unset";
         }
         //クリックしたら、タイムアウトモードを解除する
         element.onclose = () => {
@@ -193,8 +199,9 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
           setTimeout(() => {
             const dialogElement = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
             if (!dialogElement) return;
-            const element = dialogElement.querySelector("div.th h3") as HTMLHeadElement | null;
-            if (element) element.style.color = "red";
+            // const element = dialogElement.querySelector("div.th h3") as HTMLHeadElement | null;
+            //if (element) element.style.color = "red";
+            dialogElement.style.borderColor = "red";
           }, (logseq.settings!.timeout as number) - 2000);
         }
 
@@ -232,18 +239,38 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
             } else {
               addTime = "";
             }
-            if (additional === true) {
-              let propertyValue = await logseq.Editor.getBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName) as string;
-              if (typeof propertyValue === "string") {
-                propertyValue += " , ";
+            const modeSelect = (parent.document.getElementById("DONEpropertyModeSelect") as HTMLSelectElement).value;
+            if (modeSelect === "UpdateBlock") {
+              //同じブロックの「DONE 」を置換する
+              taskBlock.content = taskBlock.content.replace(/DONE\s/, `DONE ${FormattedDateUser + addTime} - `);
+              logseq.Editor.updateBlock(taskBlock.uuid, taskBlock.content);
+              logseq.UI.showMsg("Updated block", "success");
+            } else
+              if (modeSelect === "insertBlock" || modeSelect === "insertBlockProperty") {
+                logseq.Editor.insertBlock(
+                  taskBlock.uuid,
+                  `${modeSelect === "insertBlockProperty" ? `${logseq.settings?.customPropertyName || "completed"}:: ` : ""}${logseq.settings!.insertBlockModeUseReference === true ? `((${taskBlock.uuid})) ` : ""}${FormattedDateUser + addTime}`
+                  , { focus: false }
+                );
+                if(logseq.settings!.insertBlockCollapsed === true) logseq.Editor.setBlockCollapsed(taskBlock.uuid, true);
+                logseq.UI.showMsg("Inserted new block", "success");
               } else {
-                propertyValue = "";
+                if (additional === true) {
+                  let propertyValue = await logseq.Editor.getBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName) as string;
+                  if (typeof propertyValue === "string") {
+                    propertyValue += " , ";
+                  } else {
+                    propertyValue = "";
+                  }
+                  logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName || "completed", propertyValue + FormattedDateUser + addTime);
+                  logseq.UI.showMsg("Updated block property", "success");
+                } else {
+                  //skipもしくはoverwrite
+                  logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName || "completed", FormattedDateUser + addTime);
+                  logseq.UI.showMsg("Insert block property", "success");
+                }
               }
-              logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName || "completed", propertyValue + FormattedDateUser + addTime);
-            } else {
-              //skipもしくはoverwrite
-              logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName || "completed", FormattedDateUser + addTime);
-            }
+            blockSet = taskBlock.uuid;
           } else {
             logseq.UI.showMsg("Error: Block not found", "warning");
           }
@@ -343,6 +370,28 @@ const settingsTemplate: SettingSchemaDesc[] = [
     enumChoices: ["3000", "5000", "7000", "9000"],
     default: "5000",
     description: "default: `5000`",
+  },
+  {//mode select
+    key: "modeSelect",
+    title: "Mode select",
+    type: "enum",
+    enumChoices: ["As block property", "Insert block property", "Insert block", "Update block"],
+    default: "As block property",
+    description: "default: `As block property`",
+  },
+  {//Insert block モードでリファレンスを入れるかどうか
+    key: "insertBlockModeUseReference",
+    title: "Insert block mode: Use reference",
+    type: "boolean",
+    default: true,
+    description: "default: `true`",
+  },
+  {//insert block collapsed
+    key: "insertBlockCollapsed",
+    title: "Insert block: Collapsed",
+    type: "boolean",
+    default: false,
+    description: "default: `false`",
   },
 ];
 
