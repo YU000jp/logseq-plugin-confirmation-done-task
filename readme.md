@@ -15,7 +15,7 @@
 
 > Mark the task as `DONE`
 
-- Logseq has a problem where it does not record the `DONE` date. To address this issue, a solution is to add a `completed` property to the block after the task is completed. 
+- Logseq has a problem where it does not record the `DONE` date. To address this issue, a solution is to add a `completed` property to the block after the task is completed.
 
    ![DONEpropety](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/assets/111847207/2e7a224f-6efe-4f30-91d9-0e020c2274ce)
 
@@ -42,28 +42,39 @@
 - Use the function to add the date to the property
   - `true` default
   - `false`
-- Create the date link: boolean
+- Create the date link: toggle
   - `true` default
   - `false`
-- Use the function to add a timestamp to the property: boolean
+- Use the function to add a timestamp to the property: toggle
   - `true` default
   - `false`
 - Emphasis on time in property (like below **10:00**): select [#11](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/13)
   - `*` default
   - `**`
   - `none`
-- Small DONE property and right align [#17](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/17)
+- Small DONE property and right align: toggle [#17](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/17)
   - `true` default
   - `false`
   > ⚠️Logseq v0.9.11 or later
 - Timeout mode [#18](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/18)
   - `true`
   - `false` default
-- Timeout (ms) when timeout mode is enabled: select
+- Timeout (ms) when timeout mode is enabled: select [#18](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/18)
   - `3000`
   - `5000` default
   - `7000`
   - `9000`
+- Mode select: select [#26](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/26)
+  - `As block property` default
+  - `Insert block property`
+  - `Insert block`
+  - `Update block`
+- Insert block mode: Use reference: toggle [#26](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/26)
+  - `true` default
+  - `false`
+- Insert block: Collapsed: toggle [#26](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/26)
+  - `true`
+  - `false` default
 
 #### Option
 
