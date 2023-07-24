@@ -60,7 +60,7 @@
 {
 :title ["Yesterday completed DONE task"]
 :query (and (between yesterday yesterday) (task DONE) (property completed) )
-	table-view? false
+	:table-view? false
 	:group-by-page? false
  	:breadcrumb-show? false
  	:collapsed? false
