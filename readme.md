@@ -35,6 +35,39 @@
 
 - To use this solution, After marking as `DONE`, which will prompt to add a `completed` property. It is possible to edit the date and time if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
 
+### Query
+
+> If use task DONE with journals only. It's convenient to add these to the journal query.
+
+- Today completed
+
+```
+#+BEGIN_QUERY
+{
+:title ["Today completed DONE task"]
+:query (and (between today today) (task DONE) (property completed) )
+	table-view? false
+	:group-by-page? false
+ 	:breadcrumb-show? false
+ 	:collapsed? false
+}
+#+END_QUERY
+```
+
+- Yesterday completed
+```
+#+BEGIN_QUERY
+{
+:title ["Yesterday completed DONE task"]
+:query (and (between yesterday yesterday) (task DONE) (property completed) )
+	table-view? false
+	:group-by-page? false
+ 	:breadcrumb-show? false
+ 	:collapsed? false
+}
+#+END_QUERY
+```
+
 #### Plugin Settings
 
 - Custom property name: string
