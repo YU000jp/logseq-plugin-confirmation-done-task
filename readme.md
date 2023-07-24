@@ -37,7 +37,7 @@
 
 ### Query
 
-> If use task DONE with journals only. It's convenient to add these to the journal query.
+> If use task DONE with journals only. It's convenient to add these to the journal query. (**[How to customize default queries on Logseq](https://github.com/YU000jp/logseq-default-queries-journals)**)
 
 - Today completed
 
