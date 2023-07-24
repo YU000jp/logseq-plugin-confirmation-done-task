@@ -68,6 +68,28 @@
 #+END_QUERY
 ```
 
+- 3days completed
+```
+#+BEGIN_QUERY
+{
+:title "3days completed DONE task"
+ :query [:find (pull ?b [*])
+         :in $ ?start ?today
+         :where
+         (task ?b #{"DONE"})
+         [?b :block/properties ?properties]
+         [(get ?properties :completed) ?completed]
+         (between ?b ?start ?today)]
+ :inputs [:-3d :yesterday]
+ table-view? false
+ :group-by-page? false
+ :breadcrumb-show? false
+ :collapsed? true
+}
+#+END_QUERY
+```
+
+
 #### Plugin Settings
 
 - Custom property name: string
