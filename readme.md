@@ -49,7 +49,7 @@
 	table-view? false
 	:group-by-page? false
  	:breadcrumb-show? false
- 	:collapsed? false
+ 	:collapsed? true
 }
 #+END_QUERY
 ```
@@ -63,7 +63,7 @@
 	:table-view? false
 	:group-by-page? false
  	:breadcrumb-show? false
- 	:collapsed? false
+ 	:collapsed? true
 }
 #+END_QUERY
 ```
