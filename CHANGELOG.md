@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.0...v1.7.1) (2023-07-26)
+
+
+### Bug Fixes
+
+* **design:** remove :hover 'completed' ([5a70dae](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/5a70dae95b565acd0f53beebb61a3ced80e79dcd))
+
 # [1.7.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.6.1...v1.7.0) (2023-07-13)
 
 
