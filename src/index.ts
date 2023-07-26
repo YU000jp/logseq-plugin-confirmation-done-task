@@ -51,10 +51,6 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
   background: var(--ls-secondary-background-color);
   padding: 0.1em 0.5em;
 }
-body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"])>div:hover {
-  font-size: unset;
-  background: var(--ls-secondary-background-color);
-}
 `);
 
   //add completed property to done task
