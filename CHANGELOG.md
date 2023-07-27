@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.1...v1.7.2) (2023-07-27)
+
+
+### Bug Fixes
+
+* **bug:** dialog width for any themes ([b3f60a5](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/b3f60a5e7eafbdfdcae757a1586c38b29227ca1d))
+
 ## [1.7.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.0...v1.7.1) (2023-07-26)
 
 
