@@ -149,7 +149,7 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
           </style>
         `,
       style: {
-        width: "340px",
+        width: "360px",
         height: "125px",
         right: (right !== "") ? right : "unset",
         bottom: "unset",
