@@ -60,7 +60,7 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
   logseq.App.onPageHeadActionsSlotted(async () => {
     demoGraph = await checkDemoGraph() as boolean;
     if (demoGraph === true && onBlockChangedToggle === false) {
-      onBlockChanged(showDialog);
+      onBlockChanged();
       onBlockChangedToggle = true;
     }
   });
@@ -69,14 +69,14 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
   logseq.App.onCurrentGraphChanged(async () => {
     demoGraph = await checkDemoGraph() as boolean;
     if (demoGraph === true && onBlockChangedToggle === false) {
-      onBlockChanged(showDialog);
+      onBlockChanged();
       onBlockChangedToggle = true;
     }
   });
 
 
   if (demoGraph === false) {
-    onBlockChanged(showDialog);
+    onBlockChanged();
     onBlockChangedToggle = true;
   }
   //end
@@ -327,7 +327,7 @@ async function showDialogProcess(taskBlock: BlockEntity, addTitle: string | unde
 
 //add completed property to done task
 //https://github.com/DimitryDushkin/logseq-plugin-task-check-date
-function onBlockChanged(showDialog: (taskBlock: BlockEntity, additional: Boolean, addTitle?: string) => Promise<void>) {
+function onBlockChanged() {
   logseq.DB.onChanged(async ({ blocks, txMeta }) => {
     if (demoGraph === true) return;
     const taskBlock = blocks.find(({ marker, uuid }) => marker === "DONE" && blockSet !== uuid);
@@ -408,7 +408,7 @@ const settingsTemplate: SettingSchemaDesc[] = [
   },
   {//mode select
     key: "modeSelect",
-    title: "Mode select",
+    title: "Default mode select",
     type: "enum",
     enumChoices: ["As block property", "Insert block property", "Insert block", "Update block"],
     default: "As block property",
