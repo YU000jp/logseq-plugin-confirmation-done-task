@@ -1,3 +1,10 @@
+## [1.7.4](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.3...v1.7.4) (2023-08-04)
+
+
+### Bug Fixes
+
+* cleanup ([11d1dbc](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/11d1dbc6998eb00bec31b7bc45b519299dddfde3))
+
 ## [1.7.3](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.2...v1.7.3) (2023-08-04)
 
 
