@@ -1,3 +1,10 @@
+## [1.7.3](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.2...v1.7.3) (2023-08-04)
+
+
+### Bug Fixes
+
+* **bug:** Prevent dialogs from updating while editing ([f2b3466](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/f2b3466a49a05b0c69af8a91756e0a00020b903f))
+
 ## [1.7.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.1...v1.7.2) (2023-07-27)
 
 
