@@ -408,7 +408,7 @@ const settingsTemplate: SettingSchemaDesc[] = [
   },
   {//mode select
     key: "modeSelect",
-    title: "Mode select",
+    title: "Default mode select",
     type: "enum",
     enumChoices: ["As block property", "Insert block property", "Insert block", "Update block"],
     default: "As block property",
