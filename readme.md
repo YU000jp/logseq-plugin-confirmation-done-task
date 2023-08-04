@@ -119,7 +119,7 @@
   - `5000` default
   - `7000`
   - `9000`
-- Mode select: select [#26](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/26)
+- Default mode select: select [#26](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/26)
   - `As block property` default
   - `Insert block property`
   - `Insert block`
