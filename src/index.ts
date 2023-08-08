@@ -140,12 +140,12 @@ async function showDialogProcess(taskBlock: BlockEntity, addTitle: string | unde
   const printAddDate = (logseq.settings?.addDate === true) ?
     `<input id="DONEpropertyDate" title="Date picker" type="date" value="${`${year}-${month}-${day}`}"/>`
     : '<input id="DONEpropertyDate" type="hidden" value=""/>';
-  const blockElement = parent.document.getElementsByClassName(taskBlock.uuid) as HTMLCollectionOf<HTMLElement>;
+  const blockElement = parent.document.getElementsByClassName(taskBlock.uuid)[0] as HTMLElement;
   let top = "";
   let left = "";
   let right = "";
   //エレメントから位置を取得する
-  const rect = (blockElement[0]) ? blockElement[0]!.getBoundingClientRect() as DOMRect | undefined : null;
+  const rect = (blockElement) ? blockElement.getBoundingClientRect() as DOMRect | undefined : null;
 
   if (blockElement && rect) {
     const offsetTop = Number(rect.top - 130);
