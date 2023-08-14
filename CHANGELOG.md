@@ -1,3 +1,10 @@
+## [1.7.5](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.4...v1.7.5) (2023-08-14)
+
+
+### Bug Fixes
+
+* **bug:** Date recorded is 24 hours earlier than input ([3bdf94e](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/3bdf94e0545833c6dc60d6992eff46d3f941a905))
+
 ## [1.7.4](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.3...v1.7.4) (2023-08-04)
 
 
