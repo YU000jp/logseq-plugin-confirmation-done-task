@@ -4,8 +4,8 @@ import {
   BlockEntity,
   LSPluginBaseInfo,
 } from "@logseq/libs/dist/LSPlugin.user";
-import { format, parse } from "date-fns";
-import { checkDemoGraph,removeDialog } from "./lib";
+import { compareAsc, format, parse } from "date-fns";
+import { checkDemoGraph, removeDialog } from "./lib";
 import { settingsTemplate } from "./settings";
 const keySmallDONEproperty = "not-smallDONEproperty";
 export const key = "DONEdialog";
@@ -87,7 +87,7 @@ const main = () => {
 }; /* end_main */
 
 
-const  provideStyleMain= ()=> logseq.provideStyle(`
+const provideStyleMain = () => logseq.provideStyle(`
 div#${logseq.baseInfo.id}--${key} div.th h3 {
   max-width: 80%;
   text-overflow: ellipsis;
@@ -171,8 +171,8 @@ async function showDialogProcess(
   const printAddTime =
     logseq.settings?.addTime === true
       ? `<input id="DONEpropertyTime" title="Time picker" type="time" value="${(
-          "0" + (today.getHours() as number)
-        ).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`
+        "0" + (today.getHours() as number)
+      ).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`
       : '<input id="DONEpropertyTime" type="hidden" value=""/>';
   const printAddDate =
     logseq.settings?.addDate === true
@@ -207,9 +207,8 @@ async function showDialogProcess(
     attrs: {
       title: addTitle
         ? addTitle
-        : `Add "${
-            logseq.settings?.customPropertyName || "completed"
-          }" property`,
+        : `Add "${logseq.settings?.customPropertyName || "completed"
+        }" property`,
       //(additional === false && logseq.settings!.timeoutMode === true) ? `Timeout ${logseq.settings!.timeout}ms` : "",
     },
     key,
@@ -217,26 +216,21 @@ async function showDialogProcess(
     template: `
           <div id="addProperty" title="">
           ${printAddDate}${printAddTime}
-          <button id="DONEpropertyButton" class="ls-button-primary"${
-            addTitle ? ` title="${addTitle}"` : ""
-          }>☑️</button></br>
+          <button id="DONEpropertyButton" class="ls-button-primary"${addTitle ? ` title="${addTitle}"` : ""
+      }>☑️</button></br>
           Mode: <select id="DONEpropertyModeSelect">
-          <option value="blockProperty"${
-            logseq.settings!.modeSelect === "As block property"
-              ? " selected"
-              : ""
-          }>As block property</option>
-          <option value="insertBlock"${
-            logseq.settings?.modeSelect === "Insert block" ? " selected" : ""
-          }>Insert new block</option>
-          <option value="insertBlockProperty"${
-            logseq.settings?.modeSelect === "Insert block property"
-              ? " selected"
-              : ""
-          }>Insert new block property</option>
-          <option value="UpdateBlock"${
-            logseq.settings?.modeSelect === "Update block" ? " selected" : ""
-          }>Update block</option>
+          <option value="blockProperty"${logseq.settings!.modeSelect === "As block property"
+        ? " selected"
+        : ""
+      }>As block property</option>
+          <option value="insertBlock"${logseq.settings?.modeSelect === "Insert block" ? " selected" : ""
+      }>Insert new block</option>
+          <option value="insertBlockProperty"${logseq.settings?.modeSelect === "Insert block property"
+        ? " selected"
+        : ""
+      }>Insert new block property</option>
+          <option value="UpdateBlock"${logseq.settings?.modeSelect === "Update block" ? " selected" : ""
+      }>Update block</option>
           </select>
           </div>
           <style>
@@ -331,16 +325,16 @@ async function showDialogProcess(
             FormattedDateUser =
               logseq.settings!.createDateLink === true
                 ? "[[" +
-                  format(
-                    parse(inputDate, 'yyyy-MM-dd', new Date()),
-                    preferredDateFormat
-                  ) +
-                  "]]"
+                format(
+                  parse(inputDate, 'yyyy-MM-dd', new Date()),
+                  preferredDateFormat
+                ) +
+                "]]"
                 : format(
                   parse(inputDate, 'yyyy-MM-dd', new Date()),
-                    preferredDateFormat
-                  );
-                  console.log(FormattedDateUser);
+                  preferredDateFormat
+                );
+            console.log(FormattedDateUser);
           }
           let addTime;
           if (logseq.settings?.addTime === true) {
@@ -382,14 +376,12 @@ async function showDialogProcess(
           ) {
             logseq.Editor.insertBlock(
               taskBlock.uuid,
-              `${
-                modeSelect === "insertBlockProperty"
-                  ? `${logseq.settings?.customPropertyName || "completed"}:: `
-                  : ""
-              }${
-                logseq.settings!.insertBlockModeUseReference === true
-                  ? `((${taskBlock.uuid})) `
-                  : ""
+              `${modeSelect === "insertBlockProperty"
+                ? `${logseq.settings?.customPropertyName || "completed"}:: `
+                : ""
+              }${logseq.settings!.insertBlockModeUseReference === true
+                ? `((${taskBlock.uuid})) `
+                : ""
               }${FormattedDateUser + addTime}`,
               { focus: false }
             );
@@ -443,6 +435,10 @@ async function showDialogProcess(
 function onBlockChanged() {
   logseq.DB.onChanged(async ({ blocks, txMeta }) => {
     if (demoGraph === true) return;
+    if (logseq.settings!.removePropertyWithoutDONEtask === true) {
+      const CompletedOff = blocks.find(({ marker, properties }) => marker !== "DONE" && properties && properties[logseq.settings?.customPropertyName || "completed"]);
+      if (CompletedOff) logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName || "completed");
+    }
     const taskBlock = blocks.find(
       ({ marker, uuid }) => marker === "DONE" && blockSet !== uuid
     );
