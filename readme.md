@@ -130,6 +130,9 @@
 - Insert block: Collapsed: toggle [#26](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/26)
   - `true`
   - `false` default
+- Remove property without DONE marker: toggle [#34](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/34) 🆕
+  - `true` default
+  - `false`
 
 #### Option
 
