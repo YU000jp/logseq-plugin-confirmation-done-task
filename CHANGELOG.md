@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.5...v1.8.0) (2023-08-23)
+
+
+### Features
+
+* **Add:** Remove property without DONE marker ([3aea780](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/3aea780a0df8c9cbc9464dacb83821474ec4a6f5))
+
 ## [1.7.5](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.4...v1.7.5) (2023-08-14)
 
 
