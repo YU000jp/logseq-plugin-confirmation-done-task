@@ -96,7 +96,7 @@ export const settingsTemplate: SettingSchemaDesc[] = [
   },
   {
     key: "removePropertyWithoutDONEtask",
-    title: "Remove property without DONE task",
+    title: "Remove property without DONE marker",
     type: "boolean",
     default: true,
     description: "default: `true`",
