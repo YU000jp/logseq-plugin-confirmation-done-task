@@ -4,7 +4,7 @@ import {
   BlockEntity,
   LSPluginBaseInfo,
 } from "@logseq/libs/dist/LSPlugin.user";
-import { compareAsc, format, parse } from "date-fns";
+import { format, parse } from "date-fns";
 import { checkDemoGraph, removeDialog } from "./lib";
 import { settingsTemplate } from "./settings";
 const keySmallDONEproperty = "not-smallDONEproperty";
