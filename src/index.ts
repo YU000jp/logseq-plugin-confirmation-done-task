@@ -121,6 +121,9 @@ body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${l
   background: var(--ls-secondary-background-color);
   padding: 0.1em 0.5em;
 }
+body>div#root main div.block-properties>div:has(a[data-ref="string"]){
+  display: none;
+}
 `);
 
 let processingShowDialog: Boolean = false;
@@ -225,10 +228,6 @@ async function showDialogProcess(
       }>As block property</option>
           <option value="insertBlock"${logseq.settings?.modeSelect === "Insert block" ? " selected" : ""
       }>Insert new block</option>
-          <option value="insertBlockProperty"${logseq.settings?.modeSelect === "Insert block property"
-        ? " selected"
-        : ""
-      }>Insert new block property</option>
           <option value="UpdateBlock"${logseq.settings?.modeSelect === "Update block" ? " selected" : ""
       }>Update block</option>
           </select>
@@ -355,6 +354,7 @@ async function showDialogProcess(
               "DONEpropertyModeSelect"
             ) as HTMLSelectElement
           ).value;
+
           if (modeSelect === "UpdateBlock") {
             //同じブロックの「DONE 」を置換する
             taskBlock.content = taskBlock.content.replace(
@@ -364,25 +364,18 @@ async function showDialogProcess(
             logseq.Editor.updateBlock(taskBlock.uuid, taskBlock.content);
             logseq.UI.showMsg("Updated block", "success");
           } else if (
-            modeSelect === "insertBlock" ||
-            modeSelect === "insertBlockProperty"
+            modeSelect === "insertBlock"
           ) {
             logseq.Editor.insertBlock(
               taskBlock.uuid,
-              `${modeSelect === "insertBlockProperty"
-                ? `${logseq.settings?.customPropertyName || "completed"}:: `
-                : ""
-              }${logseq.settings!.insertBlockModeUseReference === true
-                ? `((${taskBlock.uuid})) `
-                : ""
-              }${FormattedDateUser + addTime}`,
+              `${FormattedDateUser + addTime}`,
               { focus: false }
             );
             if (logseq.settings!.insertBlockCollapsed === true)
               logseq.Editor.setBlockCollapsed(taskBlock.uuid, true);
             logseq.UI.showMsg("Inserted new block", "success");
           } else {
-            if (additional === true) {
+            if (additional === true) { //skipもしくはoverwrite
               let propertyValue = (await logseq.Editor.getBlockProperty(
                 taskBlock.uuid,
                 logseq.settings?.customPropertyName
@@ -394,17 +387,20 @@ async function showDialogProcess(
               }
               logseq.Editor.upsertBlockProperty(
                 taskBlock.uuid,
-                logseq.settings?.customPropertyName || "completed",
+                logseq.settings?.customPropertyName,
                 propertyValue + FormattedDateUser + addTime
               );
+              hiddenProperty(inputDate, taskBlock);
               logseq.UI.showMsg("Updated block property", "success");
             } else {
-              //skipもしくはoverwrite
+              //DONEのブロックに、プロパティを追加する
               logseq.Editor.upsertBlockProperty(
                 taskBlock.uuid,
-                logseq.settings?.customPropertyName || "completed",
+                logseq.settings?.customPropertyName,
                 FormattedDateUser + addTime
               );
+              //隠しプロパティにも追加
+              hiddenProperty(inputDate, taskBlock);
               logseq.UI.showMsg("Insert block property", "success");
             }
           }
@@ -421,6 +417,23 @@ async function showDialogProcess(
     }
   }, 100);
   setTimeout(() => (blockSet = ""), 1000);
+}
+
+
+const hiddenProperty = (inputDate: string, taskBlock: BlockEntity) => {
+  //20230929のような形式で保存する
+  const hiddenProperty = parse(inputDate, 'yyyy-MM-dd', new Date());
+
+  logseq.Editor.upsertBlockProperty(
+    taskBlock.uuid,
+    "string",
+    format(hiddenProperty, 'yyyyMMdd')
+  );
+  logseq.Editor.restoreEditingCursor();
+  setTimeout(async () => {
+    logseq.Editor.editBlock(taskBlock.uuid);
+    setTimeout(() => logseq.Editor.insertAtEditingCursor(`\nstring:: ${format(hiddenProperty, 'yyyyMMdd')}`), 100);
+  }, 500);
 }
 
 //add completed property to done task
