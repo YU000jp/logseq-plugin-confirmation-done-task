@@ -334,7 +334,6 @@ async function showDialogProcess(
                   parse(inputDate, 'yyyy-MM-dd', new Date()),
                   preferredDateFormat
                 );
-            console.log(FormattedDateUser);
           }
           let addTime;
           if (logseq.settings?.addTime === true) {
@@ -344,19 +343,13 @@ async function showDialogProcess(
               ) as HTMLInputElement
             ).value;
             if (inputTime !== "") {
-              let emphasis: string;
-              if (logseq.settings.emphasisTime === "*") {
-                emphasis = "*";
-              } else if (logseq.settings.emphasisTime === "**") {
-                emphasis = "**";
-              } else {
-                emphasis = "";
-              }
+              const emphasis: string = logseq.settings.emphasisTime === "*" || logseq.settings.emphasisTime === "**" ? logseq.settings.emphasisTime : "";
               addTime = ` ${emphasis}${inputTime}${emphasis}`;
             }
           } else {
             addTime = "";
           }
+
           const modeSelect = (
             parent.document.getElementById(
               "DONEpropertyModeSelect"
