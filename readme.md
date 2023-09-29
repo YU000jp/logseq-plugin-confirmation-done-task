@@ -37,51 +37,11 @@
 
 #### Query
 
-[#36](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/36#issuecomment-1740490239)
+> here [#36](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/36#issuecomment-1740490239)
 
 #### Plugin Settings
 
-- Custom property name: string
-  - `completed` default
-- Use the function to add the date to the property
-  - `true` default
-  - `false`
-- Create the date link: toggle
-  - `true` default
-  - `false`
-- Use the function to add a timestamp to the property: toggle
-  - `true` default
-  - `false`
-- Emphasis on time in property (like below **10:00**): select [#11](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/13)
-  - `*` default
-  - `**`
-  - `none`
-- Small DONE property and right align: toggle [#17](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/17)
-  - `true` default
-  - `false`
-  > ⚠️Logseq v0.9.11 or later
-- Timeout mode [#18](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/18)
-  - `true`
-  - `false` default
-- Timeout (ms) when timeout mode is enabled: select [#18](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/18)
-  - `3000`
-  - `5000` default
-  - `7000`
-  - `9000`
-- Default mode select: select [#26](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/26)
-  - `As block property` default
-  - `Insert block property`
-  - `Insert block`
-  - `Update block`
-- Insert block mode: Use reference: toggle [#26](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/26)
-  - `true` default
-  - `false`
-- Insert block: Collapsed: toggle [#26](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/26)
-  - `true`
-  - `false` default
-- Remove property without DONE marker: toggle [#34](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/34) 🆕
-  - `true` default
-  - `false`
+> [Document](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/wiki/Plugin-Settings)
 
 #### Option
 
