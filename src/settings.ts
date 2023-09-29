@@ -71,20 +71,11 @@ export const settingsTemplate: SettingSchemaDesc[] = [
     type: "enum",
     enumChoices: [
       "As block property",
-      "Insert block property",
       "Insert block",
       "Update block",
     ],
     default: "As block property",
     description: "default: `As block property`",
-  },
-  {
-    //Insert block モードでリファレンスを入れるかどうか
-    key: "insertBlockModeUseReference",
-    title: "Insert block mode: Use reference",
-    type: "boolean",
-    default: true,
-    description: "default: `true`",
   },
   {
     //insert block collapsed
