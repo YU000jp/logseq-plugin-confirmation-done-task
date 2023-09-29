@@ -5,6 +5,8 @@ import {
   LSPluginBaseInfo,
 } from "@logseq/libs/dist/LSPlugin.user";
 import { format, parse } from "date-fns";
+import { setup as l10nSetup } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+import ja from "./translations/ja.json";
 import { checkDemoGraph, removeDialog } from "./lib";
 import { settingsTemplate } from "./settings";
 const keySmallDONEproperty = "not-smallDONEproperty";
@@ -15,13 +17,11 @@ let demoGraph: boolean = false;
 let onBlockChangedToggle: boolean = false;
 
 /* main */
-const main = () => {
-  // (async () => {
-  //   try {
-  //     await l10nSetup({ builtinTranslations: { ja } });
-  //   } finally {
+const main = async () => {
+  await l10nSetup({ builtinTranslations: { ja } });
+
   /* user settings */
-  logseq.useSettingsSchema(settingsTemplate);
+  logseq.useSettingsSchema(settingsTemplate());
   if (!logseq.settings) setTimeout(() => logseq.showSettingsUI(), 300);
   //   }
   // })();

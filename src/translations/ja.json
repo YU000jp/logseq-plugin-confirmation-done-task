@@ -1,3 +1,13 @@
 {
-
+    "Custom property name": "プロパティの名称設定",
+    "Use the function to add the date to the property": "プロパティに日付を追加する",
+    "Create the date link": "日付リンクを作成する",
+    "Use the function to add a timestamp to the property": "プロパティに時刻を追加する",
+    "Emphasis on time in property (like below *10:00* or **10:00**)": "時刻を強調表示する（*10:00*または**10:00**）",
+    "Small DONE property and right align": "DONEプロパティを小さくして右揃えにする",
+    "Timeout mode": "タイムアウトモード",
+    "Timeout (ms) when timeout mode is enabled": "タイムアウトモードが有効な場合のタイムアウト（ミリ秒）",
+    "Default mode select": "デフォルトモードの選択",
+    "Insert block: Collapsed": "ブロックを挿入：折りたたみ",
+    "Remove property without DONE marker": "DONEマーカーのないプロパティを削除する"
 }
