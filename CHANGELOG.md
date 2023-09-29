@@ -1,3 +1,11 @@
+# [1.9.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.8.0...v1.9.0) (2023-09-29)
+
+
+### Features
+
+* **hidden property:** add for query ([11b2090](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/11b2090f77d189469f796481519bdc9c1db81ce5))
+* **ja:** プラグイン設定の日本語対応 ([e18818a](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/e18818a760a54312bce0340ae690a49f97e99faf))
+
 # [1.8.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.7.5...v1.8.0) (2023-08-23)
 
 
