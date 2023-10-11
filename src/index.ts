@@ -432,6 +432,7 @@ const hiddenProperty = (inputDate: string, taskBlock: BlockEntity) => {
   logseq.Editor.restoreEditingCursor();
   setTimeout(async () => {
     logseq.Editor.editBlock(taskBlock.uuid);
+    if (taskBlock.properties?.string) logseq.Editor.removeBlockProperty(taskBlock.uuid, "string"); //2重にならないように削除
     setTimeout(() => logseq.Editor.insertAtEditingCursor(`\nstring:: ${format(hiddenProperty, 'yyyyMMdd')}`), 100);
   }, 500);
 }
@@ -443,7 +444,10 @@ function onBlockChanged() {
     if (demoGraph === true) return;
     if (logseq.settings!.removePropertyWithoutDONEtask === true) {
       const CompletedOff = blocks.find(({ marker, properties }) => marker !== "DONE" && properties && properties[logseq.settings?.customPropertyName || "completed"]);
-      if (CompletedOff) logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName || "completed");
+      if (CompletedOff) {
+        logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName || "completed");
+        if (CompletedOff.properties?.string) logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string"); //2重にならないように削除
+      }
     }
     const taskBlock = blocks.find(
       ({ marker, uuid }) => marker === "DONE" && blockSet !== uuid
