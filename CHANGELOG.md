@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.9.0...v1.9.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* **bug:** string hidden-property duplicate ([0ba65ca](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/0ba65caa02923ef1b624a3f3d3bb361ca0f34e29))
+
 # [1.9.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.8.0...v1.9.0) (2023-09-29)
 
 
