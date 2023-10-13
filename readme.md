@@ -38,7 +38,7 @@
 
 #### Query
 
-> here [#36](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/36#issuecomment-1740490239)
+> here [#36](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/36#issuecomment-1740490239) 🆕
 
 #### Plugin Settings
 
