@@ -1,6 +1,7 @@
 # Logseq Plugin: *Confirmation DONE task* 💪
 
 - When a task is marked as `DONE`, a confirmation dialog is displayed, and a property with a date is added to the block.
+- Embeds a `string` property that allows discovery in queries.　🆕
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-confirmation-done-task)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-confirmation-done-task?color=blue)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/LICENSE)
@@ -15,7 +16,7 @@
 
 > Mark the task as `DONE`
 
-- Logseq has a problem where it does not record the `DONE` date. To address this issue, a solution is to add a `completed` property to the block after the task is completed.
+- Logseq has a problem where it does not record the `DONE` date. To address this issue, a solution is to add a `completed` property to the block after the task is completed. And embeds a `string` property that allows discovery in queries.
 
    ![DONEpropety](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/assets/111847207/2e7a224f-6efe-4f30-91d9-0e020c2274ce)
 
