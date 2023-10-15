@@ -88,41 +88,49 @@ const main = async () => {
 
 
 const provideStyleMain = () => logseq.provideStyle(`
-div#${logseq.baseInfo.id}--${key} div.th h3 {
-  max-width: 80%;
-  text-overflow: ellipsis;
-}
-div#addProperty :is(input,select) {
-  background: var(--ls-primary-background-color);
-  color: var(--ls-primary-text-color);
-  boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
-  border-radius: 0.5em;
-}
-div#addProperty select {
-  font-size: 0.95em;
-}
-div#addProperty button#DONEpropertyButton {
-  font-size: 1.85em;
-  padding: 0.1em 0.25em;
-}
-div#addProperty button#DONEpropertyButton:hover {
-  background: var(--ls-secondary-background-color);
-  color: var(--ls-secondary-text-color);
-}
-body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]){
-  display: flex;
-  justify-content: flex-end;
-  background: unset;
-}
-body:not(.${keySmallDONEproperty}) main div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"])>div {
-  font-size: 0.8em;
-  display: inline-block;
-  border-radius: 2em;
-  background: var(--ls-secondary-background-color);
-  padding: 0.1em 0.5em;
-}
-body>div#root main div.block-properties>div:has(a[data-ref="string"]){
-  display: none;
+body {
+  &>div#${logseq.baseInfo.id}--${key} {
+    & div.th h3 {
+      max-width: 80%;
+      text-overflow: ellipsis;
+    }
+    
+    & div#addProperty :is(input, select) {
+      background: var(--ls-primary-background-color);
+      color: var(--ls-primary-text-color);
+      box-shadow: 1px 2px 5px var(--ls-secondary-background-color);
+      border-radius: 0.5em;
+    }
+    
+    & div#addProperty select {
+      font-size: 0.95em;
+    }
+    
+    & div#addProperty button#DONEpropertyButton {
+      font-size: 1.85em;
+      padding: 0.1em 0.25em;
+    }
+    
+    & div#addProperty button#DONEpropertyButton:hover {
+      background: var(--ls-secondary-background-color);
+      color: var(--ls-secondary-text-color);
+    }
+  }
+  &:not(.${keySmallDONEproperty})>div#root>div>main>div div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]){
+    display: flex;
+    justify-content: flex-end;
+    background: unset;
+    &>div {
+      font-size: 0.8em;
+      display: inline-block;
+      border-radius: 2em;
+      background: var(--ls-secondary-background-color);
+      padding: 0.1em 0.5em;
+    }
+  }
+  &>div#root>div>main>div div.block-properties>div:has(a[data-ref="string"]){
+    display: none;
+  }
 }
 `);
 
@@ -233,12 +241,14 @@ async function showDialogProcess(
           </select>
           </div>
           <style>
-          div.light-theme span#dot-${taskBlock.uuid}{
+        body>div#root>div {
+          &.light-theme>main>div span#dot-${taskBlock.uuid}{
             outline: 2px solid var(--ls-link-ref-text-color);
           }
-          div.dark-theme span#dot-${taskBlock.uuid}{
+          &.dark-theme>main>div span#dot-${taskBlock.uuid}{
             outline: 2px solid aliceblue;
           }
+        }
           </style>
         `,
     style: {
