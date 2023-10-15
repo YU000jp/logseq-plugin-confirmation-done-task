@@ -95,25 +95,26 @@ body {
       text-overflow: ellipsis;
     }
     
-    & div#addProperty :is(input, select) {
+    & div#addProperty {
+    & :is(input, select) {
       background: var(--ls-primary-background-color);
       color: var(--ls-primary-text-color);
       box-shadow: 1px 2px 5px var(--ls-secondary-background-color);
       border-radius: 0.5em;
     }
     
-    & div#addProperty select {
+    & select {
       font-size: 0.95em;
     }
     
-    & div#addProperty button#DONEpropertyButton {
+    & button#DONEpropertyButton {
       font-size: 1.85em;
-      padding: 0.1em 0.25em;
+      padding: 0.1em 0.25em;  
+      &:hover {
+        background: var(--ls-secondary-background-color);
+        color: var(--ls-secondary-text-color);
+      }
     }
-    
-    & div#addProperty button#DONEpropertyButton:hover {
-      background: var(--ls-secondary-background-color);
-      color: var(--ls-secondary-text-color);
     }
   }
   &:not(.${keySmallDONEproperty})>div#root>div>main>div div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]){
