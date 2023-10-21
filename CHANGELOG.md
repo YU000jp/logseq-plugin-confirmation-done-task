@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.9.1...v1.9.2) (2023-10-21)
+
+
+### Bug Fixes
+
+* **translation:** Add ([c87271e](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/c87271e559966f803dd70402f26025454c9d3a50))
+
 ## [1.9.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.9.0...v1.9.1) (2023-10-11)
 
 
