@@ -42,7 +42,7 @@ Logseq マーケットプレイスからインストール
 
 #### プラグインの設定
 
-> [ドキュメント](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/wiki/Plugin-Settings)
+> [ドキュメント](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/wiki/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E8%A8%AD%E5%AE%9A%E3%81%AE%E9%A0%85%E7%9B%AE%E4%B8%80%E8%A6%A7)
 
 ---
 
