@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.9.2...v1.10.0) (2023-10-21)
+
+
+### Features
+
+* **Add:** Only from bullet context menu [#42](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/42) ([b9ab1c8](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/b9ab1c8722125549b4ac8397e2a2e194ee33624d))
+
 ## [1.9.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.9.1...v1.9.2) (2023-10-21)
 
 
