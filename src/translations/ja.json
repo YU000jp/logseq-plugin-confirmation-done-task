@@ -9,5 +9,16 @@
     "Timeout (ms) when timeout mode is enabled": "タイムアウトモードが有効な場合のタイムアウト（ミリ秒）",
     "Default mode select": "デフォルトモードの選択",
     "Insert block: Collapsed": "ブロックを挿入：折りたたみ",
-    "Remove property without DONE marker": "DONEマーカーのないプロパティを削除する"
+    "Remove property without DONE marker": "DONEマーカーのないプロパティを削除する",
+    "💪Add to DONE property": "💪完了のプロパティをつける",
+    "As block property": "ブロックプロパティとして",
+    "Insert new block": "新しいブロックを挿入",
+    "Update block": "ブロックを更新する",
+    "Updated block": "ブロックを更新しました",
+    "Updated block property": "ブロックプロパティを更新しました",
+    "Inserted block property": "ブロックプロパティを挿入する",
+    "This block is not DONE": "このブロックは完了していません",
+    "Error: Block not found": "エラー：ブロックが見つかりません",
+    "property": "プロパティ",
+    "Mode": "モード"
 }

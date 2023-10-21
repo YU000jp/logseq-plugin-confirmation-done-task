@@ -5,13 +5,13 @@ import {
   LSPluginBaseInfo,
 } from "@logseq/libs/dist/LSPlugin.user";
 import { format, parse } from "date-fns";
-import { setup as l10nSetup } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
 import ja from "./translations/ja.json";
 import { checkDemoGraph, removeDialog } from "./lib";
 import { settingsTemplate } from "./settings";
 const keySmallDONEproperty = "not-smallDONEproperty";
 export const key = "DONEdialog";
-const contextmenuItemName = "💪Add to DONE property";
+const contextmenuItemName = t("💪Add to DONE property");
 let blockSet = "";
 let demoGraph: boolean = false;
 let onBlockChangedToggle: boolean = false;
@@ -58,7 +58,7 @@ const main = async () => {
       const block = (await logseq.Editor.getBlock(uuid)) as BlockEntity;
       if (block.marker === "DONE") showDialog(block, true, contextmenuItemName);
       else
-        logseq.UI.showMsg("This block is not DONE", "warning", {
+        logseq.UI.showMsg(t("This block is not DONE"), "warning", {
           timeout: 3000,
         });
     }
@@ -219,8 +219,8 @@ async function showDialogProcess(
     attrs: {
       title: addTitle
         ? addTitle
-        : `Add "${logseq.settings?.customPropertyName || "completed"
-        }" property`,
+        : `"${logseq.settings?.customPropertyName || "completed"
+        }" ${t("property")}`,
       //(additional === false && logseq.settings!.timeoutMode === true) ? `Timeout ${logseq.settings!.timeout}ms` : "",
     },
     key,
@@ -230,15 +230,15 @@ async function showDialogProcess(
           ${printAddDate}${printAddTime}
           <button id="DONEpropertyButton" class="ls-button-primary"${addTitle ? ` title="${addTitle}"` : ""
       }>☑️</button></br>
-          Mode: <select id="DONEpropertyModeSelect">
+          ${t("Mode")}: <select id="DONEpropertyModeSelect">
           <option value="blockProperty"${logseq.settings!.modeSelect === "As block property"
         ? " selected"
         : ""
-      }>As block property</option>
+      }>${t("As block property")}</option>
           <option value="insertBlock"${logseq.settings?.modeSelect === "Insert block" ? " selected" : ""
-      }>Insert new block</option>
+      }>${t("Insert new block")}</option>
           <option value="UpdateBlock"${logseq.settings?.modeSelect === "Update block" ? " selected" : ""
-      }>Update block</option>
+      }>${t("Update block")}</option>
           </select>
           </div>
           <style>
@@ -373,7 +373,7 @@ async function showDialogProcess(
               `DONE ${FormattedDateUser + addTime} - `
             );
             logseq.Editor.updateBlock(taskBlock.uuid, taskBlock.content);
-            logseq.UI.showMsg("Updated block", "success");
+            logseq.UI.showMsg(t("Updated block"), "success");
           } else if (
             modeSelect === "insertBlock"
           ) {
@@ -402,7 +402,7 @@ async function showDialogProcess(
                 propertyValue + FormattedDateUser + addTime
               );
               hiddenProperty(inputDate, taskBlock);
-              logseq.UI.showMsg("Updated block property", "success");
+              logseq.UI.showMsg(t("Updated block property"), "success");
             } else {
               //DONEのブロックに、プロパティを追加する
               logseq.Editor.upsertBlockProperty(
@@ -412,13 +412,13 @@ async function showDialogProcess(
               );
               //隠しプロパティにも追加
               hiddenProperty(inputDate, taskBlock);
-              logseq.UI.showMsg("Insert block property", "success");
+              logseq.UI.showMsg(t("Inserted block property"), "success");
             }
           }
           blockSet = taskBlock.uuid;
           setTimeout(() => (blockSet = ""), 1000); //ロック解除
         } else {
-          logseq.UI.showMsg("Error: Block not found", "warning");
+          logseq.UI.showMsg(t("Error: Block not found"), "warning");
         }
         //実行されたらポップアップを削除
         removeDialog();
