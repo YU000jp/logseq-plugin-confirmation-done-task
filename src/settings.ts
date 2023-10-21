@@ -4,6 +4,20 @@ import { t } from "logseq-l10n";
 /* user setting */
 // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
 export const settingsTemplate = (): SettingSchemaDesc[] => [
+  {//箇条書きコンテキストメニューからのみ実行するかどうか
+    key: "onlyFromBulletList",
+    title: t("Only from bullet context menu (Not recognized even after DONE)"),
+    type: "boolean",
+    default: false,
+    description: "default: `false`",
+  },
+  {
+    key: "removePropertyWithoutDONEtask",
+    title: t("Remove property without DONE marker"),
+    type: "boolean",
+    default: true,
+    description: "default: `true`",
+  },
   {
     key: "customPropertyName",
     title: t("Custom property name"),
@@ -13,7 +27,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   },
   {
     key: "addDate",
-    title: t("Use the function to add the date to the property"),
+    title: t("Enable date entry into the property"),
     type: "boolean",
     default: true,
     description: "default: `true`",
@@ -27,7 +41,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   },
   {
     key: "addTime",
-    title: t("Use the function to add a timestamp to the property"),
+    title: t("Enable timestamp entry into the property"),
     type: "boolean",
     default: true,
     description: "default: `true`",
@@ -85,12 +99,5 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     type: "boolean",
     default: false,
     description: "default: `false`",
-  },
-  {
-    key: "removePropertyWithoutDONEtask",
-    title: t("Remove property without DONE marker"),
-    type: "boolean",
-    default: true,
-    description: "default: `true`",
   },
 ];

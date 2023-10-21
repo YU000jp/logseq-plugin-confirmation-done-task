@@ -1,71 +1,75 @@
-import "@logseq/libs"; //https://plugins-doc.logseq.com/
+import "@logseq/libs" //https://plugins-doc.logseq.com/
 import {
   AppUserConfigs,
   BlockEntity,
   LSPluginBaseInfo,
-} from "@logseq/libs/dist/LSPlugin.user";
-import { format, parse } from "date-fns";
-import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
-import ja from "./translations/ja.json";
-import { checkDemoGraph, removeDialog } from "./lib";
-import { settingsTemplate } from "./settings";
-const keySmallDONEproperty = "not-smallDONEproperty";
-export const key = "DONEdialog";
-const contextmenuItemName = t("💪Add to DONE property");
-let blockSet = "";
-let demoGraph: boolean = false;
-let onBlockChangedToggle: boolean = false;
+} from "@logseq/libs/dist/LSPlugin.user"
+import { format, parse } from "date-fns"
+import { setup as l10nSetup, t } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
+import ja from "./translations/ja.json"
+import { checkDemoGraph, removeDialog } from "./lib"
+import { settingsTemplate } from "./settings"
+import { pushDONE } from "./lib"
+import { hiddenProperty } from "./lib"
+const keySmallDONEproperty = "not-smallDONEproperty"
+export const key = "DONEdialog"
+let blockSet = ""
+let demoGraph: boolean = false
+let onBlockChangedToggle: boolean = false
 
 /* main */
 const main = async () => {
-  await l10nSetup({ builtinTranslations: { ja } });
+  await l10nSetup({ builtinTranslations: { ja } })
 
   /* user settings */
-  logseq.useSettingsSchema(settingsTemplate());
-  if (!logseq.settings) setTimeout(() => logseq.showSettingsUI(), 300);
+  logseq.useSettingsSchema(settingsTemplate())
+  if (!logseq.settings) setTimeout(() => logseq.showSettingsUI(), 300)
   //   }
   // })();
-  provideStyleMain();
+  provideStyleMain()
 
   //ページ読み込み時
   logseq.App.onPageHeadActionsSlotted(async () => {
-    demoGraph = (await checkDemoGraph()) as boolean;
+    demoGraph = (await checkDemoGraph()) as boolean
     if (demoGraph === true && onBlockChangedToggle === false) {
-      onBlockChanged();
-      onBlockChangedToggle = true;
+      onBlockChanged()
+      onBlockChangedToggle = true
     }
-  });
+  })
 
   //グラフ変更時
   logseq.App.onCurrentGraphChanged(async () => {
-    demoGraph = (await checkDemoGraph()) as boolean;
+    demoGraph = (await checkDemoGraph()) as boolean
     if (demoGraph === true && onBlockChangedToggle === false) {
-      onBlockChanged();
-      onBlockChangedToggle = true;
+      onBlockChanged()
+      onBlockChangedToggle = true
     }
-  });
+  })
 
   if (demoGraph === false) {
-    onBlockChanged();
-    onBlockChangedToggle = true;
+    onBlockChanged()
+    onBlockChangedToggle = true
   }
   //end
 
   //Additional to DONE property
   logseq.Editor.registerBlockContextMenuItem(
-    contextmenuItemName,
+    t("💪Add to DONE property"),
     async ({ uuid }) => {
-      const block = (await logseq.Editor.getBlock(uuid)) as BlockEntity;
-      if (block.marker === "DONE") showDialog(block, true, contextmenuItemName);
-      else
-        logseq.UI.showMsg(t("This block is not DONE"), "warning", {
-          timeout: 3000,
-        });
+      const block = (await logseq.Editor.getBlock(uuid)) as BlockEntity
+      if (block.marker === "DONE") showDialog(block, true, t("💪Add to DONE property"))
+      else {
+        //DONEタスクではなかった場合、DONEにする
+        pushDONE(block)
+      }
+      logseq.UI.showMsg(t("This block is not DONE"), "warning", {
+        timeout: 3000,
+      })
     }
-  );
+  )
 
   if (logseq.settings?.smallDONEproperty === false)
-    parent.document.body.classList.add(keySmallDONEproperty);
+    parent.document.body.classList.add(keySmallDONEproperty)
 
   logseq.onSettingsChanged(
     (
@@ -76,15 +80,15 @@ const main = async () => {
         oldSet.smallDONEproperty === false &&
         newSet.smallDONEproperty === true
       )
-        parent.document.body.classList!.remove(keySmallDONEproperty);
+        parent.document.body.classList!.remove(keySmallDONEproperty)
       else if (
         oldSet.smallDONEproperty === true &&
         newSet.smallDONEproperty === false
       )
-        parent.document.body.classList!.add(keySmallDONEproperty);
+        parent.document.body.classList!.add(keySmallDONEproperty)
     }
-  );
-}; /* end_main */
+  )
+} /* end_main */
 
 
 const provideStyleMain = () => logseq.provideStyle(`
@@ -96,25 +100,25 @@ body {
     }
     
     & div#addProperty {
-    & :is(input, select) {
-      background: var(--ls-primary-background-color);
-      color: var(--ls-primary-text-color);
-      box-shadow: 1px 2px 5px var(--ls-secondary-background-color);
-      border-radius: 0.5em;
-    }
-    
-    & select {
-      font-size: 0.95em;
-    }
-    
-    & button#DONEpropertyButton {
-      font-size: 1.85em;
-      padding: 0.1em 0.25em;  
-      &:hover {
-        background: var(--ls-secondary-background-color);
-        color: var(--ls-secondary-text-color);
+      & :is(input, select) {
+        background: var(--ls-primary-background-color);
+        color: var(--ls-primary-text-color);
+        box-shadow: 1px 2px 5px var(--ls-secondary-background-color);
+        border-radius: 0.5em;
       }
-    }
+      
+      & select {
+        font-size: 0.95em;
+      }
+      
+      & button#DONEpropertyButton {
+        font-size: 1.85em;
+        padding: 0.1em 0.25em;  
+        &:hover {
+          background: var(--ls-secondary-background-color);
+          color: var(--ls-secondary-text-color);
+        }
+      }
     }
   }
   &:not(.${keySmallDONEproperty})>div#root>div>main>div div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]){
@@ -133,9 +137,10 @@ body {
     display: none;
   }
 }
-`);
+`)
 
-let processingShowDialog: Boolean = false;
+let processingShowDialog: Boolean = false
+
 async function showDialog(
   taskBlock: BlockEntity,
   additional: Boolean,
@@ -145,28 +150,28 @@ async function showDialog(
     additional === false &&
     taskBlock.properties![logseq.settings?.customPropertyName || "completed"]
   )
-    return; //すでにプロパティがある場合は追加しない
-  blockSet = taskBlock.uuid;
+    return //すでにプロパティがある場合は追加しない
+  blockSet = taskBlock.uuid
 
   //ブロック操作でDONEではなくなった場合
   logseq.DB.onBlockChanged(taskBlock.uuid, async (block: BlockEntity) => {
     //DONEを入力してからブロックでキャンセルした場合にダイアログを消す
-    if (block.marker !== "DONE") removeDialog();
-    blockSet = taskBlock.uuid;
-    setTimeout(() => (blockSet = ""), 1000); //ロック解除
-  });
+    if (block.marker !== "DONE") removeDialog()
+    blockSet = taskBlock.uuid
+    setTimeout(() => (blockSet = ""), 1000) //ロック解除
+  })
 
   if (
     parent.document.getElementById(
       `${logseq.baseInfo.id}--${key}`
     ) as HTMLDivElement
   )
-    return; //すでにダイアログがある場合は追加しない
-  if (processingShowDialog === true) return;
-  processingShowDialog = true;
+    return //すでにダイアログがある場合は追加しない
+  if (processingShowDialog === true) return
+  processingShowDialog = true
   //ダイアログを表示
-  await showDialogProcess(taskBlock, addTitle, additional); //ロック解除
-  processingShowDialog = false;
+  await showDialogProcess(taskBlock, addTitle, additional) //ロック解除
+  processingShowDialog = false
 } //end showDialog
 
 async function showDialogProcess(
@@ -175,44 +180,44 @@ async function showDialogProcess(
   additional: Boolean
 ) {
   const { preferredDateFormat } =
-    (await logseq.App.getUserConfigs()) as AppUserConfigs;
-  const today: Date = new Date();
-  const year: number = today.getFullYear();
-  const month: string = ("0" + ((today.getMonth() as number) + 1)).slice(-2);
-  const day: string = ("0" + (today.getDate() as number)).slice(-2);
+    (await logseq.App.getUserConfigs()) as AppUserConfigs
+  const today: Date = new Date()
+  const year: number = today.getFullYear()
+  const month: string = ("0" + ((today.getMonth() as number) + 1)).slice(-2)
+  const day: string = ("0" + (today.getDate() as number)).slice(-2)
   const printAddTime =
     logseq.settings?.addTime === true
       ? `<input id="DONEpropertyTime" title="Time picker" type="time" value="${(
         "0" + (today.getHours() as number)
       ).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`
-      : '<input id="DONEpropertyTime" type="hidden" value=""/>';
+      : '<input id="DONEpropertyTime" type="hidden" value=""/>'
   const printAddDate =
     logseq.settings?.addDate === true
       ? `<input id="DONEpropertyDate" title="Date picker" type="date" value="${`${year}-${month}-${day}`}"/>`
-      : '<input id="DONEpropertyDate" type="hidden" value=""/>';
+      : '<input id="DONEpropertyDate" type="hidden" value=""/>'
   const blockElement = parent.document.getElementsByClassName(
     taskBlock.uuid
-  )[0] as HTMLElement;
-  let top = "";
-  let left = "";
-  let right = "";
+  )[0] as HTMLElement
+  let top = ""
+  let left = ""
+  let right = ""
   //エレメントから位置を取得する
   const rect = blockElement
     ? (blockElement.getBoundingClientRect() as DOMRect | undefined)
-    : null;
+    : null
 
   if (blockElement && rect) {
-    const offsetTop = Number(rect.top - 130);
+    const offsetTop = Number(rect.top - 130)
     top =
-      offsetTop > 0 ? Number(offsetTop) + "px" : Number(rect.top + 40) + "px";
+      offsetTop > 0 ? Number(offsetTop) + "px" : Number(rect.top + 40) + "px"
 
-    left = String(Number(rect.left - 10)) + "px";
-    const offsetRight = Number(rect.right - 350);
-    right = offsetRight > 0 ? String(rect.right) + "px" : "1em";
-    right = "";
+    left = String(Number(rect.left - 10)) + "px"
+    const offsetRight = Number(rect.right - 350)
+    right = offsetRight > 0 ? String(rect.right) + "px" : "1em"
+    right = ""
   } else {
-    top = "2em";
-    right = "1em";
+    top = "2em"
+    right = "1em"
   }
 
   logseq.provideUI({
@@ -242,14 +247,14 @@ async function showDialogProcess(
           </select>
           </div>
           <style>
-        body>div#root>div {
-          &.light-theme>main>div span#dot-${taskBlock.uuid}{
-            outline: 2px solid var(--ls-link-ref-text-color);
+          body>div#root>div {
+            &.light-theme>main>div span#dot-${taskBlock.uuid}{
+              outline: 2px solid var(--ls-link-ref-text-color);
+            }
+            &.dark-theme>main>div span#dot-${taskBlock.uuid}{
+              outline: 2px solid aliceblue;
+            }
           }
-          &.dark-theme>main>div span#dot-${taskBlock.uuid}{
-            outline: 2px solid aliceblue;
-          }
-        }
           </style>
         `,
     style: {
@@ -264,73 +269,73 @@ async function showDialogProcess(
       color: "var(--ls-primary-text-color)",
       boxShadow: "1px 2px 5px var(--ls-secondary-background-color)",
     },
-  });
+  })
   //selectで選択
   setTimeout(() => {
-    let processing: Boolean = false;
-    let focusElement: Boolean = false;
-    let closeElement: Boolean = false;
+    let processing: Boolean = false
+    let focusElement: Boolean = false
+    let closeElement: Boolean = false
     const element = parent.document.getElementById(
       logseq.baseInfo.id + `--${key}`
-    ) as HTMLDivElement;
+    ) as HTMLDivElement
     if (additional === false && element) {
       element.onclick = () => {
-        focusElement = true;
+        focusElement = true
         const dialogElement = parent.document.getElementById(
           logseq.baseInfo.id + `--${key}`
-        ) as HTMLDivElement | null;
-        if (!dialogElement) return;
+        ) as HTMLDivElement | null
+        if (!dialogElement) return
         //const element = dialogElement.querySelector("div.th h3") as HTMLHeadElement | null;
         //if (element) element.innerText = "";
         if (additional === false && logseq.settings!.timeoutMode === true)
-          dialogElement.style.borderColor = "unset";
-      };
+          dialogElement.style.borderColor = "unset"
+      }
       //クリックしたら、タイムアウトモードを解除する
       element.onclose = () => {
-        blockSet = taskBlock.uuid;
-        closeElement = true;
-      };
+        blockSet = taskBlock.uuid
+        closeElement = true
+      }
     }
     const button = parent.document.getElementById(
       "DONEpropertyButton"
-    ) as HTMLButtonElement;
+    ) as HTMLButtonElement
     if (button) {
       if (additional === false && logseq.settings!.timeoutMode === true) {
         setTimeout(() => {
-          if (closeElement === true) return;
-          if (focusElement === false) button?.click();
-        }, logseq.settings!.timeout as number);
+          if (closeElement === true) return
+          if (focusElement === false) button?.click()
+        }, logseq.settings!.timeout as number)
         //タイムアウト直前
         setTimeout(() => {
           const dialogElement = parent.document.getElementById(
             logseq.baseInfo.id + `--${key}`
-          ) as HTMLDivElement | null;
-          if (!dialogElement) return;
+          ) as HTMLDivElement | null
+          if (!dialogElement) return
           // const element = dialogElement.querySelector("div.th h3") as HTMLHeadElement | null;
           //if (element) element.style.color = "red";
-          dialogElement.style.borderColor = "red";
-        }, (logseq.settings!.timeout as number) - 2000);
+          dialogElement.style.borderColor = "red"
+        }, (logseq.settings!.timeout as number) - 2000)
       }
 
       button.onclick = async () => {
-        if (processing) return;
-        processing = true;
+        if (processing) return
+        processing = true
         const dialogElement = parent.document.getElementById(
           logseq.baseInfo.id + `--${key}`
-        ) as HTMLDivElement | null;
-        if (!dialogElement) return;
+        ) as HTMLDivElement | null
+        if (!dialogElement) return
 
         const block = (await logseq.Editor.getBlock(
           taskBlock.uuid
-        )) as BlockEntity | null;
+        )) as BlockEntity | null
         if (block) {
-          let inputDate: string = "";
-          let FormattedDateUser: string = "";
+          let inputDate: string = ""
+          let FormattedDateUser: string = ""
           if (logseq.settings?.addDate === true) {
             inputDate = (parent.document.getElementById(
               "DONEpropertyDate"
-            ) as HTMLInputElement)!.value;
-            if (!inputDate) return;
+            ) as HTMLInputElement)!.value
+            if (!inputDate) return
             //inputDateをDate型に変換
             FormattedDateUser =
               logseq.settings!.createDateLink === true
@@ -343,37 +348,37 @@ async function showDialogProcess(
                 : format(
                   parse(inputDate, 'yyyy-MM-dd', new Date()),
                   preferredDateFormat
-                );
+                )
           }
-          let addTime;
+          let addTime
           if (logseq.settings?.addTime === true) {
             const inputTime: string = (
               parent.document.getElementById(
                 "DONEpropertyTime"
               ) as HTMLInputElement
-            ).value;
+            ).value
             if (inputTime !== "") {
-              const emphasis: string = logseq.settings.emphasisTime === "*" || logseq.settings.emphasisTime === "**" ? logseq.settings.emphasisTime : "";
-              addTime = ` ${emphasis}${inputTime}${emphasis}`;
+              const emphasis: string = logseq.settings.emphasisTime === "*" || logseq.settings.emphasisTime === "**" ? logseq.settings.emphasisTime : ""
+              addTime = ` ${emphasis}${inputTime}${emphasis}`
             }
           } else {
-            addTime = "";
+            addTime = ""
           }
 
           const modeSelect = (
             parent.document.getElementById(
               "DONEpropertyModeSelect"
             ) as HTMLSelectElement
-          ).value;
+          ).value
 
           if (modeSelect === "UpdateBlock") {
             //同じブロックの「DONE 」を置換する
             taskBlock.content = taskBlock.content.replace(
               /DONE\s/,
               `DONE ${FormattedDateUser + addTime} - `
-            );
-            logseq.Editor.updateBlock(taskBlock.uuid, taskBlock.content);
-            logseq.UI.showMsg(t("Updated block"), "success");
+            )
+            logseq.Editor.updateBlock(taskBlock.uuid, taskBlock.content)
+            logseq.UI.showMsg(t("Updated block"), "success")
           } else if (
             modeSelect === "insertBlock"
           ) {
@@ -381,91 +386,74 @@ async function showDialogProcess(
               taskBlock.uuid,
               `${FormattedDateUser + addTime}`,
               { focus: false }
-            );
+            )
             if (logseq.settings!.insertBlockCollapsed === true)
-              logseq.Editor.setBlockCollapsed(taskBlock.uuid, true);
-            logseq.UI.showMsg("Inserted new block", "success");
+              logseq.Editor.setBlockCollapsed(taskBlock.uuid, true)
+            logseq.UI.showMsg("Inserted new block", "success")
           } else {
             if (additional === true) { //skipもしくはoverwrite
               let propertyValue = (await logseq.Editor.getBlockProperty(
                 taskBlock.uuid,
                 logseq.settings?.customPropertyName
-              )) as string;
+              )) as string
               if (typeof propertyValue === "string") {
-                propertyValue += " , ";
+                propertyValue += " , "
               } else {
-                propertyValue = "";
+                propertyValue = ""
               }
               logseq.Editor.upsertBlockProperty(
                 taskBlock.uuid,
                 logseq.settings?.customPropertyName,
                 propertyValue + FormattedDateUser + addTime
-              );
-              hiddenProperty(inputDate, taskBlock);
-              logseq.UI.showMsg(t("Updated block property"), "success");
+              )
+              hiddenProperty(inputDate, taskBlock)
+              logseq.UI.showMsg(t("Updated block property"), "success")
             } else {
               //DONEのブロックに、プロパティを追加する
               logseq.Editor.upsertBlockProperty(
                 taskBlock.uuid,
                 logseq.settings?.customPropertyName,
                 FormattedDateUser + addTime
-              );
+              )
               //隠しプロパティにも追加
-              hiddenProperty(inputDate, taskBlock);
-              logseq.UI.showMsg(t("Inserted block property"), "success");
+              hiddenProperty(inputDate, taskBlock)
+              logseq.UI.showMsg(t("Inserted block property"), "success")
             }
           }
-          blockSet = taskBlock.uuid;
-          setTimeout(() => (blockSet = ""), 1000); //ロック解除
+          blockSet = taskBlock.uuid
+          setTimeout(() => (blockSet = ""), 1000) //ロック解除
         } else {
-          logseq.UI.showMsg(t("Error: Block not found"), "warning");
+          logseq.UI.showMsg(t("Error: Block not found"), "warning")
         }
         //実行されたらポップアップを削除
-        removeDialog();
+        removeDialog()
 
-        processing = false;
-      };
+        processing = false
+      }
     }
-  }, 100);
-  setTimeout(() => (blockSet = ""), 1000);
+  }, 100)
+  setTimeout(() => (blockSet = ""), 1000)
 }
 
-
-const hiddenProperty = (inputDate: string, taskBlock: BlockEntity) => {
-  //20230929のような形式で保存する
-  const hiddenProperty = parse(inputDate, 'yyyy-MM-dd', new Date());
-
-  logseq.Editor.upsertBlockProperty(
-    taskBlock.uuid,
-    "string",
-    format(hiddenProperty, 'yyyyMMdd')
-  );
-  logseq.Editor.restoreEditingCursor();
-  setTimeout(async () => {
-    logseq.Editor.editBlock(taskBlock.uuid);
-    if (taskBlock.properties?.string) logseq.Editor.removeBlockProperty(taskBlock.uuid, "string"); //2重にならないように削除
-    setTimeout(() => logseq.Editor.insertAtEditingCursor(`\nstring:: ${format(hiddenProperty, 'yyyyMMdd')}`), 100);
-  }, 500);
-}
 
 //add completed property to done task
 //https://github.com/DimitryDushkin/logseq-plugin-task-check-date
 function onBlockChanged() {
   logseq.DB.onChanged(async ({ blocks, txMeta }) => {
-    if (demoGraph === true) return;
+    if (demoGraph === true || logseq.settings!.onlyFromBulletList === true) return
     if (logseq.settings!.removePropertyWithoutDONEtask === true) {
-      const CompletedOff = blocks.find(({ marker, properties }) => marker !== "DONE" && properties && properties[logseq.settings?.customPropertyName || "completed"]);
+      const CompletedOff = blocks.find(({ marker, properties }) => marker !== "DONE" && properties && properties[logseq.settings?.customPropertyName || "completed"])
       if (CompletedOff) {
-        logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName || "completed");
-        if (CompletedOff.properties?.string) logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string"); //2重にならないように削除
+        logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName || "completed")
+        if (CompletedOff.properties?.string) logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string") //2重にならないように削除
       }
     }
     const taskBlock = blocks.find(
       ({ marker, uuid }) => marker === "DONE" && blockSet !== uuid
-    );
-    if (!taskBlock || txMeta?.outlinerOp !== "saveBlock") return;
-    showDialog(taskBlock as BlockEntity, false);
-  });
+    )
+    if (!taskBlock || txMeta?.outlinerOp !== "saveBlock") return
+    showDialog(taskBlock as BlockEntity, false)
+  })
 }
 
-logseq.ready(main).catch(console.error);
+logseq.ready(main).catch(console.error)
