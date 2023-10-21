@@ -2,7 +2,7 @@
 
 [English](https://github.com/YU000jp/logseq-plugin-confirmation-done-task) | [日本語](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/blob/main/readme.ja.md)
 
-- When a task is marked as `DONE`, a confirmation dialog is displayed, and a property with a date is added to the block.
+- When a task is marked as `DONE`, a confirmation dialog is displayed. A property with a date is added to the block.
   > Embeds a `string` property that allows discovery in queries.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-confirmation-done-task)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/releases)
