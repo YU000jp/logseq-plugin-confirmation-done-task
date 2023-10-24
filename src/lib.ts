@@ -1,6 +1,6 @@
-import { AppGraphInfo, BlockEntity } from "@logseq/libs/dist/LSPlugin.user";
-import { key } from ".";
-import { parse, format } from "date-fns"
+import { AppGraphInfo, BlockEntity } from "@logseq/libs/dist/LSPlugin.user"
+import { format, parse } from "date-fns"
+import { key } from "."
 
 export const checkDemoGraph = async (): Promise<boolean> => ((await logseq.App.getCurrentGraph()) as AppGraphInfo | null) === null
   ? true

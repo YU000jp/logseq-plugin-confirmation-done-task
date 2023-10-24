@@ -1,17 +1,15 @@
-import "@logseq/libs" //https://plugins-doc.logseq.com/
+import "@logseq/libs"; //https://plugins-doc.logseq.com/
 import {
   AppUserConfigs,
   BlockEntity,
   LSPluginBaseInfo,
 } from "@logseq/libs/dist/LSPlugin.user"
 import { format, parse } from "date-fns"
-import { setup as l10nSetup, t } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
-import ja from "./translations/ja.json"
-import { checkDemoGraph, removeDialog } from "./lib"
+import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+import { checkDemoGraph, hiddenProperty, pushDONE, removeDialog } from "./lib"
 import { settingsTemplate } from "./settings"
-import { pushDONE } from "./lib"
-import { hiddenProperty } from "./lib"
 import { provideStyleMain } from "./style"
+import ja from "./translations/ja.json"
 export const keySmallDONEproperty = "not-smallDONEproperty"
 export const key = "DONEdialog"
 let blockSet = ""
