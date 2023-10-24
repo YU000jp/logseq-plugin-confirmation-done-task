@@ -46,6 +46,14 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     default: true,
     description: "default: `true`",
   },
+  {//タイムスタンプを前か後ろか
+    key: "timeStampPosition",
+    title: t("different order (time and date)"),
+    type: "enum",
+    default: "after",
+    enumChoices: ["before", "after"],
+    description: "default: `after`",
+  },
   {
     key: "emphasisTime",
     title: t("Emphasis on time in property (like below *10:00* or **10:00**)"),
@@ -95,7 +103,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   {
     //insert block collapsed
     key: "insertBlockCollapsed",
-    title: t("Insert block: Collapsed"),
+    title: t("\"Insert block\" only: Collapsed"),
     type: "boolean",
     default: false,
     description: "default: `false`",
