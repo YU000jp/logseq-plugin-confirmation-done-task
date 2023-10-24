@@ -1,4 +1,5 @@
 {
+    "\"Insert block\" only: Collapsed": "ブロックを挿入のみ：折りたたみ",
     "As block property": "ブロックプロパティとして",
     "Create the date link": "日付リンクを作成する",
     "Custom property name": "プロパティの名称を設定する",
@@ -8,9 +9,9 @@
     "Enable date entry into the property": "プロパティに日付を入力する",
     "Enable timestamp entry into the property": "プロパティに時刻を入力する",
     "Error: Block not found": "エラー：ブロックが見つかりません",
-    "\"Insert block\" only: Collapsed": "ブロックを挿入のみ：折りたたみ",
     "Insert new block": "新しいブロックを挿入",
     "Inserted block property": "ブロックプロパティを挿入する",
+    "Inserted new block": "新しいブロックを挿入しました",
     "Mode": "モード",
     "Only from bullet context menu (Not recognized even after DONE)": "弾丸のコンテキストメニューからのみ（DONEにしたあと認識しないようにする）",
     "property": "プロパティ",
