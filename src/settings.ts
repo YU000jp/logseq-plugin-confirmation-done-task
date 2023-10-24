@@ -27,7 +27,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   },
   {
     key: "addDate",
-    title: t("Enable date entry into the property"),
+    title: t("Enable date entry"),
     type: "boolean",
     default: true,
     description: "default: `true`",
@@ -41,7 +41,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   },
   {
     key: "addTime",
-    title: t("Enable timestamp entry into the property"),
+    title: t("Enable timestamp entry"),
     type: "boolean",
     default: true,
     description: "default: `true`",
