@@ -8,7 +8,7 @@
     "Enable date entry into the property": "プロパティに日付を入力する",
     "Enable timestamp entry into the property": "プロパティに時刻を入力する",
     "Error: Block not found": "エラー：ブロックが見つかりません",
-    "Insert block: Collapsed": "ブロックを挿入：折りたたみ",
+    "\"Insert block\" only: Collapsed": "ブロックを挿入のみ：折りたたみ",
     "Insert new block": "新しいブロックを挿入",
     "Inserted block property": "ブロックプロパティを挿入する",
     "Mode": "モード",
