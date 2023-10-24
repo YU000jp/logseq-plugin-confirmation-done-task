@@ -261,6 +261,7 @@ async function showDialogProcess(
       if (additional === false && logseq.settings!.timeoutMode === true) {
         setTimeout(() => {
           if (closeElement === true) return
+          if(blockSet !== taskBlock.uuid) return //一致しない場合は処理しない
           if (focusElement === false) button?.click()
         }, logseq.settings!.timeout as number)
         //タイムアウト直前
