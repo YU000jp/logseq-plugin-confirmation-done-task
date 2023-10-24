@@ -11,7 +11,8 @@ import { checkDemoGraph, removeDialog } from "./lib"
 import { settingsTemplate } from "./settings"
 import { pushDONE } from "./lib"
 import { hiddenProperty } from "./lib"
-const keySmallDONEproperty = "not-smallDONEproperty"
+import { provideStyleMain } from "./style"
+export const keySmallDONEproperty = "not-smallDONEproperty"
 export const key = "DONEdialog"
 let blockSet = ""
 let demoGraph: boolean = false
@@ -91,53 +92,6 @@ const main = async () => {
 } /* end_main */
 
 
-const provideStyleMain = () => logseq.provideStyle(`
-body {
-  &>div#${logseq.baseInfo.id}--${key} {
-    & div.th h3 {
-      max-width: 80%;
-      text-overflow: ellipsis;
-    }
-    
-    & div#addProperty {
-      & :is(input, select) {
-        background: var(--ls-primary-background-color);
-        color: var(--ls-primary-text-color);
-        box-shadow: 1px 2px 5px var(--ls-secondary-background-color);
-        border-radius: 0.5em;
-      }
-      
-      & select {
-        font-size: 0.95em;
-      }
-      
-      & button#DONEpropertyButton {
-        font-size: 1.85em;
-        padding: 0.1em 0.25em;  
-        &:hover {
-          background: var(--ls-secondary-background-color);
-          color: var(--ls-secondary-text-color);
-        }
-      }
-    }
-  }
-  &:not(.${keySmallDONEproperty})>div#root>div>main>div div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]){
-    display: flex;
-    justify-content: flex-end;
-    background: unset;
-    &>div {
-      font-size: 0.8em;
-      display: inline-block;
-      border-radius: 2em;
-      background: var(--ls-secondary-background-color);
-      padding: 0.1em 0.5em;
-    }
-  }
-  &>div#root>div>main>div div.block-properties>div:has(a[data-ref="string"]){
-    display: none;
-  }
-}
-`)
 
 let processingShowDialog: Boolean = false
 
@@ -172,7 +126,9 @@ async function showDialog(
   //ダイアログを表示
   await showDialogProcess(taskBlock, addTitle, additional) //ロック解除
   processingShowDialog = false
+
 } //end showDialog
+
 
 async function showDialogProcess(
   taskBlock: BlockEntity,
@@ -438,22 +394,34 @@ async function showDialogProcess(
 
 //add completed property to done task
 //https://github.com/DimitryDushkin/logseq-plugin-task-check-date
-function onBlockChanged() {
-  logseq.DB.onChanged(async ({ blocks, txMeta }) => {
-    if (demoGraph === true || logseq.settings!.onlyFromBulletList === true) return
-    if (logseq.settings!.removePropertyWithoutDONEtask === true) {
-      const CompletedOff = blocks.find(({ marker, properties }) => marker !== "DONE" && properties && properties[logseq.settings?.customPropertyName || "completed"])
-      if (CompletedOff) {
-        logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName || "completed")
-        if (CompletedOff.properties?.string) logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string") //2重にならないように削除
-      }
+const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
+  if (
+    //デモグラフの場合は処理しない
+    demoGraph === true 
+    //ブロック操作でDONEではなくなった場合
+    || logseq.settings!.onlyFromBulletList === true
+  ) return
+
+  //DONEタスクではないのに、completedプロパティ(それに相当する)をもつ場合は削除する
+  if (logseq.settings!.removePropertyWithoutDONEtask === true) {
+    const CompletedOff = blocks.find(({ marker, properties }) => marker !== "DONE" && properties && properties[logseq.settings?.customPropertyName || "completed"])
+    if (CompletedOff) {
+      logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName || "completed")
+      if (CompletedOff.properties?.string) logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string") //2重にならないように削除
     }
-    const taskBlock = blocks.find(
-      ({ marker, uuid }) => marker === "DONE" && blockSet !== uuid
-    )
-    if (!taskBlock || txMeta?.outlinerOp !== "saveBlock") return
-    showDialog(taskBlock as BlockEntity, false)
-  })
-}
+  }
+  const taskBlock = blocks.find(
+    ({ marker, uuid }) => marker === "DONE" && blockSet !== uuid
+  )
+  //saveBlock以外は処理しない
+  if (!taskBlock || txMeta?.outlinerOp !== "saveBlock") return
+
+  //現在のブロックと一致しない場合は処理しない
+  const currentBlock = await logseq.Editor.getCurrentBlock() as BlockEntity | null;
+  if (!currentBlock || taskBlock.uuid !== currentBlock.uuid) return
+
+  //ダイアログを表示
+  showDialog(taskBlock as BlockEntity, false)
+})
 
 logseq.ready(main).catch(console.error)
