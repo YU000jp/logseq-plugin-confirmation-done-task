@@ -143,13 +143,13 @@ async function showDialogProcess(
   const day: string = ("0" + (today.getDate() as number)).slice(-2)
   const printAddTime =
     logseq.settings?.addTime === true
-      ? `<input id="DONEpropertyTime" title="Time picker" type="time" value="${(
+      ? `<input id="DONEpropertyTime" title="${t("Time picker")}" type="time" value="${(
         "0" + (today.getHours() as number)
       ).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`
       : '<input id="DONEpropertyTime" type="hidden" value=""/>'
   const printAddDate =
     logseq.settings?.addDate === true
-      ? `<input id="DONEpropertyDate" title="Date picker" type="date" value="${`${year}-${month}-${day}`}"/>`
+      ? `<input id="DONEpropertyDate" title="${t("Date picker")}" type="date" value="${`${year}-${month}-${day}`}"/>`
       : '<input id="DONEpropertyDate" type="hidden" value=""/>'
   const blockElement = parent.document.getElementsByClassName(
     taskBlock.uuid
@@ -191,7 +191,7 @@ async function showDialogProcess(
           ${printAddDate}${printAddTime}
           <button id="DONEpropertyButton" class="ls-button-primary"${addTitle ? ` title="${addTitle}"` : ""
       }>☑️</button></br>
-          ${t("Mode")}: <select id="DONEpropertyModeSelect">
+          <small>${t("Mode")}</small><select id="DONEpropertyModeSelect" title="${t("Mode")}">
           <option value="blockProperty"${logseq.settings!.modeSelect === "As block property"
         ? " selected"
         : ""
@@ -214,8 +214,10 @@ async function showDialogProcess(
           </style>
         `,
     style: {
-      width: "360px",
-      height: "125px",
+      width: "unset",
+      maxWidth: "360px",
+      height: "unset",
+      maxHeight: "130px",
       right: right !== "" ? right : "unset",
       bottom: "unset",
       left: left !== "" ? left : "unset",

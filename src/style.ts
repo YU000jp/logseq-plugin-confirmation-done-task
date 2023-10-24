@@ -3,6 +3,10 @@ import { key, keySmallDONEproperty } from "."
 export const provideStyleMain = () => logseq.provideStyle(`
 body {
   &>div#${logseq.baseInfo.id}--${key} {
+    & p{
+      margin: 0;
+    }
+
     & div.th h3 {
       max-width: 80%;
       text-overflow: ellipsis;
@@ -21,8 +25,8 @@ body {
       }
       
       & button#DONEpropertyButton {
-        font-size: 1.85em;
-        padding: 0.1em 0.25em;  
+        font-size: 1.8em;
+        margin-right: .5em;
         &:hover {
           background: var(--ls-secondary-background-color);
           color: var(--ls-secondary-text-color);
