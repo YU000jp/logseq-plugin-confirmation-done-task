@@ -20,8 +20,7 @@ Add completed property to the DONE task
 
 ##### Option > Keep date and time on the property (multiple value) [#22](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/22#issuecomment-1615900974)
 
-  - Trigger `💪Add to DONE property`
-    - From the block context menu (to open the options, right-click the bullet that has the desired property)
+  - Select the bullet menu item (`💪Add into DONE property`)
 
 ---
 
@@ -36,9 +35,25 @@ Install from Logseq Marketplace
 
 - To use this solution, After marking as `DONE`, which will prompt to add a `completed` property. It is possible to edit the date and time if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
 
-#### Query from "string" property
+#### The "string" property for Queries
 
-> here [#36](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/36#issuecomment-1740490239) 🆕
+```clojure
+#+BEGIN_QUERY
+  {
+    :title "Tasks completed today"
+    :query [
+        :find (pull ?b [*])
+        :in $ ?start ?end
+        :where
+            [?b :block/properties ?properties]
+            [(get ?properties :string) ?completed]
+            [(>= ?completed ?start)]
+            [(< ?completed ?end)]
+    ]
+    :inputs [:today :tomorrow]
+  }
+  #+END_QUERY
+```
 
 #### Plugin Settings
 
