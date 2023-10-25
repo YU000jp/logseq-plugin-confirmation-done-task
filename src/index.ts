@@ -22,7 +22,7 @@ const main = async () => {
   /* user settings */
   logseq.useSettingsSchema(settingsTemplate())
   if (!logseq.settings) setTimeout(() => logseq.showSettingsUI(), 300)
-  
+
   provideStyleMain()
 
 
@@ -484,19 +484,29 @@ const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
   if (
     //ブロック操作でDONEではなくなった場合
     logseq.settings!.onlyFromBulletList === true
+    || txMeta?.outlinerOp !== "saveBlock"
   ) return
 
   //DONEタスクではないのに、completedプロパティ(それに相当する)をもつ場合は削除する
   if (logseq.settings!.removePropertyWithoutDONEtask === true) {
-    const CompletedOff = blocks.find(({ marker, properties }) => marker !== "DONE" && properties && properties[logseq.settings?.customPropertyName || "completed"])
+    const CompletedOff =
+      blocks.find(
+        ({ marker, properties }) =>
+          marker !== "DONE"
+          && properties
+          && properties[logseq.settings?.customPropertyName || "completed"] // プロパティに指定のプロパティがあるか、completedプロパティがあるか
+      )
+    //見つかった場合は削除する
     if (CompletedOff) {
+      //プロパティを削除する
       logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName || "completed")
-      if (CompletedOff.properties?.string) logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string") //2重にならないように削除
+      //stringプロパティも削除する
+      if (CompletedOff.properties?.string) logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string")
     }
   }
   const taskBlock = blocks.find(({ marker }) => marker === "DONE")
   //saveBlock以外は処理しない
-  if (!taskBlock || txMeta?.outlinerOp !== "saveBlock") return
+  if (!taskBlock) return
 
   //現在のブロックと一致しない場合は処理しない
   const currentBlock = await logseq.Editor.getCurrentBlock() as BlockEntity | null
