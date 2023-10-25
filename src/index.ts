@@ -334,10 +334,25 @@ async function showDialogProcess(
           if (modeSelect === "UpdateBlock") {
             //ブロックを更新する
 
-            taskBlock.content = taskBlock.content.replace(
-              /DONE\s/,
-              `DONE ${dateAndTime} - `
-            )
+            if (logseq.settings!.updateBlockContentPosition === "before") {
+              // "before"の場合
+              //DONEの後ろに、日付や時刻を挿入する
+              taskBlock.content = taskBlock.content.replace(
+                /^(#+\s)?DONE\s/,
+                `DONE ${dateAndTime} ${logseq.settings!.updateBlockSeparator} `
+              )
+            } else {// "after"の場合
+              if (taskBlock.content.includes("\n")) {
+                //1行目の内容の後ろ(一つ目の\nの前)に、日付や時刻を挿入する
+                taskBlock.content = taskBlock.content.replace(
+                  /\n/,
+                  `- ${dateAndTime}\n`
+                )
+              } else {
+                //1行目の内容の最後に、日付や時刻を挿入する
+                taskBlock.content += ` ${logseq.settings!.updateBlockSeparator} ${dateAndTime}`
+              }
+            }
             logseq.Editor.updateBlock(taskBlock.uuid, taskBlock.content)
             logseq.UI.showMsg(t("Updated block"), "success")
 

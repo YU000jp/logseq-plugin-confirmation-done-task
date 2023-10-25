@@ -63,6 +63,42 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     default: true,
     description: "default: `true`",
   },
+  {// Mode > "Update block" > 1行目の内容の前か後ろに、日付や時刻を挿入する
+    key: "updateBlockContentPosition",
+    title: t("Mode > \"Update block\" > Before or after the content of the first line, insert the date and time"),
+    type: "enum",
+    default: "before",
+    enumChoices: ["before", "after"],
+    description: "default: `before`",
+  },
+  {// Mode > "Update block" > 区切り文字
+    key: "updateBlockSeparator",
+    title: t("Mode > \"Update block\" > Separator"),
+    type: "string",
+    default: " - ",
+    description: "default: ` - `",
+  },
+  {
+    //insert block collapsed
+    key: "insertBlockCollapsed",
+    title: t("Mode > \"Insert block\" > Collapsed"),
+    type: "boolean",
+    default: false,
+    description: "default: `false`",
+  },
+  {
+    //mode select
+    key: "modeSelect",
+    title: t("Mode > Default mode select"),
+    type: "enum",
+    enumChoices: [
+      "As block property",
+      "Insert block",
+      "Update block",
+    ],
+    default: "As block property",
+    description: "default: `As block property`",
+  },
   {
     //timeoutモード
     key: "timeoutMode",
@@ -79,27 +115,6 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     enumChoices: ["3000", "5000", "7000", "9000"],
     default: "5000",
     description: "default: `5000`",
-  },
-  {
-    //mode select
-    key: "modeSelect",
-    title: t("Mode > Default mode select"),
-    type: "enum",
-    enumChoices: [
-      "As block property",
-      "Insert block",
-      "Update block",
-    ],
-    default: "As block property",
-    description: "default: `As block property`",
-  },
-  {
-    //insert block collapsed
-    key: "insertBlockCollapsed",
-    title: t("Mode > \"Insert block\" > Collapsed"),
-    type: "boolean",
-    default: false,
-    description: "default: `false`",
   },
   {
     key: "customPropertyName",

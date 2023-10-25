@@ -11,6 +11,8 @@
     "Inserted new block": "新しいブロックを挿入しました",
     "Mode": "モード",
     "Mode > \"Insert block\" > Collapsed": "モード > \"ブロックを挿入\"のみ > 折りたたみにする",
+    "Mode > \"Update block\" > Before or after the content of the first line, insert the date and time": "モード > \"ブロックを更新\"のみ > 1行目の内容の前か後ろに、日付と時刻を挿入する",
+    "Mode > \"Update block\" > Separator": "モード > \"ブロックを更新\"のみ > 区切り文字",
     "Mode > Default mode select": "モード > デフォルトモードの選択",
     "Process > Only from bullet context menu (Not recognized even after DONE)": "処理 > 弾丸のコンテキストメニューからのみ（DONEにしたあと認識しないようにする）",
     "Process > Remove property without DONE marker": "処理 > DONEマーカーのないプロパティを削除する",
