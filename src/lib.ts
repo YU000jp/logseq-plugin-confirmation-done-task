@@ -4,12 +4,12 @@ import { key } from "."
 
 export const checkDemoGraph = async (): Promise<boolean> => ((await logseq.App.getCurrentGraph()) as AppGraphInfo | null) === null
   ? true
-  : false; //デモグラフの場合は返り値がnull
+  : false //デモグラフの場合は返り値がnull
 export function removeDialog() {
   const element = parent.document.getElementById(
     logseq.baseInfo.id + `--${key}`
-  ) as HTMLDivElement | null;
-  if (element) element.remove();
+  ) as HTMLDivElement | null
+  if (element) element.remove()
 }
 
 export const pushDONE = (block: BlockEntity) => {
@@ -27,6 +27,8 @@ export const pushDONE = (block: BlockEntity) => {
 }
 
 export const hiddenProperty = (inputDate: string, taskBlock: BlockEntity) => {
+  if (logseq.settings!.enableHiddenProperty === false) return
+
   //20230929のような形式で保存する
   const hiddenProperty = parse(inputDate, 'yyyy-MM-dd', new Date())
 
@@ -35,11 +37,17 @@ export const hiddenProperty = (inputDate: string, taskBlock: BlockEntity) => {
     "string",
     format(hiddenProperty, 'yyyyMMdd')
   )
+
+  logseq.showMainUI() //ユーザーによる操作を停止する
   logseq.Editor.restoreEditingCursor()
   setTimeout(async () => {
     logseq.Editor.editBlock(taskBlock.uuid)
     if (taskBlock.properties?.string) logseq.Editor.removeBlockProperty(taskBlock.uuid, "string") //2重にならないように削除
-    setTimeout(() => logseq.Editor.insertAtEditingCursor(`\nstring:: ${format(hiddenProperty, 'yyyyMMdd')}`), 100)
+    setTimeout(() => {
+      logseq.Editor.insertAtEditingCursor(`\nstring:: ${format(hiddenProperty, 'yyyyMMdd')}`)
+      logseq.hideMainUI() // ユーザーによる操作を再開する
+    }
+      , 100)
   }, 500)
 }
 

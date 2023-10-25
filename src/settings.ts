@@ -70,6 +70,13 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     default: true,
     description: "default: `true`",
   },
+  {//クエリー用の隠しプロパティとして、キー"string"に、日付値を入れる
+    key: "enableHiddenProperty",
+    title: t("Process > Enable hidden property for queries (key: \"string\", value: journal-day format)"),
+    type: "boolean",
+    default: true,
+    description: "default: `true`",
+  },
   {// Mode > "Update block" > 1行目の内容の前か後ろに、日付や時刻を挿入する
     key: "updateBlockContentPosition",
     title: t("Mode > \"Update block\" > Before or after the content of the first line, insert the date and time"),
