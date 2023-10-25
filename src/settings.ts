@@ -125,7 +125,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   },
   {
     key: "customPropertyName",
-    title: t("Change > Custom property name (⚠️No rename will be performed.)"),
+    title: t("Change > Custom property name"),
     type: "string",
     default: "completed",
     description: "default: `completed`",

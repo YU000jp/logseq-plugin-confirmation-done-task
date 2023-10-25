@@ -11,6 +11,7 @@ import { checkDemoGraph, getJournalDayDate, hiddenProperty, pushDONE, removeDial
 import { settingsTemplate } from "./settings"
 import { provideStyleMain } from "./style"
 import ja from "./translations/ja.json"
+import { rename } from "fs"
 export const keySmallDONEproperty = "not-smallDONEproperty"
 export const key = "DONEdialog"
 let demoGraph: boolean = false
@@ -84,21 +85,28 @@ const main = async () => {
   if (logseq.settings?.smallDONEproperty === false)
     parent.document.body.classList.add(keySmallDONEproperty)
 
+  // プラグイン設定の項目変更時
   logseq.onSettingsChanged((
-      newSet: LSPluginBaseInfo["settings"],
-      oldSet: LSPluginBaseInfo["settings"]
-    ) => {
-      if (
-        oldSet.smallDONEproperty === false &&
-        newSet.smallDONEproperty === true
-      )
-        parent.document.body.classList!.remove(keySmallDONEproperty)
-      else if (
-        oldSet.smallDONEproperty === true &&
-        newSet.smallDONEproperty === false
-      )
-        parent.document.body.classList!.add(keySmallDONEproperty)
+    newSet: LSPluginBaseInfo["settings"],
+    oldSet: LSPluginBaseInfo["settings"]
+  ) => {
+    //見た目の変更
+    if (
+      oldSet.smallDONEproperty === false &&
+      newSet.smallDONEproperty === true
+    )
+      parent.document.body.classList!.remove(keySmallDONEproperty)
+    else if (
+      oldSet.smallDONEproperty === true &&
+      newSet.smallDONEproperty === false
+    )
+      parent.document.body.classList!.add(keySmallDONEproperty)
+
+    //プロパティの変更
+    if (oldSet.customPropertyName !== newSet.customPropertyName) {
+      renameProperty(oldSet.customPropertyName, newSet.customPropertyName);
     }
+  }
   )
 
   logseq.provideModel({
@@ -107,6 +115,15 @@ const main = async () => {
 
 } /* end_main */
 
+
+
+// プロパティ名を変更するときに、元のプロパティ名のページをリネームする
+const renameProperty = async (oldName: string, newName: string) => {
+  const oldPage = await logseq.Editor.getPage(oldName) as PageEntity | null
+  if (!oldPage) return
+  logseq.Editor.renamePage(oldName, newName)
+  logseq.UI.showMsg(`💪 ${t("Renamed page")}`, "success")
+}
 
 
 let processingShowDialog: Boolean = false
