@@ -11,6 +11,7 @@ export function removeDialog() {
   ) as HTMLDivElement | null;
   if (element) element.remove();
 }
+
 export const pushDONE = (block: BlockEntity) => {
   //先頭に 「# 」や「＃# 」、「### 」、「#### 」、「##### 」、「###### 」 がある場合は、その後ろにDONEを追加する
   const match = block.content.match(/^#+\s/)
@@ -24,6 +25,7 @@ export const pushDONE = (block: BlockEntity) => {
   }
   logseq.Editor.updateBlock(block.uuid, block.content)
 }
+
 export const hiddenProperty = (inputDate: string, taskBlock: BlockEntity) => {
   //20230929のような形式で保存する
   const hiddenProperty = parse(inputDate, 'yyyy-MM-dd', new Date())
@@ -41,3 +43,8 @@ export const hiddenProperty = (inputDate: string, taskBlock: BlockEntity) => {
   }, 500)
 }
 
+export const getJournalDayDate = (str: string): Date => new Date(
+  Number(str.slice(0, 4)), //year
+  Number(str.slice(4, 6)) - 1, //month 0-11
+  Number(str.slice(6)) //day
+)

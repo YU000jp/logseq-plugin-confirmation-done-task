@@ -18,6 +18,13 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     default: true,
     description: "default: `true`",
   },
+  {// そのブロックのページがジャーナルフラグを持っている場合に、完了日と同じであれば日付を省略するオプション
+    key: "omitDateIfSameAsJournal",
+    title: t("Date > Omit date if same as journal"),
+    type: "boolean",
+    default: false,
+    description: "default: `false`",
+  },
   {
     key: "addTime",
     title: t("Time > Enable timestamp entry"),
