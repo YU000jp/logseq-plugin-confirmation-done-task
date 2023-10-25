@@ -1,54 +1,33 @@
-import { SettingSchemaDesc } from "@logseq/libs/dist/LSPlugin.user";
-import { t } from "logseq-l10n";
+import { SettingSchemaDesc } from "@logseq/libs/dist/LSPlugin.user"
+import { t } from "logseq-l10n"
 
 /* user setting */
 // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
 export const settingsTemplate = (): SettingSchemaDesc[] => [
-  {//箇条書きコンテキストメニューからのみ実行するかどうか
-    key: "onlyFromBulletList",
-    title: t("Only from bullet context menu (Not recognized even after DONE)"),
-    type: "boolean",
-    default: false,
-    description: "default: `false`",
-  },
-  {
-    key: "removePropertyWithoutDONEtask",
-    title: t("Remove property without DONE marker"),
-    type: "boolean",
-    default: true,
-    description: "default: `true`",
-  },
-  {
-    key: "customPropertyName",
-    title: t("Custom property name"),
-    type: "string",
-    default: "completed",
-    description: "default: `completed`",
-  },
   {
     key: "addDate",
-    title: t("Enable date entry"),
+    title: t("Date > Enable date entry"),
     type: "boolean",
     default: true,
     description: "default: `true`",
   },
   {
     key: "createDateLink",
-    title: t("Create the date link"),
+    title: t("Date > Create the date link"),
     type: "boolean",
     default: true,
     description: "default: `true`",
   },
   {
     key: "addTime",
-    title: t("Enable timestamp entry"),
+    title: t("Time > Enable timestamp entry"),
     type: "boolean",
     default: true,
     description: "default: `true`",
   },
   {//タイムスタンプを前か後ろか
     key: "timeStampPosition",
-    title: t("different order (time and date)"),
+    title: t("Time > Different order (time and date)"),
     type: "enum",
     default: "after",
     enumChoices: ["before", "after"],
@@ -56,7 +35,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   },
   {
     key: "emphasisTime",
-    title: t("Emphasis on time in property (like below *10:00* or **10:00**)"),
+    title: t("Time > Emphasis on time in property (like below *10:00* or **10:00**)"),
     type: "enum",
     default: "*",
     enumChoices: ["*", "**", "none"],
@@ -65,15 +44,29 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   {
     //DONEプロパティの表示サイズを小さくして右側に配置する Logseq v0.9.11以降
     key: "smallDONEproperty",
-    title: t("Small DONE property and right align"),
+    title: t("Block property > Small and right align"),
     type: "boolean",
     default: true,
     description: "default: `true` (⚠️Logseq v0.9.11 or later)",
   },
+  {//箇条書きコンテキストメニューからのみ実行するかどうか
+    key: "onlyFromBulletList",
+    title: t("Process > Only from bullet context menu (Not recognized even after DONE)"),
+    type: "boolean",
+    default: false,
+    description: "default: `false`",
+  },
+  {
+    key: "removePropertyWithoutDONEtask",
+    title: t("Process > Remove property without DONE marker"),
+    type: "boolean",
+    default: true,
+    description: "default: `true`",
+  },
   {
     //timeoutモード
     key: "timeoutMode",
-    title: t("Timeout mode"),
+    title: t("Timeout > Enable feature"),
     type: "boolean",
     default: false,
     description: "default: `false`",
@@ -81,7 +74,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   {
     //timeoutモードの時間
     key: "timeout",
-    title: t("Timeout (ms) when timeout mode is enabled"),
+    title: t("Timeout > (ms)"),
     type: "enum",
     enumChoices: ["3000", "5000", "7000", "9000"],
     default: "5000",
@@ -90,7 +83,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   {
     //mode select
     key: "modeSelect",
-    title: t("Default mode select"),
+    title: t("Mode > Default mode select"),
     type: "enum",
     enumChoices: [
       "As block property",
@@ -103,9 +96,16 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   {
     //insert block collapsed
     key: "insertBlockCollapsed",
-    title: t("\"Insert block\" only: Collapsed"),
+    title: t("Mode > \"Insert block\" > Collapsed"),
     type: "boolean",
     default: false,
     description: "default: `false`",
   },
-];
+  {
+    key: "customPropertyName",
+    title: t("Change > Custom property name (⚠️No rename will be performed.)"),
+    type: "string",
+    default: "completed",
+    description: "default: `completed`",
+  },
+]
