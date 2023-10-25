@@ -7,14 +7,12 @@ import {
 } from "@logseq/libs/dist/LSPlugin.user"
 import { format, isSameDay, parse } from "date-fns"
 import { setup as l10nSetup, t } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
-import { checkDemoGraph, getJournalDayDate, hiddenProperty, pushDONE, removeDialog } from "./lib"
+import { getJournalDayDate, hiddenProperty, pushDONE, removeDialog } from "./lib"
 import { settingsTemplate } from "./settings"
 import { provideStyleMain } from "./style"
 import ja from "./translations/ja.json"
-import { rename } from "fs"
 export const keySmallDONEproperty = "not-smallDONEproperty"
 export const key = "DONEdialog"
-let demoGraph: boolean = false
 let onBlockChangedToggle: boolean = false
 
 /* main */
@@ -24,32 +22,28 @@ const main = async () => {
   /* user settings */
   logseq.useSettingsSchema(settingsTemplate())
   if (!logseq.settings) setTimeout(() => logseq.showSettingsUI(), 300)
-  //   }
-  // })();
+  
   provideStyleMain()
 
+
   //ページ読み込み時
-  logseq.App.onPageHeadActionsSlotted(async () => {
-    demoGraph = (await checkDemoGraph()) as boolean
-    if (demoGraph === true && onBlockChangedToggle === false) {
-      onBlockChanged()
-      onBlockChangedToggle = true
-    }
-  })
+  logseq.App.onPageHeadActionsSlotted(() => startOnBlock())
+  logseq.App.onRouteChanged(() => startOnBlock())
 
   //グラフ変更時
-  logseq.App.onCurrentGraphChanged(async () => {
-    demoGraph = (await checkDemoGraph()) as boolean
-    if (demoGraph === true && onBlockChangedToggle === false) {
+  logseq.App.onCurrentGraphChanged(() => startOnBlock())
+
+  const startOnBlock = () => {
+    removeDialog()
+    if (onBlockChangedToggle === false) {
       onBlockChanged()
       onBlockChangedToggle = true
     }
-  })
-
-  if (demoGraph === false) {
-    onBlockChanged()
-    onBlockChangedToggle = true
   }
+
+
+  onBlockChanged()
+  onBlockChangedToggle = true
   //end
 
   //プロパティの中に、日付を連続で追加する
@@ -104,7 +98,7 @@ const main = async () => {
 
     //プロパティの変更
     if (oldSet.customPropertyName !== newSet.customPropertyName) {
-      renameProperty(oldSet.customPropertyName, newSet.customPropertyName);
+      renameProperty(oldSet.customPropertyName, newSet.customPropertyName)
     }
   }
   )
@@ -488,10 +482,8 @@ async function showDialogProcess(
 //https://github.com/DimitryDushkin/logseq-plugin-task-check-date
 const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
   if (
-    //デモグラフの場合は処理しない
-    demoGraph === true
     //ブロック操作でDONEではなくなった場合
-    || logseq.settings!.onlyFromBulletList === true
+    logseq.settings!.onlyFromBulletList === true
   ) return
 
   //DONEタスクではないのに、completedプロパティ(それに相当する)をもつ場合は削除する
