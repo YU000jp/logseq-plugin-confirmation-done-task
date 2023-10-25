@@ -4,6 +4,24 @@
 ### Bug Fixes
 
 * **bug:** [#45](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/45)  If another plugin is runnig / refactor ([c837b92](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/c837b92ca8e4db4bb1f38b51c85e5ac013ac5329))
+* **bug:** style > hidden "string" proprety ([795314f](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/795314feb86b382196f658734165594b8e23bc5b))
+
+
+### Features
+
+* **Add an option:** "different order (time and date)"  [#44](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/44) ([7332882](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/7332882ba8ed2a06c122a55fce6856d405ded54b))
+* **Add:** "open plugin settings" button ([458e450](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/458e45083b2130104eb3ffedec56ea4f7e870927))
+* **Add:** [#36](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/36) plugin settings >  "hidden property for queries" ([cbf37f7](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/cbf37f7315ea2dae31a135cf2e0938ce063a8dfd))
+* **Add:** [#43](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/43) plugin settings > Omit date if same as journal ([dba3e66](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/dba3e66ed4ae6c8003cbf2dab9bac7956a21ff4f))
+* **Add:** [#44](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/44) plugin settings >"Before or after the content of the first line" ([dabec23](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/dabec234118ab807a4902ab1d486bbd2f08fd997))
+* plugin settings > rename property page ([78cb82a](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/78cb82ae41a4258ab6528a40377fd5aac586a3e5))
+
+# [1.11.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.10.0...v1.11.0) (2023-10-25)
+
+
+### Bug Fixes
+
+* **bug:** [#45](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/45)  If another plugin is runnig / refactor ([c837b92](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/c837b92ca8e4db4bb1f38b51c85e5ac013ac5329))
 
 
 ### Features
