@@ -84,8 +84,7 @@ const main = async () => {
   if (logseq.settings?.smallDONEproperty === false)
     parent.document.body.classList.add(keySmallDONEproperty)
 
-  logseq.onSettingsChanged(
-    (
+  logseq.onSettingsChanged((
       newSet: LSPluginBaseInfo["settings"],
       oldSet: LSPluginBaseInfo["settings"]
     ) => {
@@ -101,6 +100,11 @@ const main = async () => {
         parent.document.body.classList!.add(keySmallDONEproperty)
     }
   )
+
+  logseq.provideModel({
+    settingsButton: () => logseq.showSettingsUI(),
+  })
+
 } /* end_main */
 
 
@@ -198,8 +202,7 @@ async function showDialogProcess(
     template: `
           <div id="addProperty" title="">
           ${printAddDate}${printAddTime}
-          <button id="DONEpropertyButton" class="ls-button-primary"${addTitle ? ` title="${addTitle}"` : ""
-      }>☑️</button></br>
+          <button id="DONEpropertyButton" class="ls-button-primary" title="${addTitle ? addTitle : "DONE"}">☑️</button><br/>
           <small>${t("Mode")}</small><select id="DONEpropertyModeSelect" title="${t("Mode")}">
           <option value="blockProperty"${logseq.settings!.modeSelect === "As block property"
         ? " selected"
@@ -212,6 +215,7 @@ async function showDialogProcess(
         }>${t("Update block")}</option>
       `}
           </select>
+          <small><button data-on-click="settingsButton" class="ls-button-primary" title="${t("Plugin Settings")}">⚙️</button></small>
           </div>
           <style>
           body>div#root>div {

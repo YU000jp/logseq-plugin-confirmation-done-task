@@ -17,6 +17,7 @@
     "Mode > \"Update block\" > Separator": "モード > \"ブロックを更新\"のみ > 区切り文字",
     "Mode > Default mode select": "モード > デフォルトモードの選択",
     "Omit the date if it matches the date on the journal page.": "ジャーナルページの日付と一致する場合は、日付を省略します。",
+    "Plugin Settings": "プラグイン設定",
     "Process > Only from bullet context menu (Not recognized even after DONE)": "処理 > 弾丸のコンテキストメニューからのみ（DONEにしたあと認識しないようにする）",
     "Process > Remove property without DONE marker": "処理 > DONEマーカーのないプロパティを削除する",
     "property": "プロパティ",
