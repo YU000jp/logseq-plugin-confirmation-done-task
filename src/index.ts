@@ -14,6 +14,7 @@ import ja from "./translations/ja.json"
 export const keySmallDONEproperty = "not-smallDONEproperty"
 export const key = "DONEdialog"
 let onBlockChangedToggle: boolean = false
+let processing: boolean = false
 
 /* main */
 const main = async () => {
@@ -484,18 +485,26 @@ const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
   if (
     //ブロック操作でDONEではなくなった場合
     logseq.settings!.onlyFromBulletList === true
+    //処理中の場合 
+    || processing === true
+    // ブロック保存ではない場合
     || txMeta?.outlinerOp !== "saveBlock"
-    || txMeta["transact?"] === false //おそらく、ユーザー操作のみ transactは取引の意味
-  ) return
+    //ユーザー操作ではない場合 (transactは取引の意味)
+    || txMeta["transact?"] === false
+  ) return //処理しない
+
+  processing = true
 
   //DONEタスクではないのに、completedプロパティ(それに相当する)をもつ場合は削除する
   if (logseq.settings!.removePropertyWithoutDONEtask === true) {
     const CompletedOff =
       blocks.find(
         ({ marker, properties }) =>
+          // DONEタスクではない
           marker !== "DONE"
+          // プロパティに指定のプロパティがあるか、completedプロパティがあるか
           && properties
-          && properties[logseq.settings?.customPropertyName || "completed"] // プロパティに指定のプロパティがあるか、completedプロパティがあるか
+          && properties[logseq.settings?.customPropertyName || "completed"]
       )
     //見つかった場合は削除する
     if (CompletedOff) {
@@ -505,16 +514,21 @@ const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
       if (CompletedOff.properties?.string) logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string")
     }
   }
-  const taskBlock = blocks.find(({ marker }) => marker === "DONE")
-  //saveBlock以外は処理しない
-  if (!taskBlock) return
 
+  const taskBlock = blocks.find(({ marker }) => marker === "DONE") //DONEタスクを取得する
+  //saveBlock以外は処理しない
+  if (!taskBlock) {
+    setTimeout(() => processing = false, 100)
+    return
+  }
 
   //チェックボタンからの場合は、現在のブロックと一致しない
 
-
   //ダイアログを表示
   showDialog(taskBlock as BlockEntity, false)
+
+  setTimeout(() => processing = false, 100)
 })
+
 
 logseq.ready(main).catch(console.error)
