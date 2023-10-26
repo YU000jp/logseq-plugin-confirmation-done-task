@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.11.1...v1.11.2) (2023-10-26)
+
+
+### Bug Fixes
+
+* **refactor:** processing lock ([d560710](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/d5607109cd6b9b807424a6a89ab70e642c8689c1))
+
 ## [1.11.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.11.0...v1.11.1) (2023-10-26)
 
 
