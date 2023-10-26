@@ -485,7 +485,7 @@ const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
     //ブロック操作でDONEではなくなった場合
     logseq.settings!.onlyFromBulletList === true
     || txMeta?.outlinerOp !== "saveBlock"
-    || txMeta["transact?"] === false
+    || txMeta["transact?"] === false //おそらく、ユーザー操作のみ transactは取引の意味
   ) return
 
   //DONEタスクではないのに、completedプロパティ(それに相当する)をもつ場合は削除する
