@@ -44,7 +44,7 @@ export const hiddenProperty = (inputDate: string, taskBlock: BlockEntity) => {
     logseq.Editor.editBlock(taskBlock.uuid)
     if (taskBlock.properties?.string) logseq.Editor.removeBlockProperty(taskBlock.uuid, "string") //2重にならないように削除
     setTimeout(() => {
-      logseq.Editor.insertAtEditingCursor(`\nstring:: ${format(hiddenProperty, 'yyyyMMdd')}`)
+      logseq.Editor.insertAtEditingCursor("\n") //string:: ${format(hiddenProperty, 'yyyyMMdd')}
       logseq.hideMainUI() // ユーザーによる操作を再開する
     }
       , 100)
