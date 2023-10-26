@@ -1,3 +1,11 @@
+## [1.11.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.11.0...v1.11.1) (2023-10-26)
+
+
+### Bug Fixes
+
+* **bug:** [#46](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/46) check button / when the task becomes DONE again ([cf898c1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/cf898c1b712f31127f9f1ef3c3ec07484c5e3ea5))
+* **bug:** duplicate "string" ([33d5bb0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/33d5bb085b6d39abeae8f8d9f0ef871c8e33046f))
+
 # [1.11.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.10.0...v1.11.0) (2023-10-25)
 
 
