@@ -485,6 +485,7 @@ const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
     //ブロック操作でDONEではなくなった場合
     logseq.settings!.onlyFromBulletList === true
     || txMeta?.outlinerOp !== "saveBlock"
+    || txMeta["transact?"] === false
   ) return
 
   //DONEタスクではないのに、completedプロパティ(それに相当する)をもつ場合は削除する
@@ -508,9 +509,9 @@ const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
   //saveBlock以外は処理しない
   if (!taskBlock) return
 
-  //現在のブロックと一致しない場合は処理しない
-  const currentBlock = await logseq.Editor.getCurrentBlock() as BlockEntity | null
-  if (!currentBlock || taskBlock.uuid !== currentBlock.uuid) return
+
+  //チェックボタンからの場合は、現在のブロックと一致しない
+
 
   //ダイアログを表示
   showDialog(taskBlock as BlockEntity, false)
