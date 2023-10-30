@@ -332,7 +332,7 @@ async function showDialogProcess(
               const page = await logseq.Editor.getPage(block.page.id) as PageEntity | null
               if (!page) return false
               if (
-                page["journal?"] === true // ジャーナルフラグ
+                page["journal?"] === true // 日誌フラグ
                 //block.page.journalDateとinputDateの日付が一致する
                 && (page.journalDay
                   && isSameDay( //日付が一致するかどうか
