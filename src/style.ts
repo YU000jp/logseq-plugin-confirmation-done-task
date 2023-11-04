@@ -21,7 +21,7 @@ body {
       
       & div#addProperty {
         & :is(input, select) {
-          background: var(--ls-primary-background-color);
+          background-color: var(--ls-primary-background-color);
           color: var(--ls-primary-text-color);
           box-shadow: 1px 2px 5px var(--ls-secondary-background-color);
           border-radius: 0.5em;
@@ -35,7 +35,7 @@ body {
           font-size: 1.8em;
           margin-right: .5em;
           &:hover {
-            background: var(--ls-secondary-background-color);
+            background-color: var(--ls-secondary-background-color);
             color: var(--ls-secondary-text-color);
           }
         }
@@ -50,7 +50,7 @@ body {
       font-size: 0.8em;
       display: inline-block;
       border-radius: 2em;
-      background: var(--ls-secondary-background-color);
+      background-color: var(--ls-secondary-background-color);
       padding: 0.1em 0.5em;
     }
   }
