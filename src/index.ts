@@ -242,7 +242,7 @@ async function showDialogProcess(
         `,
     style: {
       width: "unset",
-      maxWidth: "360px",
+      maxWidth: "420px",
       height: "unset",
       maxHeight: "130px",
       right: right !== "" ? right : "unset",
