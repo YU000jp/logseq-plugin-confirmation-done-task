@@ -1,3 +1,16 @@
+# [1.12.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.11.2...v1.12.0) (2023-11-11)
+
+
+### Bug Fixes
+
+* **bug:** Oversized [#47](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/47) ([92bbeed](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/92bbeedcae13406e4e40b78c014cd111e56dbd32))
+
+
+### Features
+
+* date picker & time picker > indicator icon ([99483aa](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/99483aa0575202949b30564fb9d83256bf4da9fb))
+* mouse over desc ([e85cabc](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/e85cabc8824e07785cd9f2c6de36e05608b3a151))
+
 ## [1.11.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.11.1...v1.11.2) (2023-10-26)
 
 
