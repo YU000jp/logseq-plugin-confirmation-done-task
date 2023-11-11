@@ -21,16 +21,20 @@ body {
       
       & div#addProperty {
         & :is(input, select) {
-          background-color: var(--ls-primary-background-color);
-          color: var(--ls-primary-text-color);
-          box-shadow: 1px 2px 5px var(--ls-secondary-background-color);
+          color: var(--ls-secondary-text-color);
           border-radius: 0.5em;
+          font-size: .96em;
         }
-        
+        & input {
+          background-color: var(--ls-secondary-background-color);
+          color: var(--ls-secondary-text-color);
+
+        }
         & select {
-          font-size: 0.95em;
+          font-size: .92em;
+          background-color: var(--ls-secondary-background-color);
+          color: var(--ls-secondary-text-color);
         }
-        
         & button#DONEpropertyButton {
           font-size: 1.8em;
           margin-right: .5em;

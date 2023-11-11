@@ -168,13 +168,13 @@ async function showDialogProcess(
   const day: string = ("0" + (today.getDate() as number)).slice(-2)
   const printAddTime =
     logseq.settings?.addTime === true
-      ? `<input id="DONEpropertyTime" title="${t("Time picker")}" type="time" value="${(
+      ? `<input id="DONEpropertyTime" type="time" value="${(
         "0" + (today.getHours() as number)
-      ).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}"/>`
+      ).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}" title="${t("Time picker")}\n\n${t("Click on the mark on the right to select")}" style="width:110px"/>`
       : '<input id="DONEpropertyTime" type="hidden" value=""/>'
   const printAddDate =
     logseq.settings?.addDate === true
-      ? `<input id="DONEpropertyDate" title="${t("Date picker")}" type="date" value="${`${year}-${month}-${day}`}"/>`
+      ? `<input id="DONEpropertyDate" type="date" value="${`${year}-${month}-${day}`}" title="${t("Date picker")}\n\n${t("Actually, the date format set in Logseq is applied.")}\n\n${t("Click on the mark on the right to select")}" style="width:160px"/>`
       : '<input id="DONEpropertyDate" type="hidden" value=""/>'
   const blockElement = parent.document.getElementsByClassName(
     taskBlock.uuid
@@ -213,31 +213,35 @@ async function showDialogProcess(
     replace: true,
     template: `
           <div id="addProperty" title="">
-          ${printAddDate}${printAddTime}
-          <button id="DONEpropertyButton" class="ls-button-primary" title="${addTitle ? addTitle : "DONE"}">☑️</button><br/>
-          <small>${t("Mode")}</small><select id="DONEpropertyModeSelect" title="${t("Mode")}">
-          <option value="blockProperty"${logseq.settings!.modeSelect === "As block property"
-        ? " selected"
-        : ""
-      }>${t(additional === true ? "Add into DONE property" : "As block property")}</option>
-      ${additional === true ? "" : `
-          <option value="insertBlock"${logseq.settings?.modeSelect === "Insert block" ? " selected" : ""
-        }>${t("Insert new block")}</option>
-          <option value="UpdateBlock"${logseq.settings?.modeSelect === "Update block" ? " selected" : ""
-        }>${t("Update block")}</option>
-      `}
-          </select>
-          <small><button data-on-click="settingsButton" class="ls-button-primary" title="${t("Plugin Settings")}">⚙️</button></small>
+            <div>
+              ${printAddDate}${printAddTime}
+              <button id="DONEpropertyButton" class="ls-button-primary" title="${t("Record the date or time")}">☑️</button>
+            </div>
+            <div>
+              <small>${t("Mode")}</small><select id="DONEpropertyModeSelect">
+              <option value="blockProperty"${logseq.settings!.modeSelect === "Block property"
+            ? " selected"
+            : ""
+          }>${t(additional === true ? "Add into property" : "Block property")}</option>
+          ${additional === true ? "" : `
+              <option value="insertBlock"${logseq.settings?.modeSelect === "Insert block" ? " selected" : ""
+            }>${t("Insert new block")}</option>
+              <option value="UpdateBlock"${logseq.settings?.modeSelect === "Update block" ? " selected" : ""
+            } title='${t("Mode > \"Update block\" > Before or after the content of the first line, insert the date and time")}'>${t("Update block")}</option>
+          `}
+              </select>
+              <small><button data-on-click="settingsButton" class="ls-button-primary" title="${t("Plugin Settings")}">⚙️</button></small>
+            </div>
           </div>
           <style>
-          body>div#root>div {
-            &.light-theme>main>div span#dot-${taskBlock.uuid}{
-              outline: 2px solid var(--ls-link-ref-text-color);
+            body>div#root>div {
+              &.light-theme>main>div span#dot-${taskBlock.uuid}{
+                outline: 2px solid var(--ls-link-ref-text-color);
+              }
+              &.dark-theme>main>div span#dot-${taskBlock.uuid}{
+                outline: 2px solid aliceblue;
+              }
             }
-            &.dark-theme>main>div span#dot-${taskBlock.uuid}{
-              outline: 2px solid aliceblue;
-            }
-          }
           </style>
         `,
     style: {
