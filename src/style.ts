@@ -19,23 +19,50 @@ body {
         text-overflow: ellipsis;
       }
       
-      & div#addProperty {
-        & :is(input, select) {
+      & div#addProperty>div {
+        &>label>input,
+        &>select {
           color: var(--ls-secondary-text-color);
-          border-radius: 0.5em;
-          font-size: .96em;
-        }
-        & input {
           background-color: var(--ls-secondary-background-color);
-          color: var(--ls-secondary-text-color);
-
         }
-        & select {
+        &>label {
+          position: relative;
+          display: inline-block;
+          &>input {
+            &[type="date"]::after {
+                content: '📅';
+            }
+            &[type="time"]::after {
+                content: '🕒';
+            }
+            &[type="date"],
+            &[type="time"] {
+              font-size: .96em;
+              position: relative;
+              &::after {
+                color: var(--ls-secondary-text-color);
+                cursor: pointer;
+                font-size: 1.2em;
+              }
+              &::-webkit-calendar-picker-indicator,
+              &::-webkit-time-picker-indicator {
+                position: absolute;
+                right: 0.5em;
+                top: 0.5em;
+                padding:auto;
+                width: 33px;
+                height: 33px;
+                cursor: pointer;
+                color: transparent;
+                background: transparent;
+              }
+            }
+          }
+        }
+        &>select {
           font-size: .92em;
-          background-color: var(--ls-secondary-background-color);
-          color: var(--ls-secondary-text-color);
         }
-        & button#DONEpropertyButton {
+        &>button#DONEpropertyButton {
           font-size: 1.8em;
           margin-right: .5em;
           &:hover {

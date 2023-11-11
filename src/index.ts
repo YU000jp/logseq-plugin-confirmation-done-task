@@ -168,13 +168,13 @@ async function showDialogProcess(
   const day: string = ("0" + (today.getDate() as number)).slice(-2)
   const printAddTime =
     logseq.settings?.addTime === true
-      ? `<input id="DONEpropertyTime" type="time" value="${(
+      ? `<label><input id="DONEpropertyTime" type="time" value="${(
         "0" + (today.getHours() as number)
-      ).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}" title="${t("Time picker")}\n\n${t("Click on the mark on the right to select")}" style="width:110px"/>`
+      ).slice(-2)}:${("0" + (today.getMinutes() as number)).slice(-2)}" title="${t("Time picker")}\n\n${t("Click on the mark on the right to select")}" style="width:110px"/></label>`
       : '<input id="DONEpropertyTime" type="hidden" value=""/>'
   const printAddDate =
     logseq.settings?.addDate === true
-      ? `<input id="DONEpropertyDate" type="date" value="${`${year}-${month}-${day}`}" title="${t("Date picker")}\n\n${t("Actually, the date format set in Logseq is applied.")}\n\n${t("Click on the mark on the right to select")}" style="width:160px"/>`
+      ? `<label><input id="DONEpropertyDate" type="date" value="${`${year}-${month}-${day}`}" title="${t("Date picker")}\n\n${t("Actually, the date format set in Logseq is applied.")}\n\n${t("Click on the mark on the right to select")}" style="width:160px"/></label>`
       : '<input id="DONEpropertyDate" type="hidden" value=""/>'
   const blockElement = parent.document.getElementsByClassName(
     taskBlock.uuid
