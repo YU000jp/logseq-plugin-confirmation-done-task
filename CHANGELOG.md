@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.12.0...v1.12.1) (2023-11-12)
+
+
+### Performance Improvements
+
+* **translations:** full Logseq language ([4fbd9c9](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/4fbd9c9b6bf2e1c44070db946b587d48cbcc330d))
+
 # [1.12.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.11.2...v1.12.0) (2023-11-11)
 
 
