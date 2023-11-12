@@ -29,8 +29,6 @@ Add completed property to the DONE task
 Install from Logseq Marketplace
   - Press [`---`] on the top right toolbar to open [`Plugins`]. Select `Marketplace`. Type `DONE` in the search field, select it from the search results and install.
 
-   ![image](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/assets/111847207/4b1e6c54-16a9-40d7-98dc-61478b2023cc)
-
 ### Usage
 
 - To use this solution, After marking as `DONE`, which will prompt to add a `completed` property. It is possible to edit the date and time if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
