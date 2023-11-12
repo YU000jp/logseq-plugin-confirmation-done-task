@@ -11,6 +11,24 @@ import { getJournalDayDate, hiddenProperty, pushDONE, removeDialog } from "./lib
 import { settingsTemplate } from "./settings"
 import { provideStyleMain } from "./style"
 import ja from "./translations/ja.json"
+import af from "./translations/af.json"
+import de from "./translations/de.json"
+import es from "./translations/es.json"
+import fr from "./translations/fr.json"
+import id from "./translations/id.json"
+import it from "./translations/it.json"
+import ko from "./translations/ko.json"
+import nbNO from "./translations/nb-NO.json"
+import nl from "./translations/nl.json"
+import pl from "./translations/pl.json"
+import ptBR from "./translations/pt-BR.json"
+import ptPT from "./translations/pt-PT.json"
+import ru from "./translations/ru.json"
+import sk from "./translations/sk.json"
+import tr from "./translations/tr.json"
+import uk from "./translations/uk.json"
+import zhCN from "./translations/zh-CN.json"
+import zhHant from "./translations/zh-Hant.json"
 export const keySmallDONEproperty = "not-smallDONEproperty"
 export const key = "DONEdialog"
 let onBlockChangedToggle: boolean = false
@@ -18,11 +36,16 @@ let processing: boolean = false
 
 /* main */
 const main = async () => {
-  await l10nSetup({ builtinTranslations: { ja } })
+  await l10nSetup({
+    builtinTranslations: {//Full translations
+      ja, af, de, es, fr, id, it, ko, "nb-NO": nbNO, nl, pl, "pt-BR": ptBR, "pt-PT": ptPT, ru, sk, tr, uk, "zh-CN": zhCN, "zh-Hant": zhHant
+    }
+  })
 
   /* user settings */
   logseq.useSettingsSchema(settingsTemplate())
   if (!logseq.settings) setTimeout(() => logseq.showSettingsUI(), 300)
+
 
   provideStyleMain()
 
@@ -220,14 +243,14 @@ async function showDialogProcess(
             <div>
               <small>${t("Mode")}</small><select id="DONEpropertyModeSelect">
               <option value="blockProperty"${logseq.settings!.modeSelect === "Block property"
-            ? " selected"
-            : ""
-          }>${t(additional === true ? "Add into property" : "Block property")}</option>
+        ? " selected"
+        : ""
+      }>${t(additional === true ? "Add into property" : "Block property")}</option>
           ${additional === true ? "" : `
               <option value="insertBlock"${logseq.settings?.modeSelect === "Insert block" ? " selected" : ""
-            }>${t("Insert new block")}</option>
+        }>${t("Insert new block")}</option>
               <option value="UpdateBlock"${logseq.settings?.modeSelect === "Update block" ? " selected" : ""
-            } title='${t("Mode > \"Update block\" > Before or after the content of the first line, insert the date and time")}'>${t("Update block")}</option>
+        } title='${t("Mode > \"Update block\" > Before or after the content of the first line, insert the date and time")}'>${t("Update block")}</option>
           `}
               </select>
               <small><button data-on-click="settingsButton" class="ls-button-primary" title="${t("Plugin Settings")}">⚙️</button></small>
