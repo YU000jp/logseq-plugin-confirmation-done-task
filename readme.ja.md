@@ -1,8 +1,8 @@
-# Logseq Plugin: *Confirmation DONE task* 💪
+# Logseq Plugin: *DONE task property* 💪
 
 [English](https://github.com/YU000jp/logseq-plugin-confirmation-done-task) | [日本語](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/blob/main/readme.ja.md)
 
-- タスクをDONEにしたとき、確認ダイアログが表示されます。日付付きのプロパティが、ブロックに追加されます。
+- ブロックプロパティまたはその他のメソッドを使用して、DONE タスクに日付と時刻を割り当てます。
   > クエリでの検索が可能な `string` プロパティを埋め込みます。
 
 [![最新リリースバージョン](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-confirmation-done-task)](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/releases)
