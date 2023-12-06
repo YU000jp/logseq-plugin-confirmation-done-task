@@ -50,8 +50,8 @@ devDependencies:
     specifier: ^5.2.2
     version: 5.2.2
   vite:
-    specifier: ^4.5.0
-    version: 4.5.0(@types/node@20.9.0)
+    specifier: ^4.5.1
+    version: 4.5.1(@types/node@20.9.0)
   vite-plugin-logseq:
     specifier: ^1.1.2
     version: 1.1.2
@@ -412,6 +412,7 @@ packages:
   /@commitlint/config-validator@18.4.0:
     resolution: {integrity: sha512-1y6qHMU3o4cYQSK+Y9EnmH6H1GRiwQGjnLIUOIKlekrmfc8MrMk1ByNmb8od4vK3qHJAaL/77/5n+1uyyIF5dA==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/types': 18.4.0
       ajv: 8.12.0
@@ -421,6 +422,7 @@ packages:
   /@commitlint/execute-rule@18.4.0:
     resolution: {integrity: sha512-g013SWki6ZWhURBLOSXTaVQGWHdA0QlPJGiW4a+YpThezmJOemvc4LiKVpn13AjSKQ40QnmBqpBrxujOaSo+3A==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -449,6 +451,7 @@ packages:
   /@commitlint/resolve-extends@18.4.0:
     resolution: {integrity: sha512-qhgU6ach+S6sJMD9NjCYiEycOObGhxzWQLQzqlScJCv9zkPs15Bg0ffLXTQ3z7ipXv46XEKYMnSJzjLRw2Tlkg==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 18.4.0
       '@commitlint/types': 18.4.0
@@ -462,6 +465,7 @@ packages:
   /@commitlint/types@18.4.0:
     resolution: {integrity: sha512-MKeaFxt0I9fhqUb2E+YIzX/gZtmkuodJET/XKiZIMvXUff8Ee4Ih86eLg+yAm2jf1pwGBmU02uNOp0y094w2Uw==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       chalk: 4.1.2
     dev: true
@@ -1308,6 +1312,7 @@ packages:
 
   /@types/node@18.18.9:
     resolution: {integrity: sha512-0f5klcuImLnG4Qreu9hPj/rEfFq6YRc5n2mAjSsH+ec/mJL+3voBH0+8T7o8RpFjH7ovc+TRsL/c7OYIQsPTfQ==}
+    requiresBuild: true
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -1862,6 +1867,7 @@ packages:
   /cosmiconfig-typescript-loader@5.0.0(@types/node@18.18.9)(cosmiconfig@8.3.6)(typescript@5.2.2):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=8.2'
@@ -3244,6 +3250,7 @@ packages:
   /jiti@1.21.0:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -3996,6 +4003,7 @@ packages:
   /punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -4699,8 +4707,8 @@ packages:
       magic-string: 0.26.7
     dev: true
 
-  /vite@4.5.0(@types/node@20.9.0):
-    resolution: {integrity: sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==}
+  /vite@4.5.1(@types/node@20.9.0):
+    resolution: {integrity: sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
