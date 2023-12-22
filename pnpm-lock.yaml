@@ -50,13 +50,8 @@ devDependencies:
     specifier: ^5.3.3
     version: 5.3.3
   vite:
-<<<<<<< Updated upstream
     specifier: ^4.5.1
     version: 4.5.1(@types/node@20.9.0)
-=======
-    specifier: ^5.0.10
-    version: 5.0.10(@types/node@20.10.5)
->>>>>>> Stashed changes
   vite-plugin-logseq:
     specifier: ^1.1.2
     version: 1.1.2
