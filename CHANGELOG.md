@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.12.1...v1.12.2) (2023-12-22)
+
+
+### Bug Fixes
+
+* Does not work on Logseq v.0.10.2 [#49](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/49) ([dec6bb8](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/dec6bb8a6dd77ade5b08c81023c93f82c9a99cc1))
+
 ## [1.12.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.12.0...v1.12.1) (2023-11-12)
 
 
