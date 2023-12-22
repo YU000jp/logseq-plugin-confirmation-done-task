@@ -514,10 +514,13 @@ const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
     logseq.settings!.onlyFromBulletList === true
     //処理中の場合 
     || processing === true
-    // ブロック保存ではない場合
-    || txMeta?.outlinerOp !== "saveBlock"
-    //ユーザー操作ではない場合 (transactは取引の意味)
-    || txMeta["transact?"] === false
+    || txMeta && (
+      // ブロック保存ではない場合
+      //txMeta.outlinerOp !== "saveBlock"
+      //ユーザー操作ではない場合 (transactは取引の意味)
+      //||
+      txMeta["transact?"] === false
+    )
   ) return //処理しない
 
   processing = true
