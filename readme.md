@@ -33,7 +33,17 @@ Install from Logseq Marketplace
 
 - To use this solution, After marking as `DONE`, which will prompt to add a `completed` property. It is possible to edit the date and time if necessary. The `completed` property date will act as a link, allowing you to view completed tasks in the Journal Linked References.
 
-#### The "string" property for Queries
+#### Plugin Settings
+
+> [Document](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/wiki/Plugin-Settings)
+
+---
+
+## Showcase / Questions / Ideas / Help
+
+> Go to the [discussion](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/discussions) tab to ask and find this kind of things.
+
+1. The "string" property for Queries
 
 ```clojure
 #+BEGIN_QUERY
@@ -53,22 +63,10 @@ Install from Logseq Marketplace
   #+END_QUERY
 ```
 
-#### Plugin Settings
-
-> [Document](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/wiki/Plugin-Settings)
-
----
-
-## Showcase / Questions / Ideas / Help
-
-> Go to the [discussion](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/discussions) tab to ask and find this kind of things.
-
 ## Prior art & Credit
 
-Logseq Plugin > [DimitryDushkin/ task completion tracker](https://github.com/DimitryDushkin/logseq-plugin-task-check-date)
-
-Icon > [icooon-mono.com](https://icooon-mono.com/13942-%e3%83%9e%e3%83%83%e3%83%81%e3%83%a7%e3%81%ae%e3%82%a4%e3%83%a9%e3%82%b9%e3%83%884/)
-
-Author > [YU000jp (GitHub)](https://github.com/YU000jp)
+1. Logseq Plugin > [DimitryDushkin/ task completion tracker](https://github.com/DimitryDushkin/logseq-plugin-task-check-date)
+1. Icon > [icooon-mono.com](https://icooon-mono.com/13942-%e3%83%9e%e3%83%83%e3%83%81%e3%83%a7%e3%81%ae%e3%82%a4%e3%83%a9%e3%82%b9%e3%83%884/)
+1. Author > [YU000jp (GitHub)](https://github.com/YU000jp)
 
 <a href="https://www.buymeacoffee.com/yu000japan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="🍌Buy Me A Coffee" style="height: 42px;width: 152px" ></a>
