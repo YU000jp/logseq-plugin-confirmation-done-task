@@ -1,3 +1,15 @@
+# [1.13.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.12.2...v1.13.0) (2024-1-14)
+
+
+### Bug Fixes
+
+* **bug:** The string property is not added depending on the mode. ([46a4e87](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/46a4e87718e3e7d306864c80cc6f6604ac11080e))
+
+
+### Features
+
+* **Remove:** timeout mode ([08a7c30](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/08a7c300aaf5b4d9898c1147a1a36ff3da9ed181))
+
 ## [1.12.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.12.1...v1.12.2) (2023-12-22)
 
 
