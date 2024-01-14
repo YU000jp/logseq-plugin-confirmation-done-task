@@ -284,14 +284,11 @@ async function showDialogProcess(
   //selectで選択
   setTimeout(() => {
     let processing: Boolean = false
-    let focusElement: Boolean = false
-    let closeElement: Boolean = false
     const element = parent.document.getElementById(
       logseq.baseInfo.id + `--${key}`
     ) as HTMLDivElement
     if (additional === false && element) {
       element.onclick = () => {
-        focusElement = true
         const dialogElement = parent.document.getElementById(
           logseq.baseInfo.id + `--${key}`
         ) as HTMLDivElement | null
