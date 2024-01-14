@@ -416,6 +416,7 @@ async function showDialogProcess(
               }
             }
             logseq.Editor.updateBlock(taskBlock.uuid, taskBlock.content)
+            hiddenProperty(inputDateString, taskBlock)
             logseq.UI.showMsg(`💪 ${t("Updated block")}`, "success")
 
           } else
@@ -429,6 +430,7 @@ async function showDialogProcess(
               )
               if (logseq.settings!.insertBlockCollapsed === true)
                 logseq.Editor.setBlockCollapsed(taskBlock.uuid, true)
+              hiddenProperty(inputDateString, taskBlock)
               logseq.UI.showMsg(`💪 ${t("Inserted new block")}`, "success")
 
             } else {
