@@ -114,23 +114,6 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     description: "default: `As block property`",
   },
   {
-    //timeoutモード
-    key: "timeoutMode",
-    title: t("Timeout > Enable feature"),
-    type: "boolean",
-    default: false,
-    description: "default: `false`",
-  },
-  {
-    //timeoutモードの時間
-    key: "timeout",
-    title: t("Timeout > (ms)"),
-    type: "enum",
-    enumChoices: ["3000", "5000", "7000", "9000"],
-    default: "5000",
-    description: "default: `5000`",
-  },
-  {
     key: "customPropertyName",
     title: t("Change > Custom property name"),
     type: "string",

@@ -230,7 +230,6 @@ async function showDialogProcess(
         ? addTitle
         : `"${logseq.settings?.customPropertyName || "completed"
         }" ${t("property")}`,
-      //(additional === false && logseq.settings!.timeoutMode === true) ? `Timeout ${logseq.settings!.timeout}ms` : "",
     },
     key,
     replace: true,
@@ -299,35 +298,12 @@ async function showDialogProcess(
         if (!dialogElement) return
         //const element = dialogElement.querySelector("div.th h3") as HTMLHeadElement | null;
         //if (element) element.innerText = "";
-        if (additional === false && logseq.settings!.timeoutMode === true)
-          dialogElement.style.borderColor = "unset"
-      }
-      //クリックしたら、タイムアウトモードを解除する
-      element.onclose = () => {
-        closeElement = true
       }
     }
     const button = parent.document.getElementById(
       "DONEpropertyButton"
     ) as HTMLButtonElement
     if (button) {
-      if (additional === false && logseq.settings!.timeoutMode === true) {
-        setTimeout(() => {
-          if (closeElement === true) return
-          if (focusElement === false) button?.click()
-        }, logseq.settings!.timeout as number)
-        //タイムアウト直前
-        setTimeout(() => {
-          const dialogElement = parent.document.getElementById(
-            logseq.baseInfo.id + `--${key}`
-          ) as HTMLDivElement | null
-          if (!dialogElement) return
-          // const element = dialogElement.querySelector("div.th h3") as HTMLHeadElement | null;
-          //if (element) element.style.color = "red";
-          dialogElement.style.borderColor = "red"
-        }, (logseq.settings!.timeout as number) - 2000)
-      }
-
       button.onclick = async () => {
         if (processing) return
         processing = true
