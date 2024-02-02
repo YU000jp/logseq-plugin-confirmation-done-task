@@ -79,7 +79,7 @@ const main = async () => {
       // 条件
       if (block.marker === "DONE" // DONEタスク
         && block.properties // プロパティがある
-        && block.properties[logseq.settings!.customPropertyName] // プロパティに指定のプロパティがある
+        && block.properties[logseq.settings!.customPropertyName as string] // プロパティに指定のプロパティがある
       ) showDialog(block, true, `💪 ${t("Add into DONE property")}`)
       else
         logseq.UI.showMsg(t("This is not a DONE task with the \"completed\" property"), "warning")
@@ -116,7 +116,7 @@ const main = async () => {
 
     //プロパティの変更
     if (oldSet.customPropertyName !== newSet.customPropertyName)
-      renameProperty(oldSet.customPropertyName, newSet.customPropertyName)
+      renameProperty(oldSet.customPropertyName as string, newSet.customPropertyName as string)
   }
   )
 
@@ -141,7 +141,7 @@ let processingShowDialog: Boolean = false
 
 const showDialog = async (taskBlock: BlockEntity, additional: Boolean, addTitle?: string) => {
   if (additional === false
-    && taskBlock.properties![logseq.settings?.customPropertyName || "completed"]) return //すでにプロパティがある場合は追加しない
+    && taskBlock.properties![logseq.settings?.customPropertyName as string || "completed"]) return //すでにプロパティがある場合は追加しない
 
   //ブロック操作でDONEではなくなった場合
   logseq.DB.onBlockChanged(taskBlock.uuid, async (block: BlockEntity) => {
@@ -372,20 +372,20 @@ const showDialogProcess = async (taskBlock: BlockEntity, addTitle: string | unde
               if (additional === true) {
 
                 //skipもしくはoverwrite
-                let propertyValue = (await logseq.Editor.getBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName)) as string
+                let propertyValue = (await logseq.Editor.getBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName as string)) as string
                 if (typeof propertyValue === "string")
                   propertyValue += " , "
                 else
                   propertyValue = ""
 
-                logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName, propertyValue + dateAndTime)
+                logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName as string, propertyValue + dateAndTime)
                 hiddenProperty(inputDateString, taskBlock)
                 logseq.UI.showMsg(`💪 ${t("Updated block property")}`, "success")
 
               } else {
 
                 //DONEのブロックに、プロパティを追加する
-                logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName, dateAndTime)
+                logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings?.customPropertyName as string, dateAndTime)
                 //隠しプロパティにも追加
                 hiddenProperty(inputDateString, taskBlock)
                 logseq.UI.showMsg(`💪 ${t("Inserted block property")}`, "success")
@@ -433,14 +433,14 @@ const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
         marker !== "DONE"
         // プロパティに指定のプロパティがあるか、completedプロパティがあるか
         && properties
-        && properties[logseq.settings?.customPropertyName || "completed"]
+        && properties[logseq.settings?.customPropertyName as string || "completed"]
       )
 
     //見つかった場合は削除する
     if (CompletedOff) {
 
       //プロパティを削除する
-      logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName || "completed")
+      logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings?.customPropertyName as string || "completed")
 
       //stringプロパティも削除する
       if (CompletedOff.properties?.string) logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string")
