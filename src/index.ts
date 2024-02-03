@@ -1,6 +1,6 @@
-import "@logseq/libs"; //https://plugins-doc.logseq.com/
+import "@logseq/libs" //https://plugins-doc.logseq.com/
 import { BlockEntity, BlockUUID, LSPluginBaseInfo, } from "@logseq/libs/dist/LSPlugin.user"
-import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+import { setup as l10nSetup, t } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { addPropertyToTheBlock, modeInsertBlock, modeUpdateBlock, overwriteToProperty, pushDONE } from "./block"
 import { flagSameDay, removeDialog, renamePage, typeDateFromInputDate } from "./lib"
 import { settingsTemplate } from "./settings"
@@ -160,7 +160,9 @@ const main = async () => {
 const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
   if (logseq.settings!.onlyFromBulletList === true //ブロック操作でDONEではなくなった場合
     || processing === true //処理中の場合 
-    || (txMeta && txMeta["transact?"] === false) //ユーザー操作ではない場合 (transactは取引の意味)
+    || (txMeta
+      && (txMeta["transact?"] === false //ユーザー操作ではない場合 (transactは取引の意味)
+        || txMeta?.outlinerOp === "delete-blocks")) //ブロックが削除された場合
   ) return //処理しない
 
   processing = true
