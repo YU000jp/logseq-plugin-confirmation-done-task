@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.13.0...v1.13.1) (2024-2-3)
+
+
+### Performance Improvements
+
+* Reduce the amount handled ([b08802c](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/b08802c609a8b1aa5e53aa3cc79c4d0bd2a1e53f))
+
 # [1.13.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.12.2...v1.13.0) (2024-1-14)
 
 
