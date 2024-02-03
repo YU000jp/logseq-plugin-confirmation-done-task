@@ -6,9 +6,8 @@ import { typeDateFromInputDate } from "./lib"
 import { flagSameDay } from "./lib"
 import { modeUpdateBlock, modeInsertBlock, overwriteToProperty, addPropertyToTheBlock } from "./block"
 import { key, getConfigPreferredDateFormat } from "."
-let processing: Boolean = false
 
-export const setButtonAction = (button: HTMLButtonElement, taskBlock: BlockEntity, additional: Boolean) =>
+export const setButtonAction = (button: HTMLButtonElement, processing: Boolean, taskBlock: BlockEntity, additional: Boolean) => {
   button.onclick = async () => {
     if (processing) return
     processing = true
@@ -82,6 +81,8 @@ export const setButtonAction = (button: HTMLButtonElement, taskBlock: BlockEntit
 
     setTimeout(() => processing === false, 1000)
   }
+  return processing
+}
 
 export const showDialogProcess = async (taskBlock: BlockEntity, addTitle: string | undefined, additional: Boolean) => {
 
@@ -182,7 +183,7 @@ export const showDialogProcess = async (taskBlock: BlockEntity, addTitle: string
     }
     const button = parent.document.getElementById("DONEpropertyButton") as HTMLButtonElement
     if (button)
-      setButtonAction(button, taskBlock, additional)
+      processing = setButtonAction(button, processing, taskBlock, additional)
   }, 100)
 }
 
