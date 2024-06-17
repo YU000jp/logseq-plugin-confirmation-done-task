@@ -120,7 +120,8 @@ const main = async () => {
   logseq.Editor.registerBlockContextMenuItem(`💪 ${t("Set to DONE")}`, async ({ uuid }) => {
     const block = (await logseq.Editor.getBlock(uuid)) as TaskBlockEntity | null
     if (!block) return
-    if (block.marker === "DONE") showDialog(block, false, `💪 ${t("Set to DONE")}`)
+    if (block.marker === "DONE")
+      showDialog(block, false, `💪 ${t("Set to DONE")}`)
     else {
       //DONEタスクではなかった場合、DONEにする
       pushDONE(block)
@@ -322,8 +323,6 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
                 ? false
                 : await flagSameDay(block, inputDateString) as boolean //同じ日付かどうかチェック(日付マッチ)
               ,
-
-
               inputDateString,
               getConfigPreferredDateFormat())
           }
@@ -339,8 +338,7 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
                 : ""
               addTime = `${emphasis}${inputTime}${emphasis}`
             }
-          }
-          else
+          } else
             addTime = ""
 
           const modeSelect = (
@@ -353,18 +351,15 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
 
           if (modeSelect === "UpdateBlock") //ブロックを更新する
             modeUpdateBlock(taskBlock, dateAndTime, inputDateString)
-
-          else if (modeSelect === "insertBlock") //新しいブロックを挿入する
-            modeInsertBlock(taskBlock, dateAndTime, inputDateString)
-          else //プロパティを追加する
-            if (additional === true)
-              await overwriteToProperty(taskBlock, dateAndTime, inputDateString) //skipもしくはoverwrite
-
-            else
-              addPropertyToTheBlock(taskBlock, dateAndTime, inputDateString) //DONEのブロックに、プロパティを追加する
-        }
-
-        else
+          else
+            if (modeSelect === "insertBlock") //新しいブロックを挿入する
+              modeInsertBlock(taskBlock, dateAndTime, inputDateString)
+            else //プロパティを追加する
+              if (additional === true)
+                await overwriteToProperty(taskBlock, dateAndTime, inputDateString) //skipもしくはoverwrite
+              else
+                addPropertyToTheBlock(taskBlock, dateAndTime, inputDateString) //DONEのブロックに、プロパティを追加する
+        } else
           logseq.UI.showMsg(t("Error: Block not found"), "warning")
 
         //実行されたらポップアップを削除
