@@ -1,3 +1,11 @@
+## [1.13.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.13.1...v1.13.2) (2024-06-17)
+
+
+### Bug Fixes
+
+* **bug:** Changed the way to set the value of the "string" property. [#53](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/53) ([d5a78d8](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/d5a78d86beefc92f17482a92b46217f0118b6c04))
+* **bug:** should not check when delete blocks ([fdf6038](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/fdf6038289673b930d5a5298b0c47b4cdef849cd))
+
 ## [1.13.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.13.0...v1.13.1) (2024-2-3)
 
 
