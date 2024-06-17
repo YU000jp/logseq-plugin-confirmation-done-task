@@ -1,4 +1,3 @@
-import { BlockEntity } from "@logseq/libs/dist/LSPlugin.user"
 import { t } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { TaskBlockEntity } from "."
 import { parse, format } from "date-fns"
@@ -9,7 +8,6 @@ export const overwriteToProperty = async (taskBlock: TaskBlockEntity, dateAndTim
     propertyValue += " , "
   else
     propertyValue = ""
-
   logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings!.customPropertyName as string, propertyValue + dateAndTime)
   hiddenProperty(inputDateString, taskBlock)
   logseq.UI.showMsg(`💪 ${t("Updated block property")}`, "success")
@@ -53,10 +51,8 @@ export const pushDONE = (block: TaskBlockEntity) => {
   const match = block.content.match(/^#+\s/)
   if (match)
     block.content = block.content.replace(/^#+\s/, `${match[0]}DONE `)
-
   else
     block.content = `DONE ${block.content}`
-
   logseq.Editor.updateBlock(block.uuid, block.content)
 }
 
@@ -74,7 +70,8 @@ const hiddenProperty = (inputDate: string, taskBlock: TaskBlockEntity) => {
 
   setTimeout(async () => {
     logseq.Editor.editBlock(taskBlock.uuid)
-    if (taskBlock.properties?.string) logseq.Editor.removeBlockProperty(taskBlock.uuid, "string") //2重にならないように削除
+    if (taskBlock.properties?.string)
+      logseq.Editor.removeBlockProperty(taskBlock.uuid, "string") //2重にならないように削除
     setTimeout(() => {
       logseq.Editor.insertAtEditingCursor("\n") //string:: ${format(hiddenProperty, 'yyyyMMdd')}
       logseq.hideMainUI() // ユーザーによる操作を再開する
