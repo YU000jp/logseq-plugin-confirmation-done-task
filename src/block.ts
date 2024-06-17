@@ -60,11 +60,6 @@ export const pushDONE = (block: TaskBlockEntity) => {
 const hiddenProperty = (inputDate: string, taskBlock: TaskBlockEntity) => {
   if (logseq.settings!.enableHiddenProperty === false) return
 
-  //20230929のような形式で保存する
-  const hiddenProperty = parse(inputDate, 'yyyy-MM-dd', new Date())
-
-  logseq.Editor.upsertBlockProperty(taskBlock.uuid, "string", format(hiddenProperty, 'yyyyMMdd'))
-
   logseq.showMainUI() //ユーザーによる操作を停止する
   logseq.Editor.restoreEditingCursor()
 
@@ -73,7 +68,9 @@ const hiddenProperty = (inputDate: string, taskBlock: TaskBlockEntity) => {
     if (taskBlock.properties?.string)
       logseq.Editor.removeBlockProperty(taskBlock.uuid, "string") //2重にならないように削除
     setTimeout(() => {
-      logseq.Editor.insertAtEditingCursor("\n") //string:: ${format(hiddenProperty, 'yyyyMMdd')}
+      //string:: 20230929
+      logseq.Editor.insertAtEditingCursor(`\nstring:: ${format(parse(inputDate, 'yyyy-MM-dd', new Date()), 'yyyyMMdd')
+    }\n`)
       logseq.hideMainUI() // ユーザーによる操作を再開する
     },
       100)
