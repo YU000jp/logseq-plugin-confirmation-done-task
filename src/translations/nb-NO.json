@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "Tidsavbrudd > aktivere",
   "Update block": "Oppdatere en blokk",
   "Updated block": "Blokkene er oppdatert",
-  "Updated block property": "Oppdaterte blokkegenskaper"
+  "Updated block property": "Oppdaterte blokkegenskaper",
+  "This is not a DONE task with the \"completed\" property": "Dette er ikke en FERDIG-oppgave med egenskapen \"fullført\"",
+  "Block property > Display the DONE property one step higher than usual": "Blokker egenskap > Vis FERDIG-egenskapen ett trinn høyere enn vanlig",
+  "Block text on the left, properties on the right, on one line": "Blokker tekst til venstre, egenskaper til høyre, på én linje"
 }

@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "시간 초과 > 사용",
   "Update block": "블록 업데이트",
   "Updated block": "블록이 업데이트되었습니다.",
-  "Updated block property": "업데이트된 블록 속성"
+  "Updated block property": "업데이트된 블록 속성",
+  "This is not a DONE task with the \"completed\" property": "이것은 \"completed\" 속성이 있는 DONE 작업이 아닙니다",
+  "Block property > Display the DONE property one step higher than usual": "Block 속성 > DONE 속성을 평소보다 한 단계 높게 표시합니다.",
+  "Block text on the left, properties on the right, on one line": "왼쪽에는 블록 텍스트, 오른쪽에는 속성, 한 줄에"
 }

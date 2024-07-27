@@ -1,6 +1,7 @@
-import { key, keySmallDONEproperty } from "."
+import { key, keySmallDONEproperty, keyStyle } from "."
 
-export const provideStyleMain = () => logseq.provideStyle(`
+export const provideStyleMain = (configUpper: boolean) => logseq.provideStyle({
+  key: keyStyle, style: `
 body {
   &>div {
     &#root>div>main>div div.block-properties>div {
@@ -77,13 +78,19 @@ body {
     display: flex;
     justify-content: flex-end;
     background: unset;
-    &>div {
+    margin: unset;
+    padding: unset;
+    &>div:has(a[data-ref="completed"]) {
       font-size: 0.8em;
       display: inline-block;
       border-radius: 2em;
       background-color: var(--ls-secondary-background-color);
       padding: 0.1em 0.5em;
+      ${configUpper === true ? `
+      position: absolute;
+      top: 1em;
+      ` : ""}
     }
   }
 }
-`)
+`})

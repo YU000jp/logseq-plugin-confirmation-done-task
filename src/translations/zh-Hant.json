@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "啟用超時>",
   "Update block": "更新區塊",
   "Updated block": "區塊已更新",
-  "Updated block property": "更新的模組屬性"
+  "Updated block property": "更新的模組屬性",
+  "This is not a DONE task with the \"completed\" property": "這不是具有“completed”屬性的 DONE 任務",
+  "Block property > Display the DONE property one step higher than usual": "塊屬性 > 比平時高一級顯示 DONE 屬性",
+  "Block text on the left, properties on the right, on one line": "在一行中阻止左側的文本，右側的屬性"
 }

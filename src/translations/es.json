@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "Tiempo de espera > habilitar",
   "Update block": "Actualizar un bloque",
   "Updated block": "Se han actualizado los bloques",
-  "Updated block property": "Propiedades de bloque actualizadas"
+  "Updated block property": "Propiedades de bloque actualizadas",
+  "This is not a DONE task with the \"completed\" property": "Esta no es una tarea DONE con la propiedad \"completed\"",
+  "Block property > Display the DONE property one step higher than usual": "Propiedad Block > muestra la propiedad DONE un paso más alto de lo habitual",
+  "Block text on the left, properties on the right, on one line": "Bloque de texto a la izquierda, propiedades a la derecha, en una línea"
 }

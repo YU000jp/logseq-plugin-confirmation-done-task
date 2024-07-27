@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "Limit czasu > Włącz",
   "Update block": "Aktualizowanie bloku",
   "Updated block": "Zaktualizowano bloki",
-  "Updated block property": "Zaktualizowane właściwości bloku"
+  "Updated block property": "Zaktualizowane właściwości bloku",
+  "This is not a DONE task with the \"completed\" property": "To nie jest zadanie GOTOWE z właściwością \"completed\"",
+  "Block property > Display the DONE property one step higher than usual": "Właściwość Blok > Wyświetla właściwość DONE o jeden stopień wyżej niż zwykle",
+  "Block text on the left, properties on the right, on one line": "Blokuj tekst po lewej stronie, właściwości po prawej, w jednym wierszu"
 }

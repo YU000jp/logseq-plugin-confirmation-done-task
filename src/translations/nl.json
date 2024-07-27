@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "Time-out > inschakelen",
   "Update block": "Een blok bijwerken",
   "Updated block": "Blokken zijn geüpdatet",
-  "Updated block property": "Bijgewerkte blokeigenschappen"
+  "Updated block property": "Bijgewerkte blokeigenschappen",
+  "This is not a DONE task with the \"completed\" property": "Dit is geen VOLTOOIDE taak met de eigenschap \"voltooid\"",
+  "Block property > Display the DONE property one step higher than usual": "Eigenschap blokkeren > Geef de eigenschap DONE een stap hoger weer dan normaal",
+  "Block text on the left, properties on the right, on one line": "Bloktekst aan de linkerkant, eigenschappen aan de rechterkant, op één regel"
 }

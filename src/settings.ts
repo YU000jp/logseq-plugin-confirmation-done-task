@@ -56,6 +56,15 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     default: true,
     description: "default: `true` (⚠️Logseq v0.9.11 or later)",
   },
+  { //20240727
+    // DONEプロパティを通常よりも一段上に表示する
+    key: "upperDONEproperty",
+    title: t("Block property > Display the DONE property one step higher than usual") + "🆕",
+    type: "boolean",
+    default: false,
+    // 左側にブロック本文、右側にプロパティを配置し、一行に収めます
+    description: t("Block text on the left, properties on the right, on one line"),  
+},
   {//箇条書きコンテキストメニューからのみ実行するかどうか
     key: "onlyFromBulletList",
     title: t("Process > Only from bullet context menu (Not recognized even after DONE)"),

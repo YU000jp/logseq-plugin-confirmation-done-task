@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "Časový limit > Povoliť",
   "Update block": "Aktualizácia blokovania",
   "Updated block": "Bloky boli aktualizované",
-  "Updated block property": "Aktualizované vlastnosti bloku"
+  "Updated block property": "Aktualizované vlastnosti bloku",
+  "This is not a DONE task with the \"completed\" property": "Toto nie je úloha DONE s vlastnosťou \"dokončené\"",
+  "Block property > Display the DONE property one step higher than usual": "Vlastnosť bloku > Zobrazenie vlastnosti DONE o krok vyššie ako zvyčajne",
+  "Block text on the left, properties on the right, on one line": "Blok textu vľavo, vlastnosti vpravo, v jednom riadku"
 }

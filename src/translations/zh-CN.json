@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "启用超时>",
   "Update block": "更新区块",
   "Updated block": "区块已更新",
-  "Updated block property": "更新的模块属性"
+  "Updated block property": "更新的模块属性",
+  "This is not a DONE task with the \"completed\" property": "这不是具有“completed”属性的 DONE 任务",
+  "Block property > Display the DONE property one step higher than usual": "块属性 > 比平时高一级显示 DONE 属性",
+  "Block text on the left, properties on the right, on one line": "在一行中阻止左侧的文本，右侧的属性"
 }

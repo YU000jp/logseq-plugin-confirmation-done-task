@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "Тайм-аут > включения",
   "Update block": "Обновление блока",
   "Updated block": "Обновлены блоки",
-  "Updated block property": "Обновлены свойства блока"
+  "Updated block property": "Обновлены свойства блока",
+  "This is not a DONE task with the \"completed\" property": "Это не задача DONE со свойством \"completed\"",
+  "Block property > Display the DONE property one step higher than usual": "Заблокировать свойство > Отобразить свойство DONE на одну ступень выше, чем обычно",
+  "Block text on the left, properties on the right, on one line": "Текст блока слева, свойства справа, в одну строку"
 }

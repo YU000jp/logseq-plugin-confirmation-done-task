@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "Zaman aşımı > Etkinleştir",
   "Update block": "Bloğu güncelleştirme",
   "Updated block": "Bloklar güncellendi",
-  "Updated block property": "Güncelleştirilmiş blok özellikleri"
+  "Updated block property": "Güncelleştirilmiş blok özellikleri",
+  "This is not a DONE task with the \"completed\" property": "Bu, \"completed\" özelliğine sahip bir BİTTİ görevi değil",
+  "Block property > Display the DONE property one step higher than usual": "Blok özelliği > DONE özelliğini normalden bir adım daha yüksek görüntüleyin",
+  "Block text on the left, properties on the right, on one line": "Metni solda, özellikleri sağda, tek satırda engelle"
 }

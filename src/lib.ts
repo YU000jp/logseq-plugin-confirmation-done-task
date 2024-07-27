@@ -6,7 +6,7 @@ import { t } from "logseq-l10n"
 export const checkDemoGraph = async (): Promise<boolean> => ((await logseq.App.getCurrentGraph()) as AppGraphInfo | null) === null
   ? true
   : false //デモグラフの場合は返り値がnull
-  
+
 export const removeDialog = () => {
   const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null
   if (element) element.remove()
@@ -61,3 +61,9 @@ export const renamePage = async (oldName: string, newName: string) => {
   logseq.UI.showMsg(`💪 ${t("Renamed page")}`, "success")
 }
 
+export const removeProvideStyle = (className: string) => {
+  const doc = parent.document.head.querySelector(
+    `style[data-injected-style^="${className}"]`
+  ) as HTMLStyleElement | null
+  if (doc) doc.remove()
+}

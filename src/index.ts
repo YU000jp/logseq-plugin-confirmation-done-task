@@ -2,7 +2,7 @@ import "@logseq/libs" //https://plugins-doc.logseq.com/
 import { BlockEntity, BlockUUID, LSPluginBaseInfo, } from "@logseq/libs/dist/LSPlugin.user"
 import { setup as l10nSetup, t } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { addPropertyToTheBlock, modeInsertBlock, modeUpdateBlock, overwriteToProperty, pushDONE } from "./block"
-import { flagSameDay, removeDialog, renamePage, typeDateFromInputDate } from "./lib"
+import { flagSameDay, removeDialog, removeProvideStyle, renamePage, typeDateFromInputDate } from "./lib"
 import { settingsTemplate } from "./settings"
 import { provideStyleMain } from "./style"
 import af from "./translations/af.json"
@@ -25,6 +25,8 @@ import uk from "./translations/uk.json"
 import zhCN from "./translations/zh-CN.json"
 import zhHant from "./translations/zh-Hant.json"
 export const keySmallDONEproperty = "not-smallDONEproperty"
+export const keyStyle = "DONEpluginMain"
+const keySettingsButton = "DONEpluginSettingsButton"
 export const key = "DONEdialog"
 let onBlockChangedToggle: boolean = false
 let processing: boolean = false
@@ -80,15 +82,17 @@ const main = async () => {
   if (!logseq.settings) setTimeout(() => logseq.showSettingsUI(), 300)
 
 
-  provideStyleMain()
-
+  provideStyleMain(logseq.settings!.upperDONEproperty as boolean)
 
   //ページ読み込み時
   logseq.App.onPageHeadActionsSlotted(() => startOnBlock())
   logseq.App.onRouteChanged(() => startOnBlock())
 
   //グラフ変更時
-  logseq.App.onCurrentGraphChanged(() => startOnBlock())
+  logseq.App.onCurrentGraphChanged(() => {
+    getUserConfig()
+    startOnBlock()
+  })
 
   const startOnBlock = () => {
     removeDialog()
@@ -132,8 +136,10 @@ const main = async () => {
   if (logseq.settings!.smallDONEproperty === false)
     parent.document.body.classList.add(keySmallDONEproperty)
 
+
   // プラグイン設定の項目変更時
   logseq.onSettingsChanged((newSet: LSPluginBaseInfo["settings"], oldSet: LSPluginBaseInfo["settings"]) => {
+
     //見た目の変更
     if (oldSet.smallDONEproperty === false
       && newSet.smallDONEproperty === true)
@@ -146,10 +152,18 @@ const main = async () => {
     //プロパティの変更
     if (oldSet.customPropertyName !== newSet.customPropertyName)
       renamePage(oldSet.customPropertyName as string, newSet.customPropertyName as string)
+
+    // トグル
+    if (newSet.upperDONEproperty !== oldSet.upperDONEproperty) {
+      if (newSet.upperDONEproperty === true)
+        provideStyleMain(newSet.upperDONEproperty as boolean)
+      else
+        removeProvideStyle(keyStyle)
+    }
   })
 
   logseq.provideModel({
-    settingsButton: () => logseq.showSettingsUI(),
+    [keySettingsButton]: () => logseq.showSettingsUI(),
   })
 
 } /* end_main */
@@ -259,7 +273,7 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
               <option value="UpdateBlock"${logseq.settings!.modeSelect === "Update block" ? " selected" : ""} title='${t("Mode > \"Update block\" > Before or after the content of the first line, insert the date and time")}'>${t("Update block")}</option>
           `}
               </select>
-              <small><button data-on-click="settingsButton" class="ls-button-primary" title="${t("Plugin Settings")}">⚙️</button></small>
+              <small><button data-on-click="${keySettingsButton}" class="ls-button-primary" title="${t("Plugin Settings")}">⚙️</button></small>
             </div>
           </div>
           <style>

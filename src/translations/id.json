@@ -36,5 +36,8 @@
   "Timeout > Enable feature": "Batas Waktu > Aktifkan",
   "Update block": "Memperbarui blok",
   "Updated block": "Blok telah diperbarui",
-  "Updated block property": "Properti blok yang diperbarui"
+  "Updated block property": "Properti blok yang diperbarui",
+  "This is not a DONE task with the \"completed\" property": "Ini bukan tugas SELESAI dengan properti \"selesai\"",
+  "Block property > Display the DONE property one step higher than usual": "Properti blok > Menampilkan properti DONE satu langkah lebih tinggi dari biasanya",
+  "Block text on the left, properties on the right, on one line": "Blokir teks di sebelah kiri, properti di sebelah kanan, pada satu baris"
 }
