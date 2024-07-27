@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.13.2...v1.14.0) (2024-07-27)
+
+
+### Features
+
+* **add:** A option to fit completed properties on a single line [#57](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/57) ([b7feca2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/b7feca262ae7a03c4a5cdad23ecd7d84f212cff9))
+
 ## [1.13.2](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.13.1...v1.13.2) (2024-06-17)
 
 
