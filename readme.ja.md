@@ -3,6 +3,9 @@
 - ブロックプロパティまたはその他のメソッドを使用して、DONE タスクに日付と時刻を割り当てます。
   > クエリでの検索が可能な `string` プロパティを埋め込みます。
 
+> [!WARNING]
+>このプラグインはLogseq dbバージョンでは動作しません。
+
 <div align="right">
 
 [English](https://github.com/YU000jp/logseq-plugin-confirmation-done-task) | [日本語](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/blob/main/readme.ja.md)

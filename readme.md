@@ -3,6 +3,9 @@
 - Assign the date and time to the `DONE` task using a block property or other methods.
   > Embeds a `string` property that allows discovery in queries.
 
+> [!WARNING]
+This plugin does not work with Logseq db version.
+
 <div align="right">
 
 [English](https://github.com/YU000jp/logseq-plugin-confirmation-done-task) | [日本語](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/blob/main/readme.ja.md)
