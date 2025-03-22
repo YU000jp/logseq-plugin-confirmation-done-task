@@ -11,6 +11,10 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     default: null,
     description: `
     ---
+    2025/03/23 🆕
+    Added a setting to enable commands. (default: false)
+
+    ---
     2025/03/22 🆕
     Additional functions for CANCELLED and WAITING, DOING, TODO tasks.
     (These tasks may be disabled in the Logseq db version.)
@@ -111,7 +115,14 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     title: t("Bullet context menu"),
     type: "boolean",
     default: false,
-    description: "default: `false`",
+    description: `default: \`false\` / ${t("Register and enable the item.")}`,
+  },
+  { // ショートカットキーで実行するコマンドを登録するかどうか
+    key: "enableDoneCommand",
+    title: `${t("Enable shortcut key")} 🆕`,
+    type: "boolean",
+    default: false,
+    description: `${t("Enable")} / ${t("Register and enable the command.")} ${t("You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.")} / (${t("Logseq or plugin restart required")})`,
   },
   {
     key: "customPropertyName",
@@ -144,13 +155,6 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   {
     key: "removePropertyWithoutDONEtask",
     title: t("Remove property without DONE marker"),
-    type: "boolean",
-    default: true,
-    description: t("Enable"),
-  },
-  {// Dialogを使うかどうか
-    key: "useDialog",
-    title: `${t("Use dialog for completion")} 🆕`,
     type: "boolean",
     default: true,
     description: t("Enable"),
@@ -341,7 +345,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   },
   {
     key: "removePropertyWithoutTODOtask",
-    title: t("Remove property without TODO marker"),
+    title: `${t("Remove property without TODO marker")} ✔️`,
     type: "boolean",
     default: false,
     description: "default: `false`",

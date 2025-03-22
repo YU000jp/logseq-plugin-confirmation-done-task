@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "Nastavenie vytvorenej vlastnosti pre úlohy TODO",
   "Update Information": "Informácie o aktualizácii",
   "Remove property without TODO marker": "Odstránenie vlastnosti bez značky TODO",
-  "Use dialog for completion": "Použiť dialógové okno na dokončenie"
+  "Use dialog for completion": "Použiť dialógové okno na dokončenie",
+  "Register and enable the item.": "Zaregistrujte sa a povoľte položku.",
+  "Enable shortcut key": "Povoliť klávesovú skratku",
+  "Register and enable the command.": "Zaregistrujte a povoľte príkaz.",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "Príkazy nájdete v časti \"Nastavenia > KeyMap > Plugins\" a tieto klávesy zmeňte."
 }

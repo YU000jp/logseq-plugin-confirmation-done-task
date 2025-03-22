@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "Aangemaakte eigenschap instellen voor TODO-taken",
   "Update Information": "Update informatie",
   "Remove property without TODO marker": "Eigenschap verwijderen zonder TODO-markering",
-  "Use dialog for completion": "Dialoogvenster gebruiken voor voltooiing"
+  "Use dialog for completion": "Dialoogvenster gebruiken voor voltooiing",
+  "Register and enable the item.": "Registreer en activeer het item.",
+  "Enable shortcut key": "Sneltoets inschakelen",
+  "Register and enable the command.": "Registreer en schakel de opdracht in.",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "Je kunt de commando's vinden in 'Instellingen > KeyMap > Plugins' en die toetsen wijzigen."
 }

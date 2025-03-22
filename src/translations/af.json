@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "Stel geskepte eienskap vir TODO-take",
   "Update Information": "Dateer inligting op",
   "Remove property without TODO marker": "Verwyder eienskap sonder TODO-merker",
-  "Use dialog for completion": "Gebruik dialoog vir voltooiing"
+  "Use dialog for completion": "Gebruik dialoog vir voltooiing",
+  "Register and enable the item.": "Registreer en aktiveer die item.",
+  "Enable shortcut key": "Aktiveer kortpadsleutel",
+  "Register and enable the command.": "Registreer en aktiveer die opdrag.",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "Jy kan die opdragte vind in 'Instellings > KeyMap > Plugins' en daardie sleutels verander."
 }

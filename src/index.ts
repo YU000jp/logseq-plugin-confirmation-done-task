@@ -82,7 +82,7 @@ const main = async () => {
 
   /* user settings */
   logseq.useSettingsSchema(settingsTemplate())
-  const updateInfo = "20250322b"
+  const updateInfo = "20250323a"
   if (!logseq.settings)
     setTimeout(() => logseq.showSettingsUI(), 300)
   else
@@ -117,6 +117,30 @@ const main = async () => {
   onBlockChangedToggle = true
   //end
 
+
+  // DONEにするコマンド
+  if (logseq.settings!.enableDoneCommand as boolean === true) {
+    const registerDoneCommand = (key: string, label: string, keybinding: string, mode: string) => {
+      logseq.App.registerCommandPalette({
+        key,
+        label: "✔️ " + t(label),
+        keybinding: { binding: keybinding }
+      }, async () => {
+        const block = await logseq.Editor.getCurrentBlock() as TaskBlockEntity | null
+        if (!block) return
+        const modeSelect = logseq.settings!.modeSelect as string || "As block property"
+        logseq.updateSettings({ modeSelect: mode })
+        pushDONE(block)
+        setTimeout(() => logseq.updateSettings({ modeSelect }), 1000)
+        logseq.UI.showMsg("✔️ " + t("Set to DONE"), "success", { timeout: 3000, })
+      })
+    }
+    // Register commands
+    registerDoneCommand("setToDoneDefault", "Set to DONE  (default mode)", "", "As block property")
+    registerDoneCommand("setToDoneBlockProperty", "Set to DONE  `As block property`", "", "As block property")
+    registerDoneCommand("setToDoneInsert", "Set to DONE  `Insert block`", "", "Insert block")
+    registerDoneCommand("setToDoneUpdate", "Set to DONE  `Update block`", "", "Update block")
+  }
 
   //プロパティの中に、日付を連続で追加する
   if (logseq.settings!.addDateContinuously as boolean === true)

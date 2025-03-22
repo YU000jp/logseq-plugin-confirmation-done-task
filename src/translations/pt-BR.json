@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "Definir propriedade criada para tarefas TODO",
   "Update Information": "Informações de atualização",
   "Remove property without TODO marker": "Remover propriedade sem marcador TODO",
-  "Use dialog for completion": "Usar caixa de diálogo para conclusão"
+  "Use dialog for completion": "Usar caixa de diálogo para conclusão",
+  "Register and enable the item.": "Registre e habilite o item.",
+  "Enable shortcut key": "Ativar tecla de atalho",
+  "Register and enable the command.": "Registre e habilite o comando.",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "Você pode encontrar os comandos em 'Configurações > KeyMap > Plugins' e alterar essas chaves."
 }

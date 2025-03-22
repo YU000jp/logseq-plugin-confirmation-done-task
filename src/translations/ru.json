@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "Установка свойства created для задач TODO",
   "Update Information": "Информация об обновлениях",
   "Remove property without TODO marker": "Удаление свойства без маркера TODO",
-  "Use dialog for completion": "Используйте диалоговое окно для завершения"
+  "Use dialog for completion": "Используйте диалоговое окно для завершения",
+  "Register and enable the item.": "Зарегистрируйтесь и включите элемент.",
+  "Enable shortcut key": "Включить клавишу быстрого доступа",
+  "Register and enable the command.": "Зарегистрируйтесь и включите команду.",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "Вы можете найти команды в разделе «Настройки > KeyMap > Плагины» и изменить эти клавиши."
 }

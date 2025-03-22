@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "設置 TODO 任務的 created 屬性",
   "Update Information": "更新資訊",
   "Remove property without TODO marker": "刪除沒有 TODO 標記的屬性",
-  "Use dialog for completion": "使用對話框完成"
+  "Use dialog for completion": "使用對話框完成",
+  "Register and enable the item.": "註冊並啟用該專案。",
+  "Enable shortcut key": "啟用快速鍵",
+  "Register and enable the command.": "註冊並啟用該命令。",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "您可以在 'Settings > KeyMap > Plugins' 中找到命令並更改這些鍵。"
 }

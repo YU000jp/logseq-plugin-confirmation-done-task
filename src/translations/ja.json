@@ -60,5 +60,9 @@
   "Set created property for TODO tasks": "TODO タスクに created プロパティを設定する",
   "Update Information": "更新情報",
   "Remove property without TODO marker": "TODO マーカーのないプロパティの削除",
-  "Use dialog for completion": "完了時のダイアログを使用する"
+  "Use dialog for completion": "完了時のダイアログを使用する",
+  "Register and enable the item.": "項目を登録して有効にします。",
+  "Enable shortcut key": "ショートカットキーを有効にする",
+  "Register and enable the command.": "コマンドを登録して有効にします。",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "コマンドは「設定 > キーマップ > プラグイン」で見つけて、キーを変更できます。"
 }

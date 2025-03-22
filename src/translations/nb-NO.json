@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "Angi opprettet egenskap for TODO-oppgaver",
   "Update Information": "Oppdater informasjon",
   "Remove property without TODO marker": "Fjern egenskap uten TODO-markør",
-  "Use dialog for completion": "Bruk dialogen for fullføring"
+  "Use dialog for completion": "Bruk dialogen for fullføring",
+  "Register and enable the item.": "Registrer og aktiver varen.",
+  "Enable shortcut key": "Aktiver hurtigtast",
+  "Register and enable the command.": "Registrer og aktiver kommandoen.",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "Du finner kommandoene i 'Innstillinger > KeyMap > Plugins' og endre disse tastene."
 }

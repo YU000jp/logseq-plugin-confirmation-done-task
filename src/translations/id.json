@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "Mengatur properti yang dibuat untuk tugas TODO",
   "Update Information": "Perbarui Informasi",
   "Remove property without TODO marker": "Hapus properti tanpa penanda TODO",
-  "Use dialog for completion": "Gunakan dialog untuk penyelesaian"
+  "Use dialog for completion": "Gunakan dialog untuk penyelesaian",
+  "Register and enable the item.": "Daftar dan aktifkan item.",
+  "Enable shortcut key": "Aktifkan tombol pintasan",
+  "Register and enable the command.": "Daftar dan aktifkan perintah.",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "Anda dapat menemukan perintah di 'Pengaturan > KeyMap > Plugin' dan mengubah tombol tersebut."
 }

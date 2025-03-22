@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "Ustawianie utworzonej właściwości dla zadań TODO",
   "Update Information": "Informacje o aktualizacji",
   "Remove property without TODO marker": "Usuń właściwość bez znacznika TODO",
-  "Use dialog for completion": "Użyj okna dialogowego do ukończenia"
+  "Use dialog for completion": "Użyj okna dialogowego do ukończenia",
+  "Register and enable the item.": "Zarejestruj i włącz element.",
+  "Enable shortcut key": "Włącz skrótu",
+  "Register and enable the command.": "Zarejestruj się i włącz polecenie.",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "Możesz znaleźć polecenia w \"Ustawieniach > Mapa > Wtyczki\" i zmienić te."
 }

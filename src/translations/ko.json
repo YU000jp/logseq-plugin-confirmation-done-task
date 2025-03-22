@@ -62,5 +62,9 @@
   "Set created property for TODO tasks": "TODO 작업에 대해 생성된 속성 설정",
   "Update Information": "업데이트 정보",
   "Remove property without TODO marker": "TODO 마커가 없는 속성 제거",
-  "Use dialog for completion": "완료를 위해 대화 상자 사용"
+  "Use dialog for completion": "완료를 위해 대화 상자 사용",
+  "Register and enable the item.": "항목을 등록하고 활성화합니다.",
+  "Enable shortcut key": "바로 가기 키 사용",
+  "Register and enable the command.": "명령을 등록하고 활성화합니다.",
+  "You can find the commands in ‘Settings > KeyMap > Plugins’ and change those keys.": "'Settings > KeyMap > Plugins'에서 명령을 찾아 해당 키를 변경할 수 있습니다."
 }
