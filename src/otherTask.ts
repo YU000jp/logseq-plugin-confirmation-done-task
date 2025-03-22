@@ -1,3 +1,4 @@
+import exp from "constants"
 import { TaskBlockEntity, getConfigPreferredDateFormat } from "."
 import { addPropertyToTheBlock } from "./block"
 import { formatDateForLink } from "./lib"
@@ -13,6 +14,9 @@ export const doingTask = async (taskBlock: TaskBlockEntity) =>
 
 export const todoTask = async (taskBlock: TaskBlockEntity) =>
   otherTask(taskBlock, logseq.settings!.todoTaskTime as boolean, logseq.settings!.todoTaskPropertyName as string || "created")
+
+export const doneTask = async (taskBlock: TaskBlockEntity) =>
+  otherTask(taskBlock, logseq.settings!.addTime as boolean, logseq.settings!.customPropertyName as string || "completed")
 
 export const otherTask = async (taskBlock: TaskBlockEntity, taskTime: boolean, propertyName: string) => {
   const today = new Date()

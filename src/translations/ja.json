@@ -59,5 +59,6 @@
   "Remove property without DOING marker": "DOING マーカーのないプロパティの削除",
   "Set created property for TODO tasks": "TODO タスクに created プロパティを設定する",
   "Update Information": "更新情報",
-  "Remove property without TODO marker": "TODO マーカーのないプロパティの削除"
+  "Remove property without TODO marker": "TODO マーカーのないプロパティの削除",
+  "Use dialog for completion": "完了時のダイアログを使用する"
 }

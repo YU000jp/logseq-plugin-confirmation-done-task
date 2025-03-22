@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "Hapus properti tanpa penanda DOING",
   "Set created property for TODO tasks": "Mengatur properti yang dibuat untuk tugas TODO",
   "Update Information": "Perbarui Informasi",
-  "Remove property without TODO marker": "Hapus properti tanpa penanda TODO"
+  "Remove property without TODO marker": "Hapus properti tanpa penanda TODO",
+  "Use dialog for completion": "Gunakan dialog untuk penyelesaian"
 }

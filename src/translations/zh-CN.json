@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "删除没有 DOING 标记的属性",
   "Set created property for TODO tasks": "设置 TODO 任务的 created 属性",
   "Update Information": "更新信息",
-  "Remove property without TODO marker": "删除没有 TODO 标记的属性"
+  "Remove property without TODO marker": "删除没有 TODO 标记的属性",
+  "Use dialog for completion": "使用对话框完成"
 }

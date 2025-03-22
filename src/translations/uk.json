@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "Видалити властивість без маркера DOING",
   "Set created property for TODO tasks": "Встановити створену властивість для завдань TODO",
   "Update Information": "Інформація про оновлення",
-  "Remove property without TODO marker": "Видалення властивості без маркера TODO"
+  "Remove property without TODO marker": "Видалення властивості без маркера TODO",
+  "Use dialog for completion": "Використовувати діалогове вікно для завершення"
 }

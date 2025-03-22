@@ -25,7 +25,7 @@ import tr from "./translations/tr.json"
 import uk from "./translations/uk.json"
 import zhCN from "./translations/zh-CN.json"
 import zhHant from "./translations/zh-Hant.json"
-import { cancelledTask, waitingTask, doingTask, todoTask } from "./otherTask"
+import { cancelledTask, waitingTask, doingTask, todoTask, doneTask } from "./otherTask"
 export const keySmallDONEproperty = "not-smallDONEproperty"
 export const keyStyle = "DONEpluginMain"
 export const keySettingsButton = "DONEpluginSettingsButton"
@@ -82,12 +82,13 @@ const main = async () => {
 
   /* user settings */
   logseq.useSettingsSchema(settingsTemplate())
+  const updateInfo = "20250322b"
   if (!logseq.settings)
     setTimeout(() => logseq.showSettingsUI(), 300)
   else
-    if (logseq.settings!.updateInfo !== "20250322a") {
+    if (logseq.settings!.updateInfo !== updateInfo) {
       setTimeout(() => logseq.showSettingsUI(), 300)
-      logseq.updateSettings({ updateInfo: "20250322a" })
+      logseq.updateSettings({ updateInfo })
     }
 
 
@@ -324,9 +325,14 @@ const onBlockChanged = () =>
 
       //ダイアログを表示
       if (logseq.settings!.DONEtask as boolean === true
-        && taskBlock.marker === "DONE")
-        showDialog(taskBlock, false)
-      else
+        && taskBlock.marker === "DONE") {
+        if (logseq.settings!.useDialog as boolean === true)
+          showDialog(taskBlock, false)
+        else
+          if (!(taskBlock.properties
+            && taskBlock.properties[logseq.settings!.customPropertyName as string || "completed"]))
+            doneTask(taskBlock) //DONEタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
+      } else
         if (taskBlock.properties)
           if ((logseq.settings!.cancelledTask as boolean === true
             && (taskBlock.marker === "CANCELED"

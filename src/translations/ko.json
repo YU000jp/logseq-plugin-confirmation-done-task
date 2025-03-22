@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "DOING 마커없이 속성 제거",
   "Set created property for TODO tasks": "TODO 작업에 대해 생성된 속성 설정",
   "Update Information": "업데이트 정보",
-  "Remove property without TODO marker": "TODO 마커가 없는 속성 제거"
+  "Remove property without TODO marker": "TODO 마커가 없는 속성 제거",
+  "Use dialog for completion": "완료를 위해 대화 상자 사용"
 }

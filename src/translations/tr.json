@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "DOING işaretçisi olmadan özelliği kaldır",
   "Set created property for TODO tasks": "TODO görevleri için oluşturulan özelliği ayarla",
   "Update Information": "Güncelleme Bilgileri",
-  "Remove property without TODO marker": "TODO işaretçisi olmadan özelliği kaldır"
+  "Remove property without TODO marker": "TODO işaretçisi olmadan özelliği kaldır",
+  "Use dialog for completion": "Tamamlamak için iletişim kutusunu kullanın"
 }

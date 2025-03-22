@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "Usuń właściwość bez znacznika DOING",
   "Set created property for TODO tasks": "Ustawianie utworzonej właściwości dla zadań TODO",
   "Update Information": "Informacje o aktualizacji",
-  "Remove property without TODO marker": "Usuń właściwość bez znacznika TODO"
+  "Remove property without TODO marker": "Usuń właściwość bez znacznika TODO",
+  "Use dialog for completion": "Użyj okna dialogowego do ukończenia"
 }

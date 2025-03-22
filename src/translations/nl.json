@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "Eigenschap verwijderen zonder de markering TE DOEN",
   "Set created property for TODO tasks": "Aangemaakte eigenschap instellen voor TODO-taken",
   "Update Information": "Update informatie",
-  "Remove property without TODO marker": "Eigenschap verwijderen zonder TODO-markering"
+  "Remove property without TODO marker": "Eigenschap verwijderen zonder TODO-markering",
+  "Use dialog for completion": "Dialoogvenster gebruiken voor voltooiing"
 }

@@ -15,6 +15,8 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     Additional functions for CANCELLED and WAITING, DOING, TODO tasks.
     (These tasks may be disabled in the Logseq db version.)
     Toggle on to activate.
+
+    🆕 Added a setting to turn off Dialog.
     ---
     `,
   },
@@ -142,6 +144,13 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   {
     key: "removePropertyWithoutDONEtask",
     title: t("Remove property without DONE marker"),
+    type: "boolean",
+    default: true,
+    description: t("Enable"),
+  },
+  {// Dialogを使うかどうか
+    key: "useDialog",
+    title: `${t("Use dialog for completion")} 🆕`,
     type: "boolean",
     default: true,
     description: t("Enable"),

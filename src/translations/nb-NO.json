@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "Fjern egenskap uten å GJØRE-markør",
   "Set created property for TODO tasks": "Angi opprettet egenskap for TODO-oppgaver",
   "Update Information": "Oppdater informasjon",
-  "Remove property without TODO marker": "Fjern egenskap uten TODO-markør"
+  "Remove property without TODO marker": "Fjern egenskap uten TODO-markør",
+  "Use dialog for completion": "Bruk dialogen for fullføring"
 }

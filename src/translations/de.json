@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "Eigenschaft ohne DOING-Markierung entfernen",
   "Set created property for TODO tasks": "Festlegen der erstellten Eigenschaft für TODO-Aufgaben",
   "Update Information": "Informationen zum Aktualisieren",
-  "Remove property without TODO marker": "Eigenschaft ohne TODO-Markierung entfernen"
+  "Remove property without TODO marker": "Eigenschaft ohne TODO-Markierung entfernen",
+  "Use dialog for completion": "Dialogfeld zur Vervollständigung verwenden"
 }

@@ -61,5 +61,6 @@
   "Remove property without DOING marker": "Odstrániť vlastnosť bez značky DOING",
   "Set created property for TODO tasks": "Nastavenie vytvorenej vlastnosti pre úlohy TODO",
   "Update Information": "Informácie o aktualizácii",
-  "Remove property without TODO marker": "Odstránenie vlastnosti bez značky TODO"
+  "Remove property without TODO marker": "Odstránenie vlastnosti bez značky TODO",
+  "Use dialog for completion": "Použiť dialógové okno na dokončenie"
 }
