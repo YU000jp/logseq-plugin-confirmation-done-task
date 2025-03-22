@@ -1,3 +1,15 @@
+# [1.16.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.15.1...v1.16.0) (2025-03-22)
+
+
+### Bug Fixes
+
+* **bug:** created propety should be not remove ([36e4860](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/36e4860f68baeb40191292521f4b012a9ec512cd))
+
+
+### Features
+
+* **Add:** Added a setting to turn off Dialog when DONE [#51](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/51) ([25e6333](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/25e6333a7be7f211c2f70bf06f79349c39d7c1d6))
+
 ## [1.15.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.15.0...v1.15.1) (2025-03-22)
 
 
