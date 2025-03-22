@@ -2,6 +2,7 @@ import { t } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { TaskBlockEntity } from "."
 import { parse, format } from "date-fns"
 
+
 export const overwriteToProperty = async (taskBlock: TaskBlockEntity, dateAndTime: string, inputDateString: string) => {
   let propertyValue = (await logseq.Editor.getBlockProperty(taskBlock.uuid, logseq.settings!.customPropertyName as string)) as string
   if (typeof propertyValue === "string")
@@ -13,12 +14,14 @@ export const overwriteToProperty = async (taskBlock: TaskBlockEntity, dateAndTim
   logseq.UI.showMsg(`💪 ${t("Updated block property")}`, "success")
 }
 
+
 export const addPropertyToTheBlock = (taskBlock: TaskBlockEntity, dateAndTime: string, inputDateString: string) => {
   logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings!.customPropertyName as string, dateAndTime)
   //隠しプロパティにも追加
   hiddenProperty(inputDateString, taskBlock)
   logseq.UI.showMsg(`💪 ${t("Inserted block property")}`, "success")
 }
+
 
 export const modeInsertBlock = (taskBlock: TaskBlockEntity, dateAndTime: string, inputDateString: string) => {
   logseq.Editor.insertBlock(taskBlock.uuid, `${dateAndTime}`, { focus: false })
@@ -27,6 +30,7 @@ export const modeInsertBlock = (taskBlock: TaskBlockEntity, dateAndTime: string,
   hiddenProperty(inputDateString, taskBlock)
   logseq.UI.showMsg(`💪 ${t("Inserted new block")}`, "success")
 }
+
 
 export const modeUpdateBlock = (taskBlock: TaskBlockEntity, dateAndTime: string, inputDateString: string) => {
   if (logseq.settings!.updateBlockContentPosition === "before")
@@ -45,6 +49,7 @@ export const modeUpdateBlock = (taskBlock: TaskBlockEntity, dateAndTime: string,
   hiddenProperty(inputDateString, taskBlock)
   logseq.UI.showMsg(`💪 ${t("Updated block")}`, "success")
 }
+
 
 export const pushDONE = (block: TaskBlockEntity) => {
   //先頭に 「# 」や「＃# 」、「### 」、「#### 」、「##### 」、「###### 」 がある場合は、その後ろにDONEを追加する

@@ -67,6 +67,7 @@ export interface TaskBlockEntity {
   // [key: string]: unknown;
 }
 
+
 /* main */
 const main = async () => {
   await l10nSetup({
@@ -173,7 +174,7 @@ const main = async () => {
 //add completed property to done task
 //https://github.com/DimitryDushkin/logseq-plugin-task-check-date
 const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
-  if (logseq.settings!.onlyFromBulletList === true //ブロック操作でDONEではなくなった場合
+  if (logseq.settings!.onlyFromBulletList === true // ブロック操作によるものではない場合
     || processing === true //処理中の場合 
     || (txMeta
       && (txMeta["transact?"] === false //ユーザー操作ではない場合 (transactは取引の意味)
@@ -306,7 +307,8 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
   setTimeout(() => {
     let processing: Boolean = false
     const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement
-    if (additional === false && element) {
+    if (additional === false
+      && element) {
       element.onclick = () => {
         const dialogElement = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null
         if (!dialogElement) return
@@ -383,6 +385,8 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
       }
   }, 100)
 }
+
+
 let processingShowDialog: Boolean = false
 const showDialog = async (taskBlock: TaskBlockEntity, additional: Boolean, addTitle?: string) => {
   if (additional === false
