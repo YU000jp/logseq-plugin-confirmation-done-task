@@ -3,7 +3,11 @@ import { TaskBlockEntity } from "."
 import { parse, format } from "date-fns"
 
 
-export const overwriteToProperty = async (taskBlock: TaskBlockEntity, dateAndTime: string, inputDateString: string) => {
+export const overwriteToProperty = async (
+  taskBlock: TaskBlockEntity,
+  dateAndTime: string,
+  inputDateString: string
+) => {
   let propertyValue = (await logseq.Editor.getBlockProperty(taskBlock.uuid, logseq.settings!.customPropertyName as string)) as string
   if (typeof propertyValue === "string")
     propertyValue += " , "
@@ -15,7 +19,12 @@ export const overwriteToProperty = async (taskBlock: TaskBlockEntity, dateAndTim
 }
 
 
-export const addPropertyToTheBlock = (taskBlock: TaskBlockEntity, dateAndTime: string, inputDate: Date,propertyName: string) => {
+export const addPropertyToTheBlock = (
+  taskBlock: TaskBlockEntity,
+  dateAndTime: string,
+  inputDate: Date,
+  propertyName: string
+) => {
   logseq.Editor.upsertBlockProperty(taskBlock.uuid, propertyName, dateAndTime)
   //隠しプロパティにも追加
   hiddenProperty(inputDate, taskBlock)
@@ -23,7 +32,11 @@ export const addPropertyToTheBlock = (taskBlock: TaskBlockEntity, dateAndTime: s
 }
 
 
-export const modeInsertBlock = (taskBlock: TaskBlockEntity, dateAndTime: string, inputDateString: string) => {
+export const modeInsertBlock = (
+  taskBlock: TaskBlockEntity,
+  dateAndTime: string,
+  inputDateString: string
+) => {
   logseq.Editor.insertBlock(taskBlock.uuid, `${dateAndTime}`, { focus: false })
   if (logseq.settings!.insertBlockCollapsed === true)
     logseq.Editor.setBlockCollapsed(taskBlock.uuid, true)
@@ -32,7 +45,11 @@ export const modeInsertBlock = (taskBlock: TaskBlockEntity, dateAndTime: string,
 }
 
 
-export const modeUpdateBlock = (taskBlock: TaskBlockEntity, dateAndTime: string, inputDateString: string) => {
+export const modeUpdateBlock = (
+  taskBlock: TaskBlockEntity,
+  dateAndTime: string,
+  inputDateString: string
+) => {
   if (logseq.settings!.updateBlockContentPosition === "before")
     // "before"の場合
     //DONEの後ろに、日付や時刻を挿入する
@@ -51,7 +68,9 @@ export const modeUpdateBlock = (taskBlock: TaskBlockEntity, dateAndTime: string,
 }
 
 
-export const pushDONE = (block: TaskBlockEntity) => {
+export const pushDONE = (
+  block: TaskBlockEntity
+) => {
   //先頭に 「# 」や「＃# 」、「### 」、「#### 」、「##### 」、「###### 」 がある場合は、その後ろにDONEを追加する
   const match = block.content.match(/^#+\s/)
   if (match)
@@ -62,8 +81,12 @@ export const pushDONE = (block: TaskBlockEntity) => {
 }
 
 
-const hiddenProperty = (inputDate: Date, taskBlock: TaskBlockEntity) => {
-  if (logseq.settings!.enableHiddenProperty === false) return
+const hiddenProperty = (
+  inputDate: Date,
+  taskBlock: TaskBlockEntity
+) => {
+  if (logseq.settings!.enableHiddenProperty === false)
+    return
 
   logseq.showMainUI() //ユーザーによる操作を停止する
   logseq.Editor.restoreEditingCursor()
@@ -81,4 +104,3 @@ const hiddenProperty = (inputDate: Date, taskBlock: TaskBlockEntity) => {
       100)
   }, 500)
 }
-
