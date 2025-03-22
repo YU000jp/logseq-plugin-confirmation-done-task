@@ -1,5 +1,5 @@
 import { AppGraphInfo, BlockEntity, PageEntity } from "@logseq/libs/dist/LSPlugin.user"
-import { format, isSameDay, parse } from "date-fns"
+import { format, isSameDay } from "date-fns"
 import { key } from "."
 import { t } from "logseq-l10n"
 
@@ -24,27 +24,25 @@ export const getJournalDayDate = (str: string): Date =>
   )
 
 
-export const typeDateFromInputDate = async (
-  flagSameDay: boolean,
-  inputDateString: string,
+export const formatDateForLink = async (
+  targetDate: Date,
   preferredDateFormat: string
 ): Promise<string> =>
-  flagSameDay as boolean === true ? "" :
-    //日付リンクを作成する
-    (logseq.settings!.createDateLink === true
-      ? "[[" +
-      format(
-        parse(inputDateString, 'yyyy-MM-dd', new Date()),
-        preferredDateFormat
-      ) +
-      "]]"
+//日付リンクを作成する
+(logseq.settings!.createDateLink === true
+  ? "[[" +
+  format(
+    targetDate,
+    preferredDateFormat
+  ) +
+  "]]"
 
-      // 日付リンクを作成しない
-      : format(
-        parse(inputDateString, 'yyyy-MM-dd', new Date()),
-        preferredDateFormat
-      )
-    )
+  // 日付リンクを作成しない
+  : format(
+    targetDate,
+    preferredDateFormat
+  )
+)
 
 
 // 日記ページかつ日付が一致する場合は、日付を省略する
@@ -76,7 +74,7 @@ export const renamePage = async (
   const oldPage = await logseq.Editor.getPage(oldName) as { uuid: PageEntity["uuid"] } | null
   if (!oldPage) return
   logseq.Editor.renamePage(oldName, newName)
-  logseq.UI.showMsg(`💪 ${t("Renamed page")}`, "success")
+  logseq.UI.showMsg(`💪 ${t("The page (property) renamed")}`, "success")
 }
 
 

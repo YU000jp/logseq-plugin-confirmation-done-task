@@ -74,22 +74,26 @@ body {
       }
     }
   }
-  &:not(.${keySmallDONEproperty})>div#root>div>main>div div.block-properties:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]){
-    display: flex;
-    justify-content: flex-end;
-    background: unset;
-    margin: unset;
-    padding: unset;
-    &>div:has(a[data-ref="completed"]) {
-      font-size: 0.8em;
-      display: inline-block;
-      border-radius: 2em;
-      background-color: var(--ls-secondary-background-color);
-      padding: 0.1em 0.5em;
-      ${configUpper === true ? `
-      position: absolute;
-      top: 1em;
-      ` : ""}
+  &:not(.${keySmallDONEproperty})>div#root>div>main>div div.block-properties {
+  &:has(a[data-ref="${logseq.settings!.cancelledTaskPropertyName || "cancelled"}"]),
+    &:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]){
+      display: flex;
+      justify-content: flex-end;
+      background: unset;
+      margin: unset;
+      padding: unset;
+      &>div:has(a[data-ref="${logseq.settings!.cancelledTaskPropertyName || "cancelled"}"]),
+      &>div:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]) {
+        font-size: 0.8em;
+        display: inline-block;
+        border-radius: 2em;
+        background-color: var(--ls-secondary-background-color);
+        padding: 0.1em 0.5em;
+        ${configUpper === true ? `
+        position: absolute;
+        top: 1em;
+        ` : ""}
+      }
     }
   }
 }

@@ -1,8 +1,9 @@
 import "@logseq/libs" //https://plugins-doc.logseq.com/
 import { BlockEntity, BlockUUID, LSPluginBaseInfo, } from "@logseq/libs/dist/LSPlugin.user"
+import { parse } from "date-fns"
 import { setup as l10nSetup, t } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { addPropertyToTheBlock, modeInsertBlock, modeUpdateBlock, overwriteToProperty, pushDONE } from "./block"
-import { flagSameDay, removeDialog, removeProvideStyle, renamePage, typeDateFromInputDate } from "./lib"
+import { flagSameDay, formatDateForLink, removeDialog, removeProvideStyle, renamePage } from "./lib"
 import { settingsTemplate } from "./settings"
 import { provideStyleMain } from "./style"
 import af from "./translations/af.json"
@@ -109,30 +110,32 @@ const main = async () => {
   //end
 
   //プロパティの中に、日付を連続で追加する
-  logseq.Editor.registerBlockContextMenuItem(`💪 ${t("Add into DONE property")}`, async ({ uuid }) => {
-    const block = await logseq.Editor.getBlock(uuid) as TaskBlockEntity | null
-    if (!block) return
-    // 条件
-    if (block.marker === "DONE" // DONEタスク
-      && block.properties // プロパティがある
-      && block.properties[logseq.settings!.customPropertyName as string] // プロパティに指定のプロパティがある
-    ) showDialog(block, true, `💪 ${t("Add into DONE property")}`)
-    else
-      logseq.UI.showMsg(t("This is not a DONE task with the \"completed\" property"), "warning")
-  })
+  if (logseq.settings!.addDateContinuously as boolean === true)
+    logseq.Editor.registerBlockContextMenuItem(`💪 ${t("Add date into DONE property")}`, async ({ uuid }) => {
+      const block = await logseq.Editor.getBlock(uuid) as TaskBlockEntity | null
+      if (!block) return
+      // 条件
+      if (block.marker === "DONE" // DONEタスク
+        && block.properties // プロパティがある
+        && block.properties[logseq.settings!.customPropertyName as string || "completed"] // プロパティに指定のプロパティがある
+      ) showDialog(block, true, `💪 ${t("Add date into DONE property")}`)
+      else
+        logseq.UI.showMsg(t("This is not a DONE task with the \"completed\" property"), "warning")
+    })
 
   //Set to DONE
-  logseq.Editor.registerBlockContextMenuItem(`💪 ${t("Set to DONE")}`, async ({ uuid }) => {
-    const block = (await logseq.Editor.getBlock(uuid)) as TaskBlockEntity | null
-    if (!block) return
-    if (block.marker === "DONE")
-      showDialog(block, false, `💪 ${t("Set to DONE")}`)
-    else {
-      //DONEタスクではなかった場合、DONEにする
-      pushDONE(block)
-      logseq.UI.showMsg(t("Set to DONE"), "success", { timeout: 3000, })
-    }
-  })
+  if (logseq.settings!.enableBulletContextMenu as boolean === true)
+    logseq.Editor.registerBlockContextMenuItem(`💪 ${t("Set to DONE")}`, async ({ uuid }) => {
+      const block = (await logseq.Editor.getBlock(uuid)) as TaskBlockEntity | null
+      if (!block) return
+      if (block.marker === "DONE")
+        showDialog(block, false, `💪 ${t("Set to DONE")}`)
+      else {
+        //DONEタスクではなかった場合、DONEにする
+        pushDONE(block)
+        logseq.UI.showMsg(t("Set to DONE"), "success", { timeout: 3000, })
+      }
+    })
 
   if (logseq.settings!.smallDONEproperty === false)
     parent.document.body.classList.add(keySmallDONEproperty)
@@ -150,9 +153,13 @@ const main = async () => {
         && newSet.smallDONEproperty === false)
         parent.document.body.classList!.add(keySmallDONEproperty)
 
-    //プロパティの変更
+    //DONEプロパティの名称変更
     if (oldSet.customPropertyName !== newSet.customPropertyName)
       renamePage(oldSet.customPropertyName as string, newSet.customPropertyName as string)
+
+    // CANCELEDプロパティの名称変更
+    if (oldSet.cancelledTaskPropertyName !== newSet.cancelledTaskPropertyName)
+      renamePage(oldSet.cancelledTaskPropertyName as string, newSet.cancelledTaskPropertyName as string)
 
     // トグル
     if (newSet.upperDONEproperty !== oldSet.upperDONEproperty) {
@@ -200,22 +207,87 @@ const onBlockChanged = () => logseq.DB.onChanged(async ({ blocks, txMeta }) => {
         logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string")
     }
   }
+  //CANCELLEDタスクではないのに、cancelledプロパティ(それに相当する)をもつ場合は削除する
+  if (logseq.settings!.removePropertyWithoutCANCELLEDtask === true) {
+    const canceledOff: TaskBlockEntity | undefined = blocks.find(({ marker, properties }) =>
+      marker !== "CANCELED" // CANCELLEDタスクではない
+      && marker !== "CANCELLED" // CANCELLEDタスクではない
+      && properties
+      && properties[logseq.settings!.cancelledTaskPropertyName as string || "cancelled"] // プロパティに指定のプロパティがあるか、cancelledプロパティがあるか
+    ) as BlockEntity | undefined
 
-  const taskBlock: TaskBlockEntity | undefined = blocks.find(({ marker }) => marker === "DONE") //DONEタスクを取得する
+    //見つかった場合は削除する
+    if (canceledOff) {
+      //プロパティを削除する
+      logseq.Editor.removeBlockProperty(canceledOff.uuid, logseq.settings!.cancelledTaskPropertyName as string || "cancelled")
+      //stringプロパティも削除する
+      if (canceledOff.properties!.string)
+        logseq.Editor.removeBlockProperty(canceledOff.uuid, "string")
+    }
+  }
+
+
+  // タスクをもつブロックがあるかどうか
+  const taskBlock: TaskBlockEntity | undefined = blocks.find(({ marker }) =>
+    (logseq.settings!.DONEtask as boolean === true
+      && marker === "DONE")
+    || (logseq.settings!.cancelledTask as boolean === true
+      && (marker === "CANCELED"
+        || marker === "CANCELLED"))) //DONEタスクを取得する
   //saveBlock以外は処理しない
   if (!taskBlock) {
     setTimeout(() => processing = false, 100)
     return
+  } else {
+    //チェックボタンからの場合は、現在のブロックと一致しない
+
+    //ダイアログを表示
+    if (logseq.settings!.DONEtask as boolean === true
+      && taskBlock.marker === "DONE")
+      showDialog(taskBlock, false)
+    else
+      if ((logseq.settings!.cancelledTask as boolean === true
+        && (taskBlock.marker === "CANCELED"
+          || taskBlock.marker === "CANCELLED")
+        && !(taskBlock.properties
+          && taskBlock.properties[logseq.settings!.cancelledTaskPropertyName as string || "cancelled"])))
+        cancelledTask(taskBlock) //CANCELLEDタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
+
+    setTimeout(() => processing = false, 100)
   }
-
-  //チェックボタンからの場合は、現在のブロックと一致しない
-
-  //ダイアログを表示
-  showDialog(taskBlock, false)
-
-  setTimeout(() => processing = false, 100)
 })
 
+
+const cancelledTask = async (taskBlock: TaskBlockEntity) => {
+  const today = new Date()
+  
+  let FormattedDateUser: string = logseq.settings!.addDate === true ?
+    await formatDateForLink(today, getConfigPreferredDateFormat()) : ""
+  
+  let addTime: string = ""
+  if (logseq.settings!.cancelledTaskTime === true) {
+    const inputTime: string = today.getHours() + ":" + today.getMinutes()
+    if (inputTime !== "") {
+      //時刻を囲み文字で強調する
+      const emphasis: string = logseq.settings!.emphasisTime === "*"
+        || logseq.settings!.emphasisTime === "**" ?
+        logseq.settings!.emphasisTime
+        : ""
+      addTime = `${emphasis}${inputTime}${emphasis}`
+    }
+  } else
+    addTime = ""
+
+  addPropertyToTheBlock(
+    taskBlock,
+    //日付と時間を結合 順序を変更する
+    logseq.settings!.timeStampPosition === "before" || logseq.settings!.timeStampPosition === "front" ?
+      addTime + " " + FormattedDateUser
+      : FormattedDateUser + " " + addTime,
+    //CANCELLEDのブロックに、プロパティを追加する
+    today,
+    logseq.settings!.cancelledTaskPropertyName as string || "cancelled")
+}
 
 
 const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | undefined, additional: Boolean) => {
@@ -262,7 +334,7 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
           <div id="addProperty" title="">
             <div>
               ${printAddDate}${printAddTime}
-              <button id="DONEpropertyButton" class="ls-button-primary" title="${t("Record the date or time")}">☑️</button>
+              <button id="DONEpropertyButton" class="ls-button-primary" title="${t("Submit")}">☑️</button>
             </div>
             <div>
               <small>${t("Mode")}</small><select id="DONEpropertyModeSelect">
@@ -271,7 +343,7 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
         : ""}>${t(additional === true ? "Add into property" : "Block property")}</option>
           ${additional === true ? "" : `
               <option value="insertBlock"${logseq.settings!.modeSelect === "Insert block" ? " selected" : ""}>${t("Insert new block")}</option>
-              <option value="UpdateBlock"${logseq.settings!.modeSelect === "Update block" ? " selected" : ""} title='${t("Mode > \"Update block\" > Before or after the content of the first line, insert the date and time")}'>${t("Update block")}</option>
+              <option value="UpdateBlock"${logseq.settings!.modeSelect === "Update block" ? " selected" : ""} title='"Update block" ${t("mode")} > ${t("Before or after the content of the first line, insert the date and time")}'>${t("Update block")}</option>
           `}
               </select>
               <small><button data-on-click="${keySettingsButton}" class="ls-button-primary" title="${t("Plugin Settings")}">⚙️</button></small>
@@ -333,14 +405,13 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
             if (!inputDateString) return
 
             //inputDateをDate型に変換
-            FormattedDateUser = await typeDateFromInputDate(
-              logseq.settings!.onlyFromBulletList === true // onlyFromBulletListが有効
-                || logseq.settings!.omitDateIfSameAsJournal === false // 設定がオンではない
-                ? false
-                : await flagSameDay(block, inputDateString) as boolean //同じ日付かどうかチェック(日付マッチ)
-              ,
-              inputDateString,
-              getConfigPreferredDateFormat())
+            const flagSameDayBoolean: boolean = logseq.settings!.onlyFromBulletList === true // onlyFromBulletListが有効
+              || logseq.settings!.omitDateIfSameAsJournal === false // 設定がオンではない
+              ? false
+              : await flagSameDay(block, inputDateString) as boolean //同じ日付かどうかチェック(日付マッチ)
+            FormattedDateUser = flagSameDayBoolean === true ?
+              ""
+              : await formatDateForLink(parse(inputDateString, 'yyyy-MM-dd', new Date()), getConfigPreferredDateFormat())
           }
 
           let addTime: string = ""
@@ -361,7 +432,7 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
             parent.document.getElementById("DONEpropertyModeSelect") as HTMLSelectElement).value
 
           //日付と時間を結合 順序を変更する
-          const dateAndTime = logseq.settings!.timeStampPosition === "before" ?
+          const dateAndTime = logseq.settings!.timeStampPosition === "before" || logseq.settings!.timeStampPosition === "front" ?
             addTime + " " + FormattedDateUser
             : FormattedDateUser + " " + addTime
 
@@ -374,7 +445,12 @@ const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | 
               if (additional === true)
                 await overwriteToProperty(taskBlock, dateAndTime, inputDateString) //skipもしくはoverwrite
               else
-                addPropertyToTheBlock(taskBlock, dateAndTime, inputDateString) //DONEのブロックに、プロパティを追加する
+                addPropertyToTheBlock( //DONEのブロックに、プロパティを追加する
+                  taskBlock,
+                  dateAndTime,
+                  parse(inputDateString, 'yyyy-MM-dd', new Date()),
+                  logseq.settings!.customPropertyName as string
+                )
         } else
           logseq.UI.showMsg(t("Error: Block not found"), "warning")
 
@@ -391,8 +467,6 @@ let processingShowDialog: Boolean = false
 const showDialog = async (taskBlock: TaskBlockEntity, additional: Boolean, addTitle?: string) => {
   if (additional === false
     && taskBlock.properties![logseq.settings!.customPropertyName as string || "completed"]) return //すでにプロパティがある場合は追加しない
-
-
 
   //ブロック操作でDONEではなくなった場合
   logseq.DB.onBlockChanged(taskBlock.uuid, async (block: TaskBlockEntity) => {
