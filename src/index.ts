@@ -31,7 +31,7 @@ export const keyStyle = "DONEpluginMain"
 export const keySettingsButton = "DONEpluginSettingsButton"
 export const key = "DONEdialog"
 let onBlockChangedToggle: boolean = false
-let processing: boolean = false
+let processingButton: boolean = false
 
 let configPreferredDateFormat: string
 export const getConfigPreferredDateFormat = (): string => configPreferredDateFormat
@@ -204,13 +204,13 @@ const onBlockChanged = () =>
   logseq.DB.onChanged(async ({ blocks, txMeta }) => {
 
     if (logseq.settings!.onlyFromBulletList === true // ブロック操作によるものではない場合
-      || processing === true //処理中の場合 
+      || processingButton === true //処理中の場合 
       || (txMeta
         && (txMeta["transact?"] === false //ユーザー操作ではない場合 (transactは取引の意味)
           || txMeta?.outlinerOp === "delete-blocks")) //ブロックが削除された場合
     ) return //処理しない
 
-    processing = true
+    processingButton = true
 
     //DONEタスクではないのに、completedプロパティ(それに相当する)をもつ場合は削除する
     if (logseq.settings!.removePropertyWithoutDONEtask === true) {
@@ -318,7 +318,7 @@ const onBlockChanged = () =>
         && marker === "TODO")) //TODOタスクを取得する
     //saveBlock以外は処理しない
     if (!taskBlock) {
-      setTimeout(() => processing = false, 100)
+      setTimeout(() => processingButton = false, 100)
       return
     } else {
       //チェックボタンからの場合は、現在のブロックと一致しない
@@ -356,7 +356,7 @@ const onBlockChanged = () =>
                   todoTask(taskBlock) //TODOタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
 
 
-      setTimeout(() => processing = false, 100)
+      setTimeout(() => processingButton = false, 300)
     }
   })
 
@@ -377,7 +377,7 @@ const showDialog = async (taskBlock: TaskBlockEntity, additional: Boolean, addTi
   processingShowDialog = true
   //ダイアログを表示
   await showDialogProcess(taskBlock, addTitle, additional) //ロック解除
-  processingShowDialog = false
+  setTimeout(() => processingShowDialog = false, 1000)
 
 } //end showDialog
 

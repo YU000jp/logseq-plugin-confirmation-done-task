@@ -5,7 +5,10 @@ import { TaskBlockEntity, keySettingsButton, key, getConfigPreferredDateFormat }
 import { modeUpdateBlock, modeInsertBlock, overwriteToProperty, addPropertyToTheBlock } from "./block"
 import { flagSameDay, formatDateForLink, removeDialog } from "./lib"
 
+
+let processingShowDialog: Boolean = false
 export const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | undefined, additional: Boolean) => {
+  if (processingShowDialog) return
 
   const today: Date = new Date()
   const year: number = today.getFullYear()
@@ -110,8 +113,10 @@ export const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: st
         processing = true
         const dialogElement = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null
         if (!dialogElement) return
+        processingShowDialog = true
+        setTimeout(() => processingShowDialog = false, 1000)
 
-        const block = (await logseq.Editor.getBlock(taskBlock.uuid)) as { page: BlockEntity["page"]}  | null
+        const block = (await logseq.Editor.getBlock(taskBlock.uuid)) as { page: BlockEntity["page"] } | null
         if (block) {
           let inputDateString: string = ""
           let FormattedDateUser: string = ""
