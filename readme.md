@@ -46,6 +46,7 @@ Install from Logseq Marketplace
 > Go to the [Discussions](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/discussions) tab to ask and find this kind of things.
 
 1. The "string" property for Queries
+   > https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/60 (Cannot retrieve task done last week/month)
 
 ```clojure
 #+BEGIN_QUERY
