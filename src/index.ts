@@ -168,6 +168,18 @@ const main = async () => {
     if (oldSet.cancelledTaskPropertyName !== newSet.cancelledTaskPropertyName)
       renamePage(oldSet.cancelledTaskPropertyName as string, newSet.cancelledTaskPropertyName as string)
 
+    // WAITINGプロパティの名称変更
+    if (oldSet.waitingTaskPropertyName !== newSet.waitingTaskPropertyName)
+      renamePage(oldSet.waitingTaskPropertyName as string, newSet.waitingTaskPropertyName as string)
+
+    // DOINGプロパティの名称変更
+    if (oldSet.doingTaskPropertyName !== newSet.doingTaskPropertyName)
+      renamePage(oldSet.doingTaskPropertyName as string, newSet.doingTaskPropertyName as string)
+
+    // TODOプロパティの名称変更
+    if (oldSet.todoTaskPropertyName !== newSet.todoTaskPropertyName)
+      renamePage(oldSet.todoTaskPropertyName as string, newSet.todoTaskPropertyName as string)
+
     // トグル
     if (newSet.upperDONEproperty !== oldSet.upperDONEproperty) {
       if (newSet.upperDONEproperty === true)
