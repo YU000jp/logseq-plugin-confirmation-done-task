@@ -1,3 +1,14 @@
+# [1.15.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.14.0...v1.15.0) (2025-03-22)
+
+
+### Features
+
+* **Add:** For DOING/WAITING tasks [#59](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/59) ([0cd744c](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/0cd744ca4a3f12b4a5906d441cb6781bdca412be))
+* **Add:** Set completed property also for TODO tasks [#58](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/58) ([bae4a95](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/bae4a95c1362d78fdb4a1c0651b5ac402b8c5f45))
+* **Add:** Set the property also for CANCELLED tasks [#59](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/59) ([bb6be0d](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/bb6be0dcda8c3b846501fdd226c2de3c1b378c0a))
+* **Add:** Set the property also for CANCELLED tasks [#59](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/59) ([6e742c3](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/6e742c33ca3df166a986aece1a9e36578b06e5f7))
+* **Add:** Update Info ([a20cfce](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/a20cfcea3849e643d7c6c4276a982346730876f4))
+
 # [1.14.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.13.2...v1.14.0) (2024-07-27)
 
 
