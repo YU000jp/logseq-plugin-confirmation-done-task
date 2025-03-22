@@ -82,7 +82,13 @@ const main = async () => {
 
   /* user settings */
   logseq.useSettingsSchema(settingsTemplate())
-  if (!logseq.settings) setTimeout(() => logseq.showSettingsUI(), 300)
+  if (!logseq.settings)
+    setTimeout(() => logseq.showSettingsUI(), 300)
+  else
+    if (logseq.settings!.updateInfo !== "20250322a") {
+      setTimeout(() => logseq.showSettingsUI(), 300)
+      logseq.updateSettings({ updateInfo: "20250322a" })
+    }
 
 
   provideStyleMain(logseq.settings!.upperDONEproperty as boolean)
