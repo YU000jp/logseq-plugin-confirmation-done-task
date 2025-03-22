@@ -25,7 +25,7 @@ import tr from "./translations/tr.json"
 import uk from "./translations/uk.json"
 import zhCN from "./translations/zh-CN.json"
 import zhHant from "./translations/zh-Hant.json"
-import { cancelledTask, waitingTask, doingTask } from "./otherTask"
+import { cancelledTask, waitingTask, doingTask, todoTask } from "./otherTask"
 export const keySmallDONEproperty = "not-smallDONEproperty"
 export const keyStyle = "DONEpluginMain"
 export const keySettingsButton = "DONEpluginSettingsButton"
@@ -266,6 +266,24 @@ const onBlockChanged = () =>
       }
     }
 
+    //TODOタスクではないのに、createdプロパティ(それに相当する)をもつ場合は削除する
+    if (logseq.settings!.removePropertyWithoutTODOtask === true) {
+      const todoOff: TaskBlockEntity | undefined = blocks.find(({ marker, properties }) =>
+        marker !== "TODO" // TODOタスクではない
+        && properties
+        && properties[logseq.settings!.todoTaskPropertyName as string || "created"] // プロパティに指定のプロパティがあるか、createdプロパティがあるか
+      ) as BlockEntity | undefined
+
+      //見つかった場合は削除する
+      if (todoOff) {
+        //プロパティを削除する
+        logseq.Editor.removeBlockProperty(todoOff.uuid, logseq.settings!.todoTaskPropertyName as string || "created")
+        //stringプロパティも削除する
+        if (todoOff.properties!.string)
+          logseq.Editor.removeBlockProperty(todoOff.uuid, "string")
+      }
+    }
+
     // タスクをもつブロックがあるかどうか
     const taskBlock: TaskBlockEntity | undefined = blocks.find(({ marker }) =>
       (logseq.settings!.DONEtask as boolean === true
@@ -276,7 +294,9 @@ const onBlockChanged = () =>
       || (logseq.settings!.waitingTask as boolean === true
         && marker === "WAITING")
       || (logseq.settings!.doingTask as boolean === true
-        && marker === "DOING")) //DONEタスクを取得する
+        && marker === "DOING")
+      || (logseq.settings!.todoTask as boolean === true
+        && marker === "TODO")) //TODOタスクを取得する
     //saveBlock以外は処理しない
     if (!taskBlock) {
       setTimeout(() => processing = false, 100)
@@ -305,6 +325,11 @@ const onBlockChanged = () =>
                 && taskBlock.marker === "DOING"
                 && !taskBlock.properties[logseq.settings!.doingTaskPropertyName as string || "during"]))
                 doingTask(taskBlock) //DOINGタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
+              else
+                if ((logseq.settings!.todoTask as boolean === true
+                  && taskBlock.marker === "TODO"
+                  && !taskBlock.properties[logseq.settings!.todoTaskPropertyName as string || "created"]))
+                  todoTask(taskBlock) //TODOタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
 
 
       setTimeout(() => processing = false, 100)

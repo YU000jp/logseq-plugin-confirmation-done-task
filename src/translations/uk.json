@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "Видалити властивість без маркера WAITING",
   "Set during property for DOING tasks": "Встановлюється під час для завдань DOING",
   "`doing` is not available": "'робля' недоступно",
-  "Remove property without DOING marker": "Видалити властивість без маркера DOING"
+  "Remove property without DOING marker": "Видалити властивість без маркера DOING",
+  "Set created property for TODO tasks": "Встановити створену властивість для завдань TODO",
+  "Update Information": "Інформація про оновлення",
+  "Remove property without TODO marker": "Видалення властивості без маркера TODO"
 }

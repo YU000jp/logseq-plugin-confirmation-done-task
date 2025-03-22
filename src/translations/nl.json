@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "Eigenschap verwijderen zonder WACHT-markering",
   "Set during property for DOING tasks": "Instellen tijdens eigenschap voor het DOEN van taken",
   "`doing` is not available": "'Doen' is niet beschikbaar",
-  "Remove property without DOING marker": "Eigenschap verwijderen zonder de markering TE DOEN"
+  "Remove property without DOING marker": "Eigenschap verwijderen zonder de markering TE DOEN",
+  "Set created property for TODO tasks": "Aangemaakte eigenschap instellen voor TODO-taken",
+  "Update Information": "Update informatie",
+  "Remove property without TODO marker": "Eigenschap verwijderen zonder TODO-markering"
 }

@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "Hapus properti tanpa penanda MENUNGGU",
   "Set during property for DOING tasks": "Atur selama properti untuk tugas MELAKUKAN",
   "`doing` is not available": "'melakukan' tidak tersedia",
-  "Remove property without DOING marker": "Hapus properti tanpa penanda DOING"
+  "Remove property without DOING marker": "Hapus properti tanpa penanda DOING",
+  "Set created property for TODO tasks": "Mengatur properti yang dibuat untuk tugas TODO",
+  "Update Information": "Perbarui Informasi",
+  "Remove property without TODO marker": "Hapus properti tanpa penanda TODO"
 }

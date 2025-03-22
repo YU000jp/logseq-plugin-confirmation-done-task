@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "Удалить свойство без маркера ОЖИДАНИЕ",
   "Set during property for DOING tasks": "Устанавливается во время для задач DOING",
   "`doing` is not available": "'doing' недоступен",
-  "Remove property without DOING marker": "Удаление свойства без маркера DOING"
+  "Remove property without DOING marker": "Удаление свойства без маркера DOING",
+  "Set created property for TODO tasks": "Установка свойства created для задач TODO",
+  "Update Information": "Информация об обновлениях",
+  "Remove property without TODO marker": "Удаление свойства без маркера TODO"
 }

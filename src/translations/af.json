@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "Verwyder eienskap sonder WAG-merker",
   "Set during property for DOING tasks": "Stel tydens eienskap vir DOEN-take",
   "`doing` is not available": "'doen' is nie beskikbaar nie",
-  "Remove property without DOING marker": "Verwyder eienskap sonder DOEN-merker"
+  "Remove property without DOING marker": "Verwyder eienskap sonder DOEN-merker",
+  "Set created property for TODO tasks": "Stel geskepte eienskap vir TODO-take",
+  "Update Information": "Dateer inligting op",
+  "Remove property without TODO marker": "Verwyder eienskap sonder TODO-merker"
 }

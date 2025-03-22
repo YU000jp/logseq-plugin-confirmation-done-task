@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "刪除沒有 WAITING 標記的屬性",
   "Set during property for DOING tasks": "為 DOING 任務設置 during 屬性",
   "`doing` is not available": "“正在執行”不可用",
-  "Remove property without DOING marker": "刪除沒有 DOING 標記的屬性"
+  "Remove property without DOING marker": "刪除沒有 DOING 標記的屬性",
+  "Set created property for TODO tasks": "設置 TODO 任務的 created 屬性",
+  "Update Information": "更新資訊",
+  "Remove property without TODO marker": "刪除沒有 TODO 標記的屬性"
 }

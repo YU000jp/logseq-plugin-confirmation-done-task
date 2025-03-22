@@ -12,7 +12,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     description: `
     ---
     2025/03/22 🆕
-    Additional functions for CANCELLED and WAITING tasks and DOING tasks.
+    Additional functions for CANCELLED and WAITING, DOING, TODO tasks.
     (These tasks may be disabled in the Logseq db version.)
     Toggle on to activate.
     ---
@@ -297,6 +297,42 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
   {
     key: "removePropertyWithoutDOINGtask",
     title: t("Remove property without DOING marker"),
+    type: "boolean",
+    default: true,
+    description: t("Enable"),
+  },
+
+  {
+    key: "heading7000",
+    title: `TODO ${t("Task")} 🆕`,
+    type: "heading",
+    default: null,
+    description: t("Set created property for TODO tasks"),
+  },
+  {
+    key: "todoTask",
+    title: t("Enable"),
+    type: "boolean",
+    default: false,
+    description: "",
+  },
+  {
+    key: "todoTaskPropertyName",
+    title: t("Custom property name"),
+    type: "string",
+    default: "created",
+    description: "default: `created`",
+  },
+  {
+    key: "todoTaskTime",
+    title: t("Timestamp entry"),
+    type: "boolean",
+    default: false,
+    description: t("Enable"),
+  },
+  {
+    key: "removePropertyWithoutTODOtask",
+    title: t("Remove property without TODO marker"),
     type: "boolean",
     default: true,
     description: t("Enable"),

@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "Odstránenie vlastnosti bez značky WAITING",
   "Set during property for DOING tasks": "Nastaviť počas vlastnosti pre úlohy DOING",
   "`doing` is not available": "\"Robenie\" nie je k dispozícii",
-  "Remove property without DOING marker": "Odstrániť vlastnosť bez značky DOING"
+  "Remove property without DOING marker": "Odstrániť vlastnosť bez značky DOING",
+  "Set created property for TODO tasks": "Nastavenie vytvorenej vlastnosti pre úlohy TODO",
+  "Update Information": "Informácie o aktualizácii",
+  "Remove property without TODO marker": "Odstránenie vlastnosti bez značky TODO"
 }

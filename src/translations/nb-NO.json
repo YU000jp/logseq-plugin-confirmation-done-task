@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "Fjern egenskap uten VENTER-markør",
   "Set during property for DOING tasks": "Angi under egenskap for å utføre oppgaver",
   "`doing` is not available": "«gjøre» er ikke tilgjengelig",
-  "Remove property without DOING marker": "Fjern egenskap uten å GJØRE-markør"
+  "Remove property without DOING marker": "Fjern egenskap uten å GJØRE-markør",
+  "Set created property for TODO tasks": "Angi opprettet egenskap for TODO-oppgaver",
+  "Update Information": "Oppdater informasjon",
+  "Remove property without TODO marker": "Fjern egenskap uten TODO-markør"
 }

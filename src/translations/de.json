@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "Entfernen der Eigenschaft ohne WAITING-Markierung",
   "Set during property for DOING tasks": "Festlegen der Eigenschaft während für DOING-Aufgaben",
   "`doing` is not available": "\"Doing\" ist nicht verfügbar",
-  "Remove property without DOING marker": "Eigenschaft ohne DOING-Markierung entfernen"
+  "Remove property without DOING marker": "Eigenschaft ohne DOING-Markierung entfernen",
+  "Set created property for TODO tasks": "Festlegen der erstellten Eigenschaft für TODO-Aufgaben",
+  "Update Information": "Informationen zum Aktualisieren",
+  "Remove property without TODO marker": "Eigenschaft ohne TODO-Markierung entfernen"
 }

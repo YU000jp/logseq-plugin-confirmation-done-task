@@ -11,6 +11,9 @@ export const waitingTask = async (taskBlock: TaskBlockEntity) =>
 export const doingTask = async (taskBlock: TaskBlockEntity) =>
   otherTask(taskBlock, logseq.settings!.doingTaskTime as boolean, logseq.settings!.doingTaskPropertyName as string || "during")
 
+export const todoTask = async (taskBlock: TaskBlockEntity) =>
+  otherTask(taskBlock, logseq.settings!.todoTaskTime as boolean, logseq.settings!.todoTaskPropertyName as string || "created")
+
 export const otherTask = async (taskBlock: TaskBlockEntity, taskTime: boolean, propertyName: string) => {
   const today = new Date()
 

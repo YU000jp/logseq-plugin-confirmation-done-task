@@ -58,5 +58,8 @@
   "Remove property without WAITING marker": "Eliminar propiedad sin marcador WAITING",
   "Set during property for DOING tasks": "Propiedad Establecer durante para tareas DOING",
   "`doing` is not available": "'doing' no está disponible",
-  "Remove property without DOING marker": "Eliminar propiedad sin marcador DOING"
+  "Remove property without DOING marker": "Eliminar propiedad sin marcador DOING",
+  "Set created property for TODO tasks": "Establecer la propiedad creada para las tareas TODO",
+  "Update Information": "Actualizar información",
+  "Remove property without TODO marker": "Quitar propiedad sin marcador TODO"
 }
