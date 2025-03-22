@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Nastavenie zrušenej vlastnosti pre ZRUŠENÉ úlohy",
   "Set cancelled property also for CANCELLED tasks": "Nastavenie zrušenej vlastnosti aj pre ZRUŠENÉ úlohy",
   "The page (property) renamed": "Premenovaná stránka (vlastnosť)",
-  "Submit": "Predložiť"
+  "Submit": "Predložiť",
+  "Set waiting property for WAITING tasks": "Nastavenie vlastnosti čakania pre úlohy WAITING",
+  "Remove property without WAITING marker": "Odstránenie vlastnosti bez značky WAITING",
+  "Set during property for DOING tasks": "Nastaviť počas vlastnosti pre úlohy DOING",
+  "`doing` is not available": "\"Robenie\" nie je k dispozícii",
+  "Remove property without DOING marker": "Odstrániť vlastnosť bez značky DOING"
 }

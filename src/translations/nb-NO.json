@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Angi avbrutt egenskap for AVBRUTT oppgaver",
   "Set cancelled property also for CANCELLED tasks": "Angi avbrutt egenskap også for AVBRUTT aktiviteter",
   "The page (property) renamed": "Siden (egenskapen) har fått nytt navn",
-  "Submit": "Forelegge"
+  "Submit": "Forelegge",
+  "Set waiting property for WAITING tasks": "Angi venteegenskap for VENTER-oppgaver",
+  "Remove property without WAITING marker": "Fjern egenskap uten VENTER-markør",
+  "Set during property for DOING tasks": "Angi under egenskap for å utføre oppgaver",
+  "`doing` is not available": "«gjøre» er ikke tilgjengelig",
+  "Remove property without DOING marker": "Fjern egenskap uten å GJØRE-markør"
 }

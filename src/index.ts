@@ -25,7 +25,7 @@ import tr from "./translations/tr.json"
 import uk from "./translations/uk.json"
 import zhCN from "./translations/zh-CN.json"
 import zhHant from "./translations/zh-Hant.json"
-import { cancelledTask } from "./otherTask"
+import { cancelledTask, waitingTask, doingTask } from "./otherTask"
 export const keySmallDONEproperty = "not-smallDONEproperty"
 export const keyStyle = "DONEpluginMain"
 export const keySettingsButton = "DONEpluginSettingsButton"
@@ -230,6 +230,41 @@ const onBlockChanged = () =>
       }
     }
 
+    //WAITINGタスクではないのに、waitingプロパティ(それに相当する)をもつ場合は削除する
+    if (logseq.settings!.removePropertyWithoutWAITINGtask === true) {
+      const waitingOff: TaskBlockEntity | undefined = blocks.find(({ marker, properties }) =>
+        marker !== "WAITING" // WAITINGタスクではない
+        && properties
+        && properties[logseq.settings!.waitingTaskPropertyName as string || "waiting"] // プロパティに指定のプロパティがあるか、waitingプロパティがあるか
+      ) as BlockEntity | undefined
+
+      //見つかった場合は削除する
+      if (waitingOff) {
+        //プロパティを削除する
+        logseq.Editor.removeBlockProperty(waitingOff.uuid, logseq.settings!.waitingTaskPropertyName as string || "waiting")
+        //stringプロパティも削除する
+        if (waitingOff.properties!.string)
+          logseq.Editor.removeBlockProperty(waitingOff.uuid, "string")
+      }
+    }
+
+    //DOINGタスクではないのに、doingプロパティ(それに相当する)をもつ場合は削除する
+    if (logseq.settings!.removePropertyWithoutDOINGtask === true) {
+      const doingOff: TaskBlockEntity | undefined = blocks.find(({ marker, properties }) =>
+        marker !== "DOING" // DOINGタスクではない
+        && properties
+        && properties[logseq.settings!.doingTaskPropertyName as string || "during"] // プロパティに指定のプロパティがあるか、duringプロパティがあるか
+      ) as BlockEntity | undefined
+
+      //見つかった場合は削除する
+      if (doingOff) {
+        //プロパティを削除する
+        logseq.Editor.removeBlockProperty(doingOff.uuid, logseq.settings!.doingTaskPropertyName as string || "during")
+        //stringプロパティも削除する
+        if (doingOff.properties!.string)
+          logseq.Editor.removeBlockProperty(doingOff.uuid, "string")
+      }
+    }
 
     // タスクをもつブロックがあるかどうか
     const taskBlock: TaskBlockEntity | undefined = blocks.find(({ marker }) =>
@@ -237,7 +272,11 @@ const onBlockChanged = () =>
         && marker === "DONE")
       || (logseq.settings!.cancelledTask as boolean === true
         && (marker === "CANCELED"
-          || marker === "CANCELLED"))) //DONEタスクを取得する
+          || marker === "CANCELLED"))
+      || (logseq.settings!.waitingTask as boolean === true
+        && marker === "WAITING")
+      || (logseq.settings!.doingTask as boolean === true
+        && marker === "DOING")) //DONEタスクを取得する
     //saveBlock以外は処理しない
     if (!taskBlock) {
       setTimeout(() => processing = false, 100)
@@ -250,12 +289,23 @@ const onBlockChanged = () =>
         && taskBlock.marker === "DONE")
         showDialog(taskBlock, false)
       else
-        if ((logseq.settings!.cancelledTask as boolean === true
-          && (taskBlock.marker === "CANCELED"
-            || taskBlock.marker === "CANCELLED")
-          && !(taskBlock.properties
-            && taskBlock.properties[logseq.settings!.cancelledTaskPropertyName as string || "cancelled"])))
-          cancelledTask(taskBlock) //CANCELLEDタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
+        if (taskBlock.properties)
+          if ((logseq.settings!.cancelledTask as boolean === true
+            && (taskBlock.marker === "CANCELED"
+              || taskBlock.marker === "CANCELLED")
+            && !taskBlock.properties[logseq.settings!.cancelledTaskPropertyName as string || "cancelled"]))
+            cancelledTask(taskBlock) //CANCELLEDタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
+          else
+            if ((logseq.settings!.waitingTask as boolean === true
+              && taskBlock.marker === "WAITING"
+              && !taskBlock.properties[logseq.settings!.waitingTaskPropertyName as string || "waiting"]))
+              waitingTask(taskBlock) //WAITINGタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
+            else
+              if ((logseq.settings!.doingTask as boolean === true
+                && taskBlock.marker === "DOING"
+                && !taskBlock.properties[logseq.settings!.doingTaskPropertyName as string || "during"]))
+                doingTask(taskBlock) //DOINGタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
+
 
       setTimeout(() => processing = false, 100)
     }

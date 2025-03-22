@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "İPTAL EDİLEN görevler için iptal edilen özelliği ayarla",
   "Set cancelled property also for CANCELLED tasks": "İptal edilen özelliği İPTAL EDİLEN görevler için de ayarla",
   "The page (property) renamed": "Sayfa (özellik) yeniden adlandırıldı",
-  "Submit": "Gönder"
+  "Submit": "Gönder",
+  "Set waiting property for WAITING tasks": "WAITING görevleri için waiting özelliğini ayarla",
+  "Remove property without WAITING marker": "WAITING işaretçisi olmadan özelliği kaldır",
+  "Set during property for DOING tasks": "DOING görevleri için özellik sırasında ayarla",
+  "`doing` is not available": "'Yapıyor' mevcut değil",
+  "Remove property without DOING marker": "DOING işaretçisi olmadan özelliği kaldır"
 }

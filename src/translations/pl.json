@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Ustawianie właściwości cancelled dla zadań CANCELLED",
   "Set cancelled property also for CANCELLED tasks": "Ustawianie właściwości anulowanej również dla zadań CANCELLED",
   "The page (property) renamed": "Zmieniono nazwę strony (właściwości)",
-  "Submit": "Prześlij"
+  "Submit": "Prześlij",
+  "Set waiting property for WAITING tasks": "Ustawianie właściwości oczekującej dla zadań OCZEKUJĄCYCH",
+  "Remove property without WAITING marker": "Usuń właściwość bez znacznika WAITING",
+  "Set during property for DOING tasks": "Właściwość Ustawianie during dla zadań DOING",
+  "`doing` is not available": "\"Robienie\" nie jest dostępne",
+  "Remove property without DOING marker": "Usuń właściwość bez znacznika DOING"
 }

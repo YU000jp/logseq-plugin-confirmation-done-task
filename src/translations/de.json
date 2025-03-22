@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Festlegen der Eigenschaft \"Abgebrochen\" für CANCELLED-Aufgaben",
   "Set cancelled property also for CANCELLED tasks": "Abgebrochene Eigenschaft auch für CANCELLED-Aufgaben festlegen",
   "The page (property) renamed": "Die Seite (Eigenschaft) wurde umbenannt",
-  "Submit": "Senden"
+  "Submit": "Senden",
+  "Set waiting property for WAITING tasks": "Festlegen der Warteeigenschaft für WAITING-Aufgaben",
+  "Remove property without WAITING marker": "Entfernen der Eigenschaft ohne WAITING-Markierung",
+  "Set during property for DOING tasks": "Festlegen der Eigenschaft während für DOING-Aufgaben",
+  "`doing` is not available": "\"Doing\" ist nicht verfügbar",
+  "Remove property without DOING marker": "Eigenschaft ohne DOING-Markierung entfernen"
 }

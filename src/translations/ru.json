@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Установка отмененного свойства для задач CANCELLED",
   "Set cancelled property also for CANCELLED tasks": "Установите отмененное свойство также для ОТМЕНЕННЫХ задач",
   "The page (property) renamed": "Страница (свойство) переименована",
-  "Submit": "Отправить"
+  "Submit": "Отправить",
+  "Set waiting property for WAITING tasks": "Установка свойства waiting для задач WAITING",
+  "Remove property without WAITING marker": "Удалить свойство без маркера ОЖИДАНИЕ",
+  "Set during property for DOING tasks": "Устанавливается во время для задач DOING",
+  "`doing` is not available": "'doing' недоступен",
+  "Remove property without DOING marker": "Удаление свойства без маркера DOING"
 }

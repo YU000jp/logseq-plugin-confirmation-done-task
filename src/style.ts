@@ -76,6 +76,8 @@ body {
   }
   &:not(.${keySmallDONEproperty})>div#root>div>main>div div.block-properties {
   &:has(a[data-ref="${logseq.settings!.cancelledTaskPropertyName || "cancelled"}"]),
+  &:has(a[data-ref="${logseq.settings!.doingTaskPropertyName || "during"}"]),
+  &:has(a[data-ref="${logseq.settings!.waitingTaskPropertyName || "waiting"}"]),
     &:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]){
       display: flex;
       justify-content: flex-end;
@@ -83,6 +85,8 @@ body {
       margin: unset;
       padding: unset;
       &>div:has(a[data-ref="${logseq.settings!.cancelledTaskPropertyName || "cancelled"}"]),
+      &>div:has(a[data-ref="${logseq.settings!.doingTaskPropertyName || "during"}"]),
+      &>div:has(a[data-ref="${logseq.settings!.waitingTaskPropertyName || "waiting"}"]),
       &>div:has(a[data-ref="${logseq.settings!.customPropertyName || "completed"}"]) {
         font-size: 0.8em;
         display: inline-block;

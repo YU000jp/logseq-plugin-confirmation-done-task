@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Definir propriedade cancelled para tarefas CANCELLED",
   "Set cancelled property also for CANCELLED tasks": "Definir propriedade cancelled também para tarefas CANCELLED",
   "The page (property) renamed": "A página (propriedade) renomeada",
-  "Submit": "Enviar"
+  "Submit": "Enviar",
+  "Set waiting property for WAITING tasks": "Definir propriedade waiting para tarefas WAITING",
+  "Remove property without WAITING marker": "Remover propriedade sem marcador WAITING",
+  "Set during property for DOING tasks": "Definir durante a propriedade para tarefas DOING",
+  "`doing` is not available": "'fazer' não está disponível",
+  "Remove property without DOING marker": "Remover propriedade sem marcador DOING"
 }

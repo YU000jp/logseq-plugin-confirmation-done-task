@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Встановити властивість canceled для завдань CANCELLED",
   "Set cancelled property also for CANCELLED tasks": "Встановіть властивість canceled також для завдань CANCELLED",
   "The page (property) renamed": "Сторінку (властивість) перейменовано",
-  "Submit": "Представити"
+  "Submit": "Представити",
+  "Set waiting property for WAITING tasks": "Встановити властивість очікування для завдань WAITING",
+  "Remove property without WAITING marker": "Видалити властивість без маркера WAITING",
+  "Set during property for DOING tasks": "Встановлюється під час для завдань DOING",
+  "`doing` is not available": "'робля' недоступно",
+  "Remove property without DOING marker": "Видалити властивість без маркера DOING"
 }

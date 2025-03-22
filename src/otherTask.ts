@@ -5,6 +5,11 @@ import { formatDateForLink } from "./lib"
 export const cancelledTask = async (taskBlock: TaskBlockEntity) =>
   otherTask(taskBlock, logseq.settings!.cancelledTaskTime as boolean, logseq.settings!.cancelledTaskPropertyName as string || "cancelled")
 
+export const waitingTask = async (taskBlock: TaskBlockEntity) =>
+  otherTask(taskBlock, logseq.settings!.waitingTaskTime as boolean, logseq.settings!.waitingTaskPropertyName as string || "waiting")
+
+export const doingTask = async (taskBlock: TaskBlockEntity) =>
+  otherTask(taskBlock, logseq.settings!.doingTaskTime as boolean, logseq.settings!.doingTaskPropertyName as string || "during")
 
 export const otherTask = async (taskBlock: TaskBlockEntity, taskTime: boolean, propertyName: string) => {
   const today = new Date()

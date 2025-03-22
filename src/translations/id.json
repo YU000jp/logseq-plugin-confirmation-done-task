@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Mengatur properti yang dibatalkan untuk tugas CANCELLED",
   "Set cancelled property also for CANCELLED tasks": "Atur properti yang dibatalkan juga untuk tugas CANCELLED",
   "The page (property) renamed": "Halaman (properti) berganti nama",
-  "Submit": "Tunduk"
+  "Submit": "Tunduk",
+  "Set waiting property for WAITING tasks": "Atur properti menunggu untuk tugas WAITING",
+  "Remove property without WAITING marker": "Hapus properti tanpa penanda MENUNGGU",
+  "Set during property for DOING tasks": "Atur selama properti untuk tugas MELAKUKAN",
+  "`doing` is not available": "'melakukan' tidak tersedia",
+  "Remove property without DOING marker": "Hapus properti tanpa penanda DOING"
 }

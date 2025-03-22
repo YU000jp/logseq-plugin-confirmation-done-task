@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "CANCELLED 작업에 대한 취소된 속성 설정",
   "Set cancelled property also for CANCELLED tasks": "CANCELLED 작업에 대해서도 취소된 속성 설정",
   "The page (property) renamed": "페이지(속성)의 이름이 바뀌었습니다.",
-  "Submit": "전송"
+  "Submit": "전송",
+  "Set waiting property for WAITING tasks": "WAITING 작업에 대한 대기 속성 설정",
+  "Remove property without WAITING marker": "WAITING 마커가 없는 속성 제거",
+  "Set during property for DOING tasks": "DOING 작업에 대한 during 속성 설정",
+  "`doing` is not available": "'doing'은 사용할 수 없습니다.",
+  "Remove property without DOING marker": "DOING 마커없이 속성 제거"
 }

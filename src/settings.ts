@@ -4,6 +4,20 @@ import { t } from "logseq-l10n"
 /* user setting */
 // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
 export const settingsTemplate = (): SettingSchemaDesc[] => [
+  {// 更新情報
+    key: "heading0000",
+    title: t("Update Information"),
+    type: "heading",
+    default: null,
+    description: `
+    ---
+    2025/03/22 🆕
+    Additional functions for CANCELLED and WAITING tasks and DOING tasks.
+    (These tasks may be disabled in the Logseq db version.)
+    Toggle on to activate.
+    ---
+    `,
+  },
   {
     key: "heading1000",
     title: t("Common Settings"),
@@ -180,7 +194,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
 
   {
     key: "heading4000",
-    title: `CANCELLED ${t("Task")}`,
+    title: `CANCELLED ${t("Task")} 🆕`,
     type: "heading",
     default: null,
     description: t("Set cancelled property for CANCELLED tasks"),
@@ -216,4 +230,75 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     description: t("Enable"),
   },
 
+  {
+    key: "heading5000",
+    title: `WAITING ${t("Task")} 🆕`,
+    type: "heading",
+    default: null,
+    description: t("Set waiting property for WAITING tasks"),
+  },
+  {
+    key: "waitingTask",
+    title: t("Enable"),
+    type: "boolean",
+    default: false,
+    description: "",
+  },
+  {
+    key: "waitingTaskPropertyName",
+    title: t("Custom property name"),
+    type: "string",
+    default: "waiting",
+    description: "default: `waiting`",
+  },
+  {
+    key: "waitingTaskTime",
+    title: t("Timestamp entry"),
+    type: "boolean",
+    default: false,
+    description: t("Enable"),
+  },
+  {
+    key: "removePropertyWithoutWAITINGtask",
+    title: t("Remove property without WAITING marker"),
+    type: "boolean",
+    default: true,
+    description: t("Enable"),
+  },
+
+  {
+    key: "heading6000",
+    title: `DOING ${t("Task")} 🆕`,
+    type: "heading",
+    default: null,
+    description: t("Set during property for DOING tasks"),
+  },
+  {
+    key: "doingTask",
+    title: t("Enable"),
+    type: "boolean",
+    default: false,
+    description: "",
+  },
+  {
+    key: "doingTaskPropertyName",
+    title: t("Custom property name"),
+    type: "string",
+    default: "during",
+    description: `default: \`during\` / (⚠️${t("\`doing\` is not available")}}`, // doingは使えません。
+  },
+  {
+    key: "doingTaskTime",
+    title: t("Timestamp entry"),
+    type: "boolean",
+    default: false,
+    description: t("Enable"),
+  },
+  {
+    key: "removePropertyWithoutDOINGtask",
+    title: t("Remove property without DOING marker"),
+    type: "boolean",
+    default: true,
+    description: t("Enable"),
+  },
 ]

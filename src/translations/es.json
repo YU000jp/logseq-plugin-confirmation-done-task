@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Establecer la propiedad cancelled para tareas CANCELLED",
   "Set cancelled property also for CANCELLED tasks": "Establecer la propiedad cancelled también para tareas CANCELLED",
   "The page (property) renamed": "Se ha cambiado el nombre de la página (propiedad)",
-  "Submit": "Enviar"
+  "Submit": "Enviar",
+  "Set waiting property for WAITING tasks": "Establecer la propiedad waiting para las tareas WAITING",
+  "Remove property without WAITING marker": "Eliminar propiedad sin marcador WAITING",
+  "Set during property for DOING tasks": "Propiedad Establecer durante para tareas DOING",
+  "`doing` is not available": "'doing' no está disponible",
+  "Remove property without DOING marker": "Eliminar propiedad sin marcador DOING"
 }

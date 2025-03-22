@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Stel gekanselleerde eienskap vir GEKANSELLEERDE take",
   "Set cancelled property also for CANCELLED tasks": "Stel gekanselleerde eienskap ook vir GEKANSELLEERDE take",
   "The page (property) renamed": "Die bladsy (eienskap) hernoem",
-  "Submit": "Dien in"
+  "Submit": "Dien in",
+  "Set waiting property for WAITING tasks": "Stel wag-eienskap vir WAG-take",
+  "Remove property without WAITING marker": "Verwyder eienskap sonder WAG-merker",
+  "Set during property for DOING tasks": "Stel tydens eienskap vir DOEN-take",
+  "`doing` is not available": "'doen' is nie beskikbaar nie",
+  "Remove property without DOING marker": "Verwyder eienskap sonder DOEN-merker"
 }

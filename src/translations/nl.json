@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "Geannuleerde eigenschap instellen voor GEANNULEERDE taken",
   "Set cancelled property also for CANCELLED tasks": "Stel geannuleerde eigenschap ook in voor GEANNULEERDE taken",
   "The page (property) renamed": "De pagina (eigenschap) waarvan de naam is gewijzigd",
-  "Submit": "Opslaan"
+  "Submit": "Opslaan",
+  "Set waiting property for WAITING tasks": "Wachteigenschap instellen voor WACHTEN-taken",
+  "Remove property without WAITING marker": "Eigenschap verwijderen zonder WACHT-markering",
+  "Set during property for DOING tasks": "Instellen tijdens eigenschap voor het DOEN van taken",
+  "`doing` is not available": "'Doen' is niet beschikbaar",
+  "Remove property without DOING marker": "Eigenschap verwijderen zonder de markering TE DOEN"
 }

@@ -53,5 +53,10 @@
   "Set cancelled property for CANCELLED tasks": "為 CANCELLED 任務設置 cancelled 屬性",
   "Set cancelled property also for CANCELLED tasks": "還為 CANCELLED 任務設置 cancelled 屬性",
   "The page (property) renamed": "重新命名的頁面（屬性）",
-  "Submit": "提交"
+  "Submit": "提交",
+  "Set waiting property for WAITING tasks": "設置 WAITING 任務的 waiting 屬性",
+  "Remove property without WAITING marker": "刪除沒有 WAITING 標記的屬性",
+  "Set during property for DOING tasks": "為 DOING 任務設置 during 屬性",
+  "`doing` is not available": "“正在執行”不可用",
+  "Remove property without DOING marker": "刪除沒有 DOING 標記的屬性"
 }

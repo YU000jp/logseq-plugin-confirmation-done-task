@@ -51,5 +51,10 @@
   "Set cancelled property for CANCELLED tasks": "CANCELLED タスクの cancelled プロパティを設定する",
   "Remove property without CANCELLED marker": "CANCELLEDマーカーのないプロパティの削除",
   "The page (property) renamed": "ページ（プロパティ）が名前変更されました",
-  "Submit": "送信"
+  "Submit": "送信",
+  "Set waiting property for WAITING tasks": "WAITING タスクに waiting プロパティを設定する",
+  "Remove property without WAITING marker": "WAITING マーカーのないプロパティの削除",
+  "Set during property for DOING tasks": "DOING タスクに doing プロパティを設定する",
+  "`doing` is not available": "`doing` は利用できません",
+  "Remove property without DOING marker": "DOING マーカーのないプロパティの削除"
 }
