@@ -10,16 +10,16 @@ export const overwriteToProperty = async (taskBlock: TaskBlockEntity, dateAndTim
   else
     propertyValue = ""
   logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings!.customPropertyName as string, propertyValue + dateAndTime)
-  hiddenProperty(inputDateString, taskBlock)
-  logseq.UI.showMsg(`💪 ${t("Updated block property")}`, "success")
+  hiddenProperty(parse(inputDateString, 'yyyy-MM-dd', new Date()), taskBlock)
+  logseq.UI.showMsg(`💪 ${t("The block property updated")}`, "success")
 }
 
 
-export const addPropertyToTheBlock = (taskBlock: TaskBlockEntity, dateAndTime: string, inputDateString: string) => {
-  logseq.Editor.upsertBlockProperty(taskBlock.uuid, logseq.settings!.customPropertyName as string, dateAndTime)
+export const addPropertyToTheBlock = (taskBlock: TaskBlockEntity, dateAndTime: string, inputDate: Date,propertyName: string) => {
+  logseq.Editor.upsertBlockProperty(taskBlock.uuid, propertyName, dateAndTime)
   //隠しプロパティにも追加
-  hiddenProperty(inputDateString, taskBlock)
-  logseq.UI.showMsg(`💪 ${t("Inserted block property")}`, "success")
+  hiddenProperty(inputDate, taskBlock)
+  logseq.UI.showMsg(`💪 ${t("The block property inserted")}`, "success")
 }
 
 
@@ -27,8 +27,8 @@ export const modeInsertBlock = (taskBlock: TaskBlockEntity, dateAndTime: string,
   logseq.Editor.insertBlock(taskBlock.uuid, `${dateAndTime}`, { focus: false })
   if (logseq.settings!.insertBlockCollapsed === true)
     logseq.Editor.setBlockCollapsed(taskBlock.uuid, true)
-  hiddenProperty(inputDateString, taskBlock)
-  logseq.UI.showMsg(`💪 ${t("Inserted new block")}`, "success")
+  hiddenProperty(parse(inputDateString, 'yyyy-MM-dd', new Date()), taskBlock)
+  logseq.UI.showMsg(`💪 ${t("New block inserted")}`, "success")
 }
 
 
@@ -46,8 +46,8 @@ export const modeUpdateBlock = (taskBlock: TaskBlockEntity, dateAndTime: string,
       taskBlock.content += ` ${logseq.settings!.updateBlockSeparator} ${dateAndTime}`
 
   logseq.Editor.updateBlock(taskBlock.uuid, taskBlock.content)
-  hiddenProperty(inputDateString, taskBlock)
-  logseq.UI.showMsg(`💪 ${t("Updated block")}`, "success")
+  hiddenProperty(parse(inputDateString, 'yyyy-MM-dd', new Date()), taskBlock)
+  logseq.UI.showMsg(`💪 ${t("The block updated")}`, "success")
 }
 
 
@@ -62,7 +62,7 @@ export const pushDONE = (block: TaskBlockEntity) => {
 }
 
 
-const hiddenProperty = (inputDate: string, taskBlock: TaskBlockEntity) => {
+const hiddenProperty = (inputDate: Date, taskBlock: TaskBlockEntity) => {
   if (logseq.settings!.enableHiddenProperty === false) return
 
   logseq.showMainUI() //ユーザーによる操作を停止する
@@ -74,8 +74,8 @@ const hiddenProperty = (inputDate: string, taskBlock: TaskBlockEntity) => {
       logseq.Editor.removeBlockProperty(taskBlock.uuid, "string") //2重にならないように削除
     setTimeout(() => {
       //string:: 20230929
-      logseq.Editor.insertAtEditingCursor(`\nstring:: ${format(parse(inputDate, 'yyyy-MM-dd', new Date()), 'yyyyMMdd')
-    }\n`)
+      logseq.Editor.insertAtEditingCursor(`\nstring:: ${format(inputDate, 'yyyyMMdd')
+        }\n`)
       logseq.hideMainUI() // ユーザーによる操作を再開する
     },
       100)
