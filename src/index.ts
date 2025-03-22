@@ -25,7 +25,7 @@ import tr from "./translations/tr.json"
 import uk from "./translations/uk.json"
 import zhCN from "./translations/zh-CN.json"
 import zhHant from "./translations/zh-Hant.json"
-import { cancelledTask } from "./cancelledTask"
+import { cancelledTask } from "./otherTask"
 export const keySmallDONEproperty = "not-smallDONEproperty"
 export const keyStyle = "DONEpluginMain"
 export const keySettingsButton = "DONEpluginSettingsButton"
@@ -201,30 +201,65 @@ const onBlockChanged = () =>
         && properties[logseq.settings!.customPropertyName as string || "completed"] // プロパティに指定のプロパティがあるか、completedプロパティがあるか
       ) as BlockEntity | undefined
 
-    //見つかった場合は削除する
-    if (CompletedOff) {
-      //プロパティを削除する
-      logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings!.customPropertyName as string || "completed")
-      //stringプロパティも削除する
-      if (CompletedOff.properties!.string)
-        logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string")
+      //見つかった場合は削除する
+      if (CompletedOff) {
+        //プロパティを削除する
+        logseq.Editor.removeBlockProperty(CompletedOff.uuid, logseq.settings!.customPropertyName as string || "completed")
+        //stringプロパティも削除する
+        if (CompletedOff.properties!.string)
+          logseq.Editor.removeBlockProperty(CompletedOff.uuid, "string")
+      }
     }
-  }
 
-  const taskBlock: TaskBlockEntity | undefined = blocks.find(({ marker }) => marker === "DONE") //DONEタスクを取得する
-  //saveBlock以外は処理しない
-  if (!taskBlock) {
-    setTimeout(() => processing = false, 100)
-    return
-  }
+    //CANCELLEDタスクではないのに、cancelledプロパティ(それに相当する)をもつ場合は削除する
+    if (logseq.settings!.removePropertyWithoutCANCELLEDtask === true) {
+      const canceledOff: TaskBlockEntity | undefined = blocks.find(({ marker, properties }) =>
+        marker !== "CANCELED" // CANCELLEDタスクではない
+        && marker !== "CANCELLED" // CANCELLEDタスクではない
+        && properties
+        && properties[logseq.settings!.cancelledTaskPropertyName as string || "cancelled"] // プロパティに指定のプロパティがあるか、cancelledプロパティがあるか
+      ) as BlockEntity | undefined
 
-  //チェックボタンからの場合は、現在のブロックと一致しない
+      //見つかった場合は削除する
+      if (canceledOff) {
+        //プロパティを削除する
+        logseq.Editor.removeBlockProperty(canceledOff.uuid, logseq.settings!.cancelledTaskPropertyName as string || "cancelled")
+        //stringプロパティも削除する
+        if (canceledOff.properties!.string)
+          logseq.Editor.removeBlockProperty(canceledOff.uuid, "string")
+      }
+    }
 
-  //ダイアログを表示
-  showDialog(taskBlock, false)
 
-  setTimeout(() => processing = false, 100)
-})
+    // タスクをもつブロックがあるかどうか
+    const taskBlock: TaskBlockEntity | undefined = blocks.find(({ marker }) =>
+      (logseq.settings!.DONEtask as boolean === true
+        && marker === "DONE")
+      || (logseq.settings!.cancelledTask as boolean === true
+        && (marker === "CANCELED"
+          || marker === "CANCELLED"))) //DONEタスクを取得する
+    //saveBlock以外は処理しない
+    if (!taskBlock) {
+      setTimeout(() => processing = false, 100)
+      return
+    } else {
+      //チェックボタンからの場合は、現在のブロックと一致しない
+
+      //ダイアログを表示
+      if (logseq.settings!.DONEtask as boolean === true
+        && taskBlock.marker === "DONE")
+        showDialog(taskBlock, false)
+      else
+        if ((logseq.settings!.cancelledTask as boolean === true
+          && (taskBlock.marker === "CANCELED"
+            || taskBlock.marker === "CANCELLED")
+          && !(taskBlock.properties
+            && taskBlock.properties[logseq.settings!.cancelledTaskPropertyName as string || "cancelled"])))
+          cancelledTask(taskBlock) //CANCELLEDタスクにプロパティを追加する (ダイアログを使わないでそのまま処理)
+
+      setTimeout(() => processing = false, 100)
+    }
+  })
 
 
 let processingShowDialog: Boolean = false

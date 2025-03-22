@@ -2,14 +2,18 @@ import { TaskBlockEntity, getConfigPreferredDateFormat } from "."
 import { addPropertyToTheBlock } from "./block"
 import { formatDateForLink } from "./lib"
 
-export const cancelledTask = async (taskBlock: TaskBlockEntity) => {
+export const cancelledTask = async (taskBlock: TaskBlockEntity) =>
+  otherTask(taskBlock, logseq.settings!.cancelledTaskTime as boolean, logseq.settings!.cancelledTaskPropertyName as string || "cancelled")
+
+
+export const otherTask = async (taskBlock: TaskBlockEntity, taskTime: boolean, propertyName: string) => {
   const today = new Date()
 
   let FormattedDateUser: string = logseq.settings!.addDate === true ?
     await formatDateForLink(today, getConfigPreferredDateFormat()) : ""
 
   let addTime: string = ""
-  if (logseq.settings!.cancelledTaskTime === true) {
+  if (taskTime === true) {
     const inputTime: string = today.getHours() + ":" + today.getMinutes()
     if (inputTime !== "") {
       //時刻を囲み文字で強調する
@@ -31,5 +35,6 @@ export const cancelledTask = async (taskBlock: TaskBlockEntity) => {
       : FormattedDateUser + " " + addTime,
     //CANCELLEDのブロックに、プロパティを追加する
     today,
-    logseq.settings!.cancelledTaskPropertyName as string || "cancelled")
+    propertyName
+  )
 }
