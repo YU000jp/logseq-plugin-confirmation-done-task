@@ -334,7 +334,7 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     key: "removePropertyWithoutTODOtask",
     title: t("Remove property without TODO marker"),
     type: "boolean",
-    default: true,
-    description: t("Enable"),
+    default: false,
+    description: "default: `false`",
   },
 ]
