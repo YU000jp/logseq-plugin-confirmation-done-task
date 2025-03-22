@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.15.0...v1.15.1) (2025-03-22)
+
+
+### Bug Fixes
+
+* **bug:** rename property ([0bea931](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/0bea93120296aae3eea30cfbe190c7df203d0a75))
+
 # [1.15.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.14.0...v1.15.0) (2025-03-22)
 
 
