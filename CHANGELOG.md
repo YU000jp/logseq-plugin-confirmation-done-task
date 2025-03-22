@@ -1,3 +1,15 @@
+# [1.17.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.16.0...v1.17.0) (2025-03-22)
+
+
+### Bug Fixes
+
+* **bug:** "Update block" duplication bug [#51](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/51) ([16213f3](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/16213f3c0c8ace3e579a2c7495d7a078884a03e8))
+
+
+### Features
+
+* **Add:** Added a setting to enable commands to set DONE. (default: false) ([b1220bc](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/b1220bcedf720a44bea5cd5192df6d7ff16f8e2c))
+
 # [1.16.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.15.1...v1.16.0) (2025-03-22)
 
 
