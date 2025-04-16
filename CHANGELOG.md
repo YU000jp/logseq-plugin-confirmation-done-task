@@ -1,3 +1,11 @@
+## [1.17.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.17.0...v1.17.1) (2025-04-16)
+
+
+### Bug Fixes
+
+* **bug:**  [#51](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/51) Configuration item whether to use Dialog or not. ([12e9846](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/12e98460581b78544d686f6bfaa0dff416444e9d))
+* **bug:** Display the time in two digits. [#61](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/61) ([9bce366](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/9bce3665a88ef3783c374b6dfac6c021afbd71cb))
+
 # [1.17.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.16.0...v1.17.0) (2025-03-22)
 
 
