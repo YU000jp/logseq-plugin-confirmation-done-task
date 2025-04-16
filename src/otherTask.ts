@@ -2,6 +2,7 @@ import exp from "constants"
 import { TaskBlockEntity, getConfigPreferredDateFormat } from "."
 import { addPropertyToTheBlock } from "./block"
 import { formatDateForLink } from "./lib"
+import { format } from "date-fns"
 
 export const cancelledTask = async (taskBlock: TaskBlockEntity) =>
   otherTask(taskBlock, logseq.settings!.cancelledTaskTime as boolean, logseq.settings!.cancelledTaskPropertyName as string || "cancelled")
@@ -26,7 +27,7 @@ export const otherTask = async (taskBlock: TaskBlockEntity, taskTime: boolean, p
 
   let addTime: string = ""
   if (taskTime === true) {
-    const inputTime: string = today.getHours() + ":" + today.getMinutes()
+    const inputTime: string = format(today, "HH:mm")
     if (inputTime !== "") {
       //時刻を囲み文字で強調する
       const emphasis: string = logseq.settings!.emphasisTime === "*"
