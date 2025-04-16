@@ -61,6 +61,13 @@ export const settingsTemplate = (): SettingSchemaDesc[] => [
     default: true,
     description: `${t("Enable")} / (key: \"string\", value: journal-day format)`,
   },
+  {// Dialogを使うかどうか
+    key: "useDialog",
+    title: `${t("Use dialog for completion")} 🆕`,
+    type: "boolean",
+    default: true,
+    description: t("Enable"),
+  },
 
 
   {
