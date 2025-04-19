@@ -4,7 +4,7 @@
   > Embeds a `string` property that allows discovery in queries.
 
 > [!WARNING]
-> This plugin is not available for versions newer than Logseq v0.10.9 and db versions. This is due to break changes in the feature of tasks.
+> This plugin is not available for versions newer than Logseq v0.10.9 and db versions. This is due to a change in functionality related to tasks.
 
 <div align="right">
 
