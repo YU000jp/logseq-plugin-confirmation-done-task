@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.17.1...v1.18.0) (2025-06-08)
+
+
+### Features
+
+* Compatibility for DB model (file-based graph only) [#63](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/issues/63) ([e95644f](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/e95644ffca22d7ebe153fb48860a02b082f61b1d))
+
 ## [1.17.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.17.0...v1.17.1) (2025-04-16)
 
 
