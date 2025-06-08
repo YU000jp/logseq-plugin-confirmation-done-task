@@ -4,7 +4,7 @@
   > Embeds a `string` property that allows discovery in queries.
 
 > [!WARNING]
-> This plugin is not available for versions newer than Logseq v0.10.9 and db versions. This is due to a change in functionality related to tasks.
+> This plugin only works with Logseq file-based graph. Due to changes in task-related functionality, it does not work with DB graph.
 
 <div align="right">
 
