@@ -1,7 +1,7 @@
 import { BlockEntity } from "@logseq/libs/dist/LSPlugin.user"
 import { parse } from "date-fns"
 import { t } from "logseq-l10n"
-import { TaskBlockEntity, keySettingsButton, key, getConfigPreferredDateFormat } from "."
+import { TaskBlockEntity, keySettingsButton, key, getConfigPreferredDateFormat, booleanLogseqVersionMd } from "."
 import { modeUpdateBlock, modeInsertBlock, overwriteToProperty, addPropertyToTheBlock } from "./block"
 import { flagSameDay, formatDateForLink, removeDialog } from "./lib"
 
@@ -10,6 +10,7 @@ let processingShowDialog: Boolean = false
 export const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: string | undefined, additional: Boolean) => {
   if (processingShowDialog) return
 
+  const logseqVersionMd = booleanLogseqVersionMd()
   const today: Date = new Date()
   const year: number = today.getFullYear()
   const month: string = ("0" + ((today.getMonth() as number) + 1)).slice(-2)
@@ -20,7 +21,9 @@ export const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: st
   const printAddDate = logseq.settings!.addDate === true
     ? `<label><input id="DONEpropertyDate" type="date" value="${`${year}-${month}-${day}`}" title="${t("Date picker")}\n\n${t("Actually, the date format set in Logseq is applied.")}\n\n${t("Click on the mark on the right to select")}" style="width:160px"/></label>`
     : '<input id="DONEpropertyDate" type="hidden" value=""/>'
-  const blockElement = parent.document.getElementsByClassName(taskBlock.uuid)[0] as HTMLElement
+  const blockElement = logseqVersionMd === true ?
+    parent.document.getElementsByClassName(taskBlock.uuid)[0] as HTMLElement
+    : parent.document.getElementById(`ls-block-${taskBlock.uuid}`) as HTMLElement
   let top = ""
   let left = ""
   let right = ""
@@ -82,7 +85,7 @@ export const showDialogProcess = async (taskBlock: TaskBlockEntity, addTitle: st
       width: "unset",
       maxWidth: "420px",
       height: "unset",
-      maxHeight: "130px",
+      maxHeight: logseqVersionMd === true ? "130px" : "160px",
       right: right !== "" ? right : "unset",
       bottom: "unset",
       left: left !== "" ? left : "unset",

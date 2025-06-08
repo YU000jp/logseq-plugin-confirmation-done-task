@@ -1,6 +1,6 @@
 import { key, keySmallDONEproperty, keyStyle } from "."
 
-export const provideStyleMain = (configUpper: boolean) => logseq.provideStyle({
+export const provideStyleMain = (configUpper: boolean, logseqVersionMd: boolean) => logseq.provideStyle({
   key: keyStyle, style: `
 body {
   &>div {
@@ -29,13 +29,15 @@ body {
         &>label {
           position: relative;
           display: inline-block;
+          
           &>input {
-            &[type="date"]::after {
+            ${logseqVersionMd === true ? `&[type="date"]::after {
                 content: '📅';
             }
             &[type="time"]::after {
                 content: '🕒';
-            }
+            }` : ""}
+                
             &[type="date"],
             &[type="time"] {
               font-size: .96em;
