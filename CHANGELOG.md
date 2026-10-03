@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.18.0...v1.18.1) (2026-10-03)
+
+
+### Bug Fixes
+
+* DBグラフ検出を公式APIに置き換え、アプリ世代とグラフ種別の判定を分離 ([6dce017](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/commit/6dce0171a1715d3545990a98b4283676da5b2a76))
+
 # [1.18.0](https://github.com/YU000jp/logseq-plugin-confirmation-done-task/compare/v1.17.1...v1.18.0) (2025-06-08)
 
 
