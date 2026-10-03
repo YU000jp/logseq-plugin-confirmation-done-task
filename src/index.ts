@@ -43,8 +43,8 @@ const getUserConfig = async () => {
 }
 
 let logseqVersion: string = "" //バージョンチェック用
-let logseqVersionMd: boolean = false //バージョンチェック用
-let logseqDbGraph: boolean = false
+let logseqVersionMd: boolean = false //旧UI系統(0.10.x以下またはOG 1.x系)かどうか
+let logseqDbGraph: boolean = false //現在のグラフがDBグラフかどうか
 // export const getLogseqVersion = () => logseqVersion //バージョンチェック用
 export const booleanLogseqVersionMd = () => logseqVersionMd //バージョンチェック用
 export const booleanDbGraph = () => logseqDbGraph //バージョンチェック用
@@ -443,39 +443,36 @@ const showDialog = async (taskBlock: TaskBlockEntity, additional: Boolean, addTi
 } //end showDialog
 
 
-// MDモデルかどうかのチェック DBモデルはfalse
+// アプリ世代のチェック 旧UI系統(0.10.x以下またはOG 1.x系)ならtrue、新UI系統(DB系アプリ)ならfalse
 const checkLogseqVersion = async (): Promise<boolean> => {
-  const logseqInfo = (await logseq.App.getInfo("version")) as AppInfo | any
+  const info = (await logseq.App.getInfo()) as AppInfo | null
+  const versionString = typeof info?.version === "string" ? info.version : "0.0.0"
   //  0.11.0もしくは0.11.0-alpha+nightly.20250427のような形式なので、先頭の3つの数値(1桁、2桁、2桁)を正規表現で取得する
-  const version = logseqInfo.match(/(\d+)\.(\d+)\.(\d+)/)
+  const version = versionString.match(/(\d+)\.(\d+)\.(\d+)/)
   if (version) {
     logseqVersion = version[0] //バージョンを取得
     // console.log("logseq version: ", logseqVersion)
 
-    // もし バージョンが0.10.*系やそれ以下ならば、logseqVersionMdをtrueにする
-    if (logseqVersion.match(/0\.([0-9]|10)\.\d+/)) {
-      logseqVersionMd = true
-      // console.log("logseq version is 0.10.* or lower")
-      return true
-    } else logseqVersionMd = false
+    // 0.11.x以降または2.x以降は新UI系統(DB系アプリ)。0.10.x以下とOG 1.x系は旧UI系統
+    const isDbEra = Number(version[1]) >= 2
+      || (Number(version[1]) === 0 && Number(version[2]) >= 11)
+    logseqVersionMd = !isDbEra
+    return !isDbEra
   } else logseqVersion = "0.0.0"
   return false
 }
-// DBグラフかどうかのチェック
-// DBグラフかどうかのチェック DBグラフだけtrue
+// DBグラフかどうかのチェック(公式API。0.10.x系ホストには未実装のためfalse)
 const checkLogseqDbGraph = async (): Promise<boolean> => {
-  const element = parent.document.querySelector(
-    "div.block-tags",
-  ) as HTMLDivElement | null // ページ内にClassタグが存在する  WARN:: ※DOM変更の可能性に注意
-  if (element) {
-    logseqDbGraph = true
-    return true
-  } else logseqDbGraph = false
-  return false
+  try {
+    const value = await (logseq.App as any).checkCurrentIsDbGraph()
+    return typeof value === "boolean" ? value : false
+  } catch {
+    return false // API非搭載ホスト = DBグラフを開けない旧アプリ
+  }
 }
 
 const showDbGraphIncompatibilityMsg = () => {
-  logseq.UI.showMsg("The ’DONE task property’ plugin not supports Logseq DB graph.", "warning", { timeout: 5000 })
+  logseq.UI.showMsg("The ’DONE task property’ plugin does not support Logseq DB graph.", "warning", { timeout: 5000 })
   return
 }
 
